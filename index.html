@@ -123,7 +123,7 @@
     .meta{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#967449;font-weight:800}
     .product h3{font-size:28px;font-weight:600;margin:6px 0 8px}
     .product p{margin:0 0 16px;color:var(--muted);font-size:13px;min-height:62px}
-    .product-bottom{margin-top:auto;display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .variant-picker{width:100%;margin:0 0 13px;padding:10px 12px;background:#f9f7f1;border:1px solid #d8d3c8;border-radius:12px;color:#24382b;font-size:13px}.variant-caption{font-size:11px;color:#646e64;font-weight:700;margin:0 0 5px;display:block} .product-bottom{margin-top:auto;display:flex;justify-content:space-between;gap:10px;align-items:center}
     .price{font-size:14px;font-weight:800;color:#203429}
     .mini-btn{background:var(--forest);color:#fff;border:0;border-radius:999px;padding:10px 14px;font-size:12px;font-weight:800}
     .mini-btn:hover{background:var(--forest-2)}
@@ -499,6 +499,15 @@
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     }
 
+    const formatNames={decant5:'Decant de 5 ml',decant10:'Decant de 10 ml',bottle:'Botella completa'};
+    function getVariants(product){
+      if(product.variants && typeof product.variants==='object'){
+        return Object.entries(product.variants).filter(([key,v])=>formatNames[key]&&v?.enabled).map(([key,v])=>({key,label:formatNames[key],price:v.price||'Consultar precio'}));
+      }
+      // Compatibilidad con productos anteriores a esta actualización.
+      return [{key:'bottle',label:'Botella completa',price:product.price||'Consultar precio'}];
+    }
+    function formatVariantPrice(product,key){return getVariants(product).find(v=>v.key===key)?.price||'Consultar precio'};
     function renderProducts(){
       const term = $('search').value.trim().toLocaleLowerCase('es');
       const filtered = products
@@ -527,9 +536,13 @@
             <div class="meta">${escapeHtml(product.category)} · ${escapeHtml(product.brand)}</div>
             <h3>${escapeHtml(product.name)}</h3>
             <p>${escapeHtml(product.desc || "Consulta detalles por WhatsApp.")}</p>
+            <label class="variant-caption" for="variant-${product.index}">Elige presentación</label>
+            <select class="variant-picker" id="variant-${product.index}" data-variant="${product.index}" aria-label="Presentación de ${escapeHtml(product.name)}">
+              ${getVariants(product).map(v=>`<option value="${v.key}">${escapeHtml(v.label)} · ${escapeHtml(v.price)}</option>`).join('')}
+            </select>
             <div class="product-bottom">
-              <span class="price">${escapeHtml(product.price || "Consultar precio")}</span>
-              <button class="mini-btn" type="button" data-add="${product.index}">+ Agregar</button>
+              <span class="price" data-current-price="${product.index}">${escapeHtml(getVariants(product)[0]?.price || 'Consultar precio')}</span>
+              <button class="mini-btn" type="button" data-add="${product.index}" ${!getVariants(product).length?'disabled':''}>+ Agregar</button>
             </div>
           </div>
         </article>
@@ -554,7 +567,7 @@
         <div class="cart-item">
           <div>
             <strong>${escapeHtml(item.name)}</strong>
-            <span>${escapeHtml(item.brand)} · ${escapeHtml(item.price)}</span>
+            <span>${escapeHtml(item.brand)} · ${escapeHtml(item.variantLabel||"Botella completa")} · ${escapeHtml(item.price)}</span>
           </div>
           <button type="button" data-remove="${index}">Quitar</button>
         </div>
@@ -569,9 +582,12 @@
     function addToCart(index){
       const item = products[index];
       if(!item) return;
-      cart.push(item);
+      const selected = $('variant-'+index)?.value || 'bottle';
+      const variant = getVariants(item).find(v=>v.key===selected);
+      if(!variant){showToast('Selecciona una presentación disponible.');return}
+      cart.push({...item,variantLabel:variant.label,price:variant.price});
       renderCart();
-      showToast(`${item.name} se agregó a tu pedido.`);
+      showToast(`${item.name} · ${variant.label} agregado a tu pedido.`);
     }
 
     document.querySelectorAll('.filter').forEach(button => {
@@ -587,6 +603,7 @@
     });
 
     $('search').addEventListener('input', renderProducts);
+    $('products').addEventListener('change', event=>{const select=event.target.closest('[data-variant]');if(!select)return;const target=document.querySelector(`[data-current-price="${select.dataset.variant}"]`);if(target)target.textContent=formatVariantPrice(products[Number(select.dataset.variant)],select.value)});
 
     $('products').addEventListener('click', (event) => {
       const button = event.target.closest('[data-add]');
@@ -619,7 +636,7 @@
       const message = [
         'Hola, Olfactum. Me gustaría consultar precio y disponibilidad de:',
         '',
-        ...cart.map((item, i) => `${i + 1}. ${item.name} (${item.brand}) - ${item.price}`),
+        ...cart.map((item, i) => `${i + 1}. ${item.name} (${item.brand}) · ${item.variantLabel||"Botella completa"} - ${item.price}`),
         '',
         'Gracias.'
       ].join('\n');
