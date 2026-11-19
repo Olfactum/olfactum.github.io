@@ -177,5 +177,30 @@
         "price": "$850"
       }
     }
+  },
+  {
+    "id": "perfume-1795129593354-i665l",
+    "name": "Odyssey Mandarin Sky",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "night",
+    "status": "Disponible",
+    "price": "$700",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": true,
+        "price": "$700"
+      }
+    },
+    "desc": "✨ Una fragancia irresistible que combina la frescura cítrica de la mandarina y naranja 🍊, la dulzura del caramelo y haba tonka 🍬, con un fondo cálido y amaderado de cedro y vetiver 🪵.\n\n🔥 Un aroma dulce, sofisticado y lleno de personalidad.",
+    "image": "images/perfume-1795129593354-i665l-1795129593362.jpg"
   }
 ]
