@@ -202,5 +202,30 @@
     },
     "desc": "✨ Una fragancia irresistible que combina la frescura cítrica de la mandarina y naranja 🍊, la dulzura del caramelo y haba tonka 🍬, con un fondo cálido y amaderado de cedro y vetiver 🪵.\n\n🔥 Un aroma dulce, sofisticado y lleno de personalidad.",
     "image": "images/perfume-1795129593354-i665l-1795129593362.jpg"
+  },
+  {
+    "id": "perfume-1795130088042-s08ci",
+    "name": "Hawas Malibu",
+    "brand": "Rasasi",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "$800",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": true,
+        "price": "$800"
+      }
+    },
+    "desc": "✨ Una fragancia fresca y sofisticada que combina la dulzura tropical de la piña 🍍, el toque cítrico de la naranja y toronja 🍊, con la elegancia de la lavanda y el ámbar 🌿.\n\n🔥 Un fondo cálido, almizclado y envolvente que aporta personalidad y sensualidad.",
+    "image": "images/perfume-1795130088042-s08ci-1795130088050.jpg"
   }
 ]
