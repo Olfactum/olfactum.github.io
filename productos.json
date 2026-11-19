@@ -103,11 +103,25 @@
     "name": "Layton",
     "brand": "Parfums de Marly",
     "category": "Nicho",
-    "tone": "night",
-    "status": "Consultar disponibilidad",
+    "tone": "clear",
+    "status": "Disponible",
     "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
+    "desc": "Notas: 🍎 Manzana · 🌿 Lavanda · 🍋 Bergamota · 🍊 Mandarina · 🌸 Geranio · 💜 Violeta · 🌼 Jazmín · 🍦 Vainilla · 🌶️ Cardamomo · 🪵 Sándalo · 🌶️ Pimienta · 🌳 Madera de gaiac · 🍃 Pachulí · 🟠 Ambermax™ · 🍯 Cumarina",
+    "image": "images/producto-010-1795131799761.png",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$250"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$500"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    }
   },
   {
     "id": "producto-011",
