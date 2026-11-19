@@ -204,7 +204,98 @@
     .footer .official-wordmark{width:min(290px,100%);margin-bottom:16px}
     .brand--official{gap:12px}
     @media(max-width:640px){.official-seal{width:52px;height:56px}.brand--official .brand-text strong{font-size:20px}}
-  </style>
+
+    /* Tienda moderna — actualización visual sin afectar admin ni productos.json */
+    :root{--bg:#faf9f6;--paper:#f3f0e9;--forest:#192e24;--gold:#bb9764;--shadow:0 10px 32px rgba(19,42,31,.055)}
+    .topbar{background:#17291f;letter-spacing:.025em;text-transform:none;font-weight:600}
+    .header{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .nav{min-height:72px}
+    .official-seal{height:59px;width:59px}
+    .nav-links a{font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .hero{background:linear-gradient(110deg,rgba(17,32,25,.96),rgba(23,44,33,.84)),radial-gradient(circle at 78% 48%,#789078,#15261d);}
+    .hero-grid{min-height:490px}
+    .hero-copy{padding:68px 0}
+    .hero h1{font-size:clamp(46px,6.2vw,76px)}
+    .hero-card-wrap{min-height:470px;padding:22px 0}
+    .hero-stage{transform:scale(.78)}
+    .hero-badges span{background:rgba(255,255,255,.07)}
+    .collection-title{text-align:center;padding:60px 0 25px}
+    .collection-title h2{font-size:clamp(38px,5vw,56px);margin:8px 0}
+    .collection-title p{color:var(--muted);margin:0 auto;max-width:560px}
+    .collections{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:55px}
+    .collection-tile{display:flex;min-height:170px;flex-direction:column;align-items:flex-start;justify-content:flex-end;text-align:left;padding:22px;color:#fff;border:0;border-radius:14px;overflow:hidden;position:relative;background:#264635;box-shadow:var(--shadow)}
+    .collection-tile:nth-child(2){background:#596450}.collection-tile:nth-child(3){background:#76634e}.collection-tile:nth-child(4){background:#343b35}
+    .collection-tile:before{content:'✧';font-size:96px;position:absolute;top:-30px;right:12px;color:#ffffff20;font-family:Georgia,serif}
+    .collection-tile strong{font:600 29px 'Cormorant Garamond',serif;z-index:1}
+    .collection-tile span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#e9dfce;z-index:1}
+    .collection-tile:hover{filter:brightness(1.1)}
+    .catalog{padding-top:65px;background:#faf9f6}
+    .catalog .section-head{margin-bottom:26px}
+    .catalog-tools{padding:20px;border:1px solid #e8e4db;border-radius:16px;background:#fff;align-items:center;gap:13px}
+    .catalog-meta{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:0 0 20px}
+    #product-count{color:#626a61;font-size:13px}
+    .sort-wrap{display:flex;gap:9px;align-items:center;font-size:12px;font-weight:700;color:#5e665f}
+    .sort-select{border:1px solid #deddd4;border-radius:9px;background:#fff;color:#253729;padding:10px 12px;font-size:12px}
+    .products{gap:20px}
+    .product{border:1px solid #ebe7e0;border-radius:13px;box-shadow:0 7px 24px rgba(26,38,30,.045);transition:transform .2s,box-shadow .2s}
+    .product:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(26,38,30,.1)}
+    .product-media{height:280px;background:#f3f1ed!important}
+    .product-media img{transition:transform .25s}
+    .product:hover .product-media img{transform:scale(1.05)}
+    .product-tag{background:#fff;color:#3f624b;border-radius:6px;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+    .product-body{padding:16px}
+    .product h3{font-size:26px}
+    .product p{min-height:55px;font-size:12px}
+    .variant-picker{border-radius:9px!important}
+    .mini-btn{border-radius:9px;padding:12px 13px}
+    .benefits{margin-top:0}
+    .benefit{border-radius:11px}
+    #catalogo{scroll-margin-top:120px}
+    @media(max-width:900px){.collections{grid-template-columns:repeat(2,1fr)}.hero-card-wrap{min-height:270px}.hero-stage{transform:scale(.58);height:320px}}
+    @media(max-width:640px){.collections{gap:10px}.collection-tile{min-height:125px;padding:14px}.collection-tile strong{font-size:24px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-media{height:190px}.product-body{padding:11px}.product h3{font-size:21px}.product p{font-size:11px;min-height:0}.product-bottom{flex-wrap:wrap}.product-bottom .mini-btn{width:100%}.product-tag{font-size:9px;left:6px;top:6px}.catalog-meta{align-items:flex-start;flex-direction:column}.nav-links{overflow-x:auto;max-width:100%;white-space:nowrap;flex-wrap:nowrap;width:100%;padding-bottom:4px}.hero h1{font-size:48px}.hero-card-wrap{display:none}}
+  
+/* OLFACTUM · Catálogo editorial inspirado en la experiencia de tarjetas amplias */
+.catalog{background:#fff;padding-top:65px}
+.catalog .section-head{margin-bottom:25px}
+.catalog .section-head h2{font-size:clamp(41px,5vw,65px)}
+.catalog-tools{background:#f5f5f6!important;border:0!important;border-radius:25px!important;padding:22px!important;display:flex!important;gap:12px!important}
+.catalog-tools .search{border:1px solid #dedede;border-radius:16px;background:white;flex:1;min-width:200px}
+.catalog-tools .filters{width:100%;order:2;gap:10px}
+.catalog-tools .filter{border-radius:999px;padding:11px 18px;border-color:#aaa;background:white}
+.catalog-tools .filter.active{background:#193025;border-color:#193025;color:white}
+.gender-filters{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 27px}
+.gender-filter{padding:11px 18px;background:white;border:1px solid #9fa6a0;border-radius:50px;color:#28352d;font-weight:700;font-size:13px}
+.gender-filter.active{background:#193025;color:white;border-color:#193025}
+.catalog-meta{margin-bottom:24px}
+.products{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px!important;align-items:stretch}
+.product{background:#f5f5f7!important;border:1px solid #d7d8d6!important;border-radius:30px!important;box-shadow:0 10px 25px rgba(30,40,32,.055)!important;overflow:hidden;position:relative}
+.product-media{background:#f5f5f7!important;height:310px!important;display:flex;align-items:center;justify-content:center}
+.product-media img{width:100%!important;height:100%!important;max-height:300px;object-fit:contain!important;padding:32px 45px 4px!important;mix-blend-mode:multiply}
+.product-tag{background:transparent!important;border:0!important;top:24px!important;left:26px!important;font-size:11px!important;letter-spacing:.09em;color:#475c4c!important;text-transform:uppercase}
+.gender-label{position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:1;border:1px solid #d3d8d1;background:#fff9;border-radius:30px;padding:6px 12px;font-size:12px;color:#ad7845;font-weight:800;white-space:nowrap}
+.favorite-button{position:absolute;right:20px;top:17px;background:#fff;border:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;z-index:3;font-size:24px;color:#24382b;line-height:1}
+.favorite-button[aria-pressed="true"]{color:#b06b47}
+.product-body{padding:10px 30px 29px!important}
+.product .meta{font-size:12px;color:#39765d;letter-spacing:.11em}
+.product h3{font-family:'Inter',sans-serif;font-size:25px!important;font-weight:750;letter-spacing:-.04em;margin:5px 0 8px}
+.product p{font-size:13px!important;min-height:0!important;margin:0 0 15px;color:#7a7d7e;line-height:1.75}
+.variant-caption{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin:8px 0}
+.variant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:11px 0 18px}
+.variant-chip{min-width:0;background:transparent;border:1px solid #dddfe0;border-radius:19px;min-height:77px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:5px;color:#222;padding:7px 3px}
+.variant-chip strong{font-size:11px;letter-spacing:.035em;text-transform:uppercase;color:#737779}
+.variant-chip span{font-weight:800;font-size:16px;color:#1f2521}
+.variant-chip.selected{border-color:#c59b53;background:#f8f2e7;box-shadow:inset 0 0 0 1px #d2b578}
+.variant-chip.selected strong{color:#a46c30}
+.product-bottom{display:flex;align-items:center;gap:15px}
+.product-bottom .price{font-size:17px}
+.product-bottom .mini-btn{border-radius:15px;padding:14px 18px;background:#193025;font-size:13px}
+.no-variants{font-size:12px;color:#666;margin:8px 0 15px}
+.float-whatsapp{position:fixed;bottom:22px;left:20px;z-index:35;width:55px;height:55px;border-radius:50%;background:#d7a449;border:0;box-shadow:0 6px 22px #8b692f55;font-size:26px;color:#172f25;display:grid;place-items:center}
+.float-top{position:fixed;bottom:22px;right:20px;z-index:35;width:50px;height:50px;border-radius:50%;background:#193025;border:0;color:#fff;font-size:24px;display:grid;place-items:center;box-shadow:0 7px 20px #172c2440}
+@media(max-width:720px){.products{grid-template-columns:1fr!important;gap:16px!important}.product-media{height:360px!important}.product-media img{max-height:345px!important;padding:43px 45px 2px!important}.product-body{padding:8px 26px 24px!important}.product h3{font-size:26px!important}.variant-grid{gap:8px}.variant-chip{min-height:78px}.catalog-tools{padding:15px!important}.gender-filters{gap:6px}.gender-filter{padding:10px 14px}.catalog{padding-top:55px}}
+@media(max-width:370px){.variant-chip strong{font-size:10px}.variant-chip span{font-size:14px}.product-body{padding:10px 18px 21px!important}.variant-grid{gap:5px}}
+
+</style>
 </head>
 <body>
   <div class="topbar">Envío gratis en compras mayores a $1000 · Apartado con 50% o $200 · Entregas en Saltillo y Ramos Arizpe</div>
@@ -280,6 +371,18 @@
       </div>
     </section>
 
+
+    <section style="padding:0" id="colecciones">
+      <div class="container">
+        <div class="collection-title"><div class="eyebrow" style="color:#987347">ENCUENTRA TU AROMA</div><h2>Compra por categoría</h2><p>Fragancias elegidas para cada estilo, ocasión y personalidad.</p></div>
+        <div class="collections" role="group" aria-label="Explorar categorías">
+          <button class="collection-tile" data-collection="Árabes"><strong>Perfumes árabes</strong><span>Explorar colección ↗</span></button>
+          <button class="collection-tile" data-collection="Diseñador"><strong>Diseñador</strong><span>Explorar colección ↗</span></button>
+          <button class="collection-tile" data-collection="Nicho"><strong>Alta perfumería</strong><span>Explorar colección ↗</span></button>
+          <button class="collection-tile" data-collection="Decants"><strong>Decants</strong><span>5 ml y 10 ml ↗</span></button>
+        </div>
+      </div>
+    </section>
     <section id="novedades">
       <div class="container highlights">
         <article class="promo-card">
@@ -326,6 +429,13 @@
           </div>
           <input class="search" id="search" type="search" placeholder="Buscar por nombre, marca o categoría..." aria-label="Buscar perfumes">
         </div>
+        <div class="gender-filters" role="group" aria-label="Filtrar por género">
+          <button type="button" class="gender-filter active" data-gender="Todas" aria-pressed="true">Todas</button>
+          <button type="button" class="gender-filter" data-gender="Unisex" aria-pressed="false">Unisex</button>
+          <button type="button" class="gender-filter" data-gender="Masculino" aria-pressed="false">Masculino</button>
+          <button type="button" class="gender-filter" data-gender="Femenino" aria-pressed="false">Femenino</button>
+        </div>
+        <div class="catalog-meta"><span id="product-count" aria-live="polite">Cargando catálogo...</span><label class="sort-wrap">Ordenar <select class="sort-select" id="product-sort" aria-label="Ordenar productos"><option value="default">Destacados</option><option value="az">Nombre A–Z</option><option value="price-up">Precio: menor a mayor</option><option value="price-down">Precio: mayor a menor</option></select></label></div>
         <div class="products" id="products" aria-live="polite"></div>
       </div>
     </section>
@@ -455,6 +565,8 @@
     </aside>
   </div>
 
+  <button class="float-whatsapp" type="button" id="floating-contact" aria-label="Consultar por WhatsApp">✆</button>
+  <button class="float-top" type="button" id="floating-top" aria-label="Volver arriba">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
@@ -480,6 +592,9 @@
     }
 
     let currentFilter = 'Todos';
+    let currentGender = 'Todas';
+    let favorites = new Set();
+    try { favorites = new Set(JSON.parse(localStorage.getItem('olfactum-favorites')||'[]')); } catch {}
     let cart = [];
 
     const $ = (id) => document.getElementById(id);
@@ -512,43 +627,56 @@
     function formatVariantPrice(product,key){return getVariants(product).find(v=>v.key===key)?.price||'Consultar precio'};
     function renderProducts(){
       const term = $('search').value.trim().toLocaleLowerCase('es');
-      const filtered = products
+      let filtered = products
         .map((product, index) => ({...product, index}))
         .filter(product => {
           const matchesFilter = currentFilter === 'Todos' || product.category === currentFilter;
           const haystack = [product.name, product.brand, product.category, product.desc, product.status].join(' ').toLocaleLowerCase('es');
           const matchesSearch = haystack.includes(term);
-          return matchesFilter && matchesSearch;
+          const matchesGender = currentGender === 'Todas' || product.gender === currentGender;
+          return matchesFilter && matchesSearch && matchesGender;
         });
+      const sort=$('product-sort')?.value||'default';
+      const numericPrice=p=>{const values=getVariants(p).map(v=>{const str=String(v.price||'');if(!/\d/.test(str))return Infinity;const match=str.replace(/,/g,'').match(/\d+(?:\.\d+)?/);return match?Number(match[0]):Infinity});return Math.min(...values)};
+      if(sort==='az')filtered.sort((a,b)=>a.name.localeCompare(b.name,'es'));
+      if(sort==='price-up'||sort==='price-down')filtered.sort((a,b)=>{const x=numericPrice(a),y=numericPrice(b);if(!Number.isFinite(x)&&!Number.isFinite(y))return 0;if(!Number.isFinite(x))return 1;if(!Number.isFinite(y))return -1;return sort==='price-up'?x-y:y-x});
+      if($('product-count'))$('product-count').textContent=`${filtered.length} fragancia${filtered.length===1?'':'s'} encontrada${filtered.length===1?'':'s'}`;
 
-      $('products').innerHTML = filtered.length ? filtered.map(product => `
-        <article class="product" data-tone="${escapeHtml(product.tone)}">
+      $('products').innerHTML = filtered.length ? filtered.map(product => {
+        const variants = getVariants(product);
+        const selected = variants[0];
+        const favKey=String(product.id||product.name);
+        const safeKey=escapeHtml(favKey);
+        const options=variants.map(v=>`<button type="button" class="variant-chip ${v.key===selected?.key?'selected':''}" data-choose="${product.index}" data-option="${escapeHtml(v.key)}" aria-pressed="${v.key===selected?.key}"><strong>${escapeHtml(v.label.replace('Decant de ','').replace('Botella completa','Botella'))}</strong><span>${escapeHtml(v.price)}</span></button>`).join('');
+        return `
+        <article class="product" data-tone="${escapeHtml(product.tone||'clear')}">
           <div class="product-media">
-            <div class="product-tag">${escapeHtml(product.status || "Consultar disponibilidad")}</div>
-            ${product.image && /^(images\/[a-zA-Z0-9._-]+\.(?:png|jpe?g|webp|gif))$/.test(product.image) ? `
-              <img loading="lazy" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" style="width:100%;height:100%;object-fit:contain;padding:18px">
+            <div class="product-tag">${escapeHtml(product.concentration||product.status||'OLFACTUM')}</div>
+            ${product.gender?`<span class="gender-label">${escapeHtml(product.gender)}</span>`:''}
+            <button class="favorite-button" type="button" aria-label="${favorites.has(favKey)?'Quitar de':'Agregar a'} favoritos: ${escapeHtml(product.name)}" aria-pressed="${favorites.has(favKey)}" data-favorite="${product.index}">${favorites.has(favKey)?'♥':'♡'}</button>
+            ${product.image && /^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp|gif)$/.test(product.image) ? `
+              <img loading="lazy" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
             ` : `
               <div class="mock-bottle" style="--tone:${getToneColor(product.tone)}">
-                <div class="mock-label"><strong style="font-size:13px;letter-spacing:.18em">OLFACTUM</strong><small>${escapeHtml(product.brand)}</small></div>
+                <div class="mock-label"><strong style="font-size:13px;letter-spacing:.18em">OLFACTUM</strong><small>${escapeHtml(product.brand||'Fragancia')}</small></div>
               </div>
               <div class="photo-note">Foto pendiente</div>
             `}
           </div>
           <div class="product-body">
-            <div class="meta">${escapeHtml(product.category)} · ${escapeHtml(product.brand)}</div>
+            <div class="meta">${escapeHtml(product.brand||'Olfactum')} · ${escapeHtml(product.category||'Fragancia')}</div>
             <h3>${escapeHtml(product.name)}</h3>
-            <p>${escapeHtml(product.desc || "Consulta detalles por WhatsApp.")}</p>
-            <label class="variant-caption" for="variant-${product.index}">Elige presentación</label>
-            <select class="variant-picker" id="variant-${product.index}" data-variant="${product.index}" aria-label="Presentación de ${escapeHtml(product.name)}">
-              ${getVariants(product).map(v=>`<option value="${v.key}">${escapeHtml(v.label)} · ${escapeHtml(v.price)}</option>`).join('')}
-            </select>
+            <p>${escapeHtml(product.desc || 'Consulta sus notas y disponibilidad por WhatsApp.')}</p>
+            <div class="variant-caption">Selecciona tu presentación</div>
+            ${variants.length?`<div class="variant-grid" role="group" aria-label="Presentaciones disponibles de ${escapeHtml(product.name)}">${options}</div>`:'<div class="no-variants">Presentaciones pendientes de confirmar</div>'}
+            <input type="hidden" id="variant-${product.index}" value="${escapeHtml(selected?.key||'')}">
             <div class="product-bottom">
-              <span class="price" data-current-price="${product.index}">${escapeHtml(getVariants(product)[0]?.price || 'Consultar precio')}</span>
-              <button class="mini-btn" type="button" data-add="${product.index}" ${!getVariants(product).length?'disabled':''}>+ Agregar</button>
+              <span class="price" data-current-price="${product.index}">${escapeHtml(selected?.price||'Consultar precio')}</span>
+              <button class="mini-btn" type="button" data-add="${product.index}" ${!variants.length?'disabled':''}>+ Agregar al pedido</button>
             </div>
           </div>
         </article>
-      `).join('') : '<div class="empty">No encontramos fragancias con esa búsqueda.</div>';
+      `}).join('') : '<div class="empty">No encontramos fragancias con esos filtros. Prueba con otra categoría.</div>';
     }
 
     function getToneColor(tone){
@@ -605,9 +733,41 @@
     });
 
     $('search').addEventListener('input', renderProducts);
-    $('products').addEventListener('change', event=>{const select=event.target.closest('[data-variant]');if(!select)return;const target=document.querySelector(`[data-current-price="${select.dataset.variant}"]`);if(target)target.textContent=formatVariantPrice(products[Number(select.dataset.variant)],select.value)});
+    $('product-sort').addEventListener('change',renderProducts);
+    document.querySelectorAll('[data-collection]').forEach(button=>button.addEventListener('click',()=>{
+      currentFilter=button.dataset.collection;
+      document.querySelectorAll('.filter').forEach(btn=>{const active=btn.dataset.filter===currentFilter;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active))});
+      renderProducts();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});
+    }));
 
+
+    document.querySelectorAll('[data-gender]').forEach(button=>button.addEventListener('click',()=>{
+      currentGender=button.dataset.gender;
+      document.querySelectorAll('[data-gender]').forEach(b=>{const on=b===button;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+      renderProducts();
+    }));
     $('products').addEventListener('click', (event) => {
+      const option=event.target.closest('[data-choose]');
+      if(option){
+        const index=Number(option.dataset.choose),product=products[index];
+        if(!product)return;
+        const v=getVariants(product).find(v=>v.key===option.dataset.option);
+        if(!v)return;
+        const card=option.closest('.product');
+        card.querySelectorAll('[data-choose]').forEach(b=>{const on=b===option;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on))});
+        $('variant-'+index).value=v.key;
+        card.querySelector('[data-current-price]').textContent=v.price;
+        return;
+      }
+      const favorite=event.target.closest('[data-favorite]');
+      if(favorite){
+        const product=products[Number(favorite.dataset.favorite)];if(!product)return;
+        const key=String(product.id||product.name);
+        if(favorites.has(key))favorites.delete(key);else favorites.add(key);
+        try{localStorage.setItem('olfactum-favorites',JSON.stringify([...favorites]))}catch{}
+        const on=favorites.has(key);favorite.textContent=on?'♥':'♡';favorite.setAttribute('aria-pressed',String(on));favorite.setAttribute('aria-label',(on?'Quitar de':'Agregar a')+' favoritos: '+product.name);
+        return;
+      }
       const button = event.target.closest('[data-add]');
       if(!button) return;
       addToCart(Number(button.dataset.add));
@@ -663,6 +823,8 @@
     $('nav-whatsapp').addEventListener('click', () => sendWhatsApp('Hola, Olfactum. Quiero información sobre sus perfumes y decants.'));
     $('decant-button').addEventListener('click', () => sendWhatsApp('Hola, Olfactum. Me interesa conocer sus opciones de decants de 5 ml y 10 ml.'));
 
+    $('floating-contact').addEventListener('click',()=>sendWhatsApp('Hola, Olfactum. Quiero consultar perfumes y decants.'));
+    $('floating-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     $('year').textContent = new Date().getFullYear();
     renderCart();
     loadProducts();
