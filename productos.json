@@ -154,10 +154,24 @@
     "brand": "Le Labo",
     "category": "Nicho",
     "tone": "clear",
-    "status": "Consultar disponibilidad",
+    "status": "Disponible",
     "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
+    "desc": "Notas: 🪵 Sándalo · 🤎 Cuero · 📜 Papiro de Egipto · 🌲 Cedro de Virginia · 🌶️ Cardamomo · 💜 Violeta · 🌸 Iris · 🔶 Ámbar",
+    "image": "images/producto-012-1795132316745.png",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$600"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    }
   },
   {
     "id": "producto-013",
