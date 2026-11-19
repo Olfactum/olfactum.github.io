@@ -269,5 +269,30 @@
     },
     "desc": "✨ Una fragancia fresca y sofisticada que combina la dulzura tropical de la piña 🍍, el toque cítrico de la naranja y toronja 🍊, con la elegancia de la lavanda y el ámbar 🌿.\n\n🔥 Un fondo cálido, almizclado y envolvente que aporta personalidad y sensualidad.",
     "image": "images/perfume-1795130088042-s08ci-1795130088050.jpg"
+  },
+  {
+    "id": "perfume-1795132572691-we9zj",
+    "name": "Club de Nuit Elite",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍵 Té verde · 🌶️ Pimienta de Sichuan · 🍋 Bergamota · 🌸 Pimienta rosa · 🍏 Manzana · 🌹 Rosa de mayo · 🌿 Notas aromáticas · 🫐 Grosellas negras · 🌺 Geranio · 🍂 Notas terrosas · 🌱 Vetiver · ☁️ Almizcle · 🪵 Cachemira · 🌲 Cedro · 🔶 Ámbar",
+    "image": "images/perfume-1795132572691-we9zj-1795132572725.png"
   }
 ]
