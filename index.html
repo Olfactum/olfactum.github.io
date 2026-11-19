@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#16261e">
   <meta name="description" content="Olfactum: perfumes árabes, de diseñador y de nicho. Compra fragancias completas y decants en Saltillo y Ramos Arizpe.">
   <title>OLFACTUM | Perfumería boutique</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -196,6 +198,12 @@
       .bottle-big{width:180px;height:260px;right:52px;bottom:58px}
       .bottle-small{width:128px;height:188px;right:2px;bottom:72px}
     }
+    /* Identidad gráfica oficial Olfactum */
+    .official-seal{display:block;width:67px;height:70px;object-fit:contain;flex-shrink:0}
+    .official-wordmark{display:block;width:min(270px,100%);height:auto;object-fit:contain}
+    .footer .official-wordmark{width:min(290px,100%);margin-bottom:16px}
+    .brand--official{gap:12px}
+    @media(max-width:640px){.official-seal{width:52px;height:56px}.brand--official .brand-text strong{font-size:20px}}
   </style>
 </head>
 <body>
@@ -203,11 +211,11 @@
 
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="#inicio" aria-label="Ir al inicio de Olfactum">
-        <div class="brand-mark">O</div>
+      <a class="brand brand--official" href="#inicio" aria-label="Ir al inicio de Olfactum">
+        <img class="official-seal" src="images/logo-olfactum-sello.png" alt="Logotipo oficial de Olfactum" width="67" height="70">
         <div class="brand-text">
           <strong>OLFACTUM</strong>
-          <span>Perfumería boutique</span>
+          <span>Always authentic</span>
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
@@ -384,7 +392,7 @@
         </div>
         <div class="card faq">
           <h4>¿Manejan imágenes reales?</h4>
-          <p>Sí. Esta versión está lista para que agreguemos fotografías reales de productos y tu logotipo cuando me los compartas.</p>
+          <p>Nuestro logotipo oficial ya está integrado. Las fotografías de los productos se pueden subir desde el panel de administración.</p>
         </div>
       </div>
     </section>
@@ -406,13 +414,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand" style="align-items:flex-start">
-            <div class="brand-mark">O</div>
-            <div class="brand-text">
-              <strong style="font-size:22px;color:#fff">OLFACTUM</strong>
-              <span style="color:#93a092">Perfumería boutique</span>
-            </div>
-          </div>
+          <img class="official-wordmark" src="images/logo-olfactum-claro.png" alt="Olfactum — Always Authentic" width="290">
           <p>Perfumes completos, decants y atención personalizada para descubrir fragancias con personalidad.</p>
         </div>
         <div>
