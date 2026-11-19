@@ -152,5 +152,16 @@
     "price": "Consultar precio",
     "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
     "image": ""
+  },
+  {
+    "id": "perfume-1795126607694-8t1jv",
+    "name": "Club de Nuit Urban Man Elixir",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "night",
+    "status": "Disponible",
+    "price": "$850",
+    "desc": "Una fragancia sofisticada y llena de carácter que combina frescura, elegancia e intensidad.\n\n🍋 Salida: Bergamota, pimienta rosa, jazmín y azahar, creando una apertura fresca y vibrante.\n\n🌿 Corazón: Lavanda, geranio, vetiver y azafrán que aportan un toque aromático, especiado y elegante.\n\n🪵 Fondo: Ámbar, ambroxan, cedro y pachulí para un acabado cálido, amaderado y envolvente.\n\n🔥 Ideal para quienes buscan destacar con un aroma elegante y con personalidad.",
+    "image": "images/perfume-1795126607694-8t1jv-1795126607702.jpg"
   }
 ]
