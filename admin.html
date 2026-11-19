@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Panel de catálogo | Olfactum</title>
+<style>
+:root{--forest:#1d382a;--gold:#b7945d;--bg:#f7f5ef;--line:#deddd4;--ink:#202a22}*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}header{background:var(--forest);color:#fff;padding:22px 0}h1,h2,h3,p{margin:0 0 12px}.container{width:min(1100px,calc(100% - 28px));margin:auto}header h1{letter-spacing:.14em}header p{color:#d2dcd4;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px auto}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 7px 24px #16251a0c}.full{grid-column:1/-1}label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border-radius:9px;border:1px solid #cdd3ca;background:#fff;color:#17271c;font:inherit}textarea{min-height:80px;resize:vertical}input[type=file]{padding:8px}input:focus,select:focus,textarea:focus{outline:2px solid var(--gold)}button,.button{border:0;border-radius:10px;padding:11px 17px;font:inherit;font-weight:700;cursor:pointer;background:var(--forest);color:white;display:inline-block}button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#f0ede5;color:#233c2d;border:1px solid #d9d3c5}.danger{background:#a8362e}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}small,.hint{color:#647064}.hint{font-size:13px;margin:9px 0}.warning{background:#fff4dc;border:1px solid #ead5a3;padding:13px;border-radius:10px;font-size:13px}.status{padding:13px;border-radius:10px;background:#edf3eb;border:1px solid #c7d5c6;white-space:pre-wrap;margin:12px 0;font-size:13px}.status.error{background:#fff0ef;border-color:#e5b8b4;color:#872d25}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.items{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-height:540px;overflow:auto}.item{padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;gap:10px}.item img{width:54px;height:58px;object-fit:contain;background:#f1eee6;border-radius:8px}.item-info{min-width:0;flex:1}.item strong{display:block;font-size:13px}.item span{font-size:12px;color:#5e6b5f}.item button{padding:8px 11px;font-size:12px}.preview{width:130px;height:130px;object-fit:contain;border:1px solid var(--line);border-radius:10px;background:#f5f1e8;display:none;margin-top:12px}a{color:#1d5e3d}@media(max-width:790px){.grid,.two,.items{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="container"><h1>OLFACTUM</h1><p>Panel privado de edición del catálogo · GitHub Pages</p></div></header>
+<main class="container grid">
+<section class="card full">
+<h2>1. Conectar con GitHub</h2>
+<p class="hint">Este panel utiliza directamente la API de GitHub para guardar <b>productos.json</b> e imágenes. Solo una cuenta con permiso de escritura puede guardar cambios.</p>
+<div class="warning"><b>Seguridad:</b> utiliza un token personal <em>fine-grained</em> limitado exclusivamente al repositorio <b>olfactum.github.io</b>, con permiso <b>Contents: Read and write</b>. No compartas el token con nadie ni lo agregues al repositorio. El token solo se mantiene en la memoria de esta pestaña; al cerrarla deberás introducirlo nuevamente. Este enlace de administración es público, pero editar requiere el token.</div>
+<label for="token">Token de acceso de GitHub (fine-grained PAT)</label>
+<input type="password" id="token" autocomplete="off" spellcheck="false" placeholder="github_pat_...">
+<div class="actions"><button id="connect" type="button">Conectar y cargar catálogo</button><button class="secondary" id="disconnect" type="button">Desconectar</button><a class="button secondary" href="./index.html" target="_blank" rel="noopener">Ver tienda ↗</a></div>
+<div id="status" class="status" role="status">Sin conectar. Ingresa tu token y pulsa «Conectar y cargar catálogo».</div>
+</section>
+<section class="card">
+<h2>2. Agregar o editar perfume</h2>
+<form id="form">
+<input type="hidden" id="edit-id">
+<div class="two"><div><label for="name">Nombre del perfume *</label><input id="name" required maxlength="120" placeholder="Ej. Hawas Ice"></div><div><label for="brand">Marca *</label><input id="brand" required maxlength="100" placeholder="Ej. Rasasi"></div></div>
+<div class="two"><div><label for="category">Categoría *</label><select id="category"><option>Árabes</option><option>Diseñador</option><option>Nicho</option><option>Decants</option></select></div><div><label for="price">Precio mostrado *</label><input id="price" required maxlength="45" placeholder="Ej. $950 MXN"></div></div>
+<div class="two"><div><label for="status-select">Disponibilidad</label><select id="status-select"><option>Consultar disponibilidad</option><option>Disponible</option><option>Sobre pedido</option><option>Preventa</option><option>Agotado</option></select></div><div><label for="tone">Fondo (si no hay foto)</label><select id="tone"><option value="green">Verde</option><option value="blue">Azul</option><option value="rose">Rosa</option><option value="amber">Ámbar</option><option value="night">Oscuro</option><option value="clear">Claro</option></select></div></div>
+<label for="desc">Descripción</label><textarea id="desc" maxlength="550" placeholder="Notas, estilo, ocasión, etc."></textarea>
+<label for="photo">Fotografía (JPG, PNG o WebP, hasta 4 MB)</label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint">Al guardar, la imagen se sube automáticamente a la carpeta <b>images/</b> del repositorio. Si editas un perfume sin subir nueva imagen, conservará la anterior.</p>
+<img class="preview" id="preview" alt="Vista previa de la foto seleccionada">
+<div class="actions"><button id="save" type="submit" disabled>Guardar perfume en GitHub</button><button type="button" id="new" class="secondary">Nuevo / limpiar formulario</button></div>
+</form>
+</section>
+<section class="card">
+<h2>3. Perfumes en el catálogo (<span id="total">0</span>)</h2>
+<p class="hint">Toca «Editar» para cargar un perfume al formulario. «Eliminar» lo quita del catálogo, pero no borra la foto del repositorio.</p>
+<input id="filter" type="search" placeholder="Buscar perfume..." aria-label="Buscar perfume existente" style="margin-bottom:12px">
+<div class="items" id="items"><p class="hint">Conecta GitHub para cargar los productos.</p></div>
+</section>
+<section class="card full"><h3>Después de guardar</h3><p class="hint">Los cambios se envían a la rama <b>main</b> del repositorio <b>olfactum/olfactum.github.io</b>. GitHub Pages puede tardar unos minutos en reflejarlos. Actualiza la tienda si no aparecen enseguida. No necesitas volver a subir <code>index.html</code>.</p></section>
+</main>
+<script>
+(()=>{'use strict';
+const OWNER='olfactum', REPO='olfactum.github.io', BRANCH='main', API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
+const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
+function updateButtons(){ $('save').disabled=!token||busy;$('connect').disabled=busy; }
+function setBusy(v){busy=v;updateButtons()}
+function b64Utf8(str){const bytes=new TextEncoder().encode(str);let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s)}
+function fromB64(str){const bytes=Uint8Array.from(atob(str.replace(/\s/g,'')),c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}
+async function api(path,{method='GET',body}={}){
+const headers={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Authorization':`Bearer ${token}`};if(body)headers['Content-Type']='application/json';
+const response=await fetch(API+path+(method==='GET'?`?ref=${BRANCH}`:''),{method,headers,body:body?JSON.stringify(body):undefined,cache:'no-store',referrerPolicy:'no-referrer'});
+let data;try{data=await response.json()}catch{data={}};
+if(!response.ok)throw new Error(`GitHub (${response.status}): ${data.message||'No se pudo completar la operación'}`);return data;
+}
+async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos.`)}
+function imgUrl(p){return /^images\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp)$/.test(p||'')?`./${p}`:''}
+function render(){const q=$('filter').value.trim().toLocaleLowerCase('es');$('total').textContent=catalog.length;const shown=catalog.filter(p=>[p.name,p.brand,p.category].join(' ').toLocaleLowerCase('es').includes(q));$('items').innerHTML=shown.length?shown.map(p=>`<div class="item">${imgUrl(p.image)?`<img src="${esc(imgUrl(p.image))}" alt="">`:'<div style="width:54px;height:58px;background:#efe8da;border-radius:8px"></div>'}<div class="item-info"><strong>${esc(p.name)}</strong><span>${esc(p.brand)} · ${esc(p.price)}</span></div><button class="secondary" data-edit="${esc(p.id)}" type="button">Editar</button><button class="danger" data-delete="${esc(p.id)}" type="button">×</button></div>`).join(''):'<p class="hint">No hay productos que coincidan.</p>'}
+function clearForm(){$('form').reset();$('edit-id').value='';$('preview').style.display='none';$('preview').removeAttribute('src');$('name').focus()}
+function edit(id){const p=catalog.find(p=>p.id===id);if(!p)return; $('edit-id').value=p.id;for(const field of ['name','brand','category','price','tone','desc'])$(field).value=p[field]||'';$('status-select').value=p.status||'Consultar disponibilidad';$('photo').value='';const photo=imgUrl(p.image);$('preview').style.display=photo?'block':'none';if(photo)$('preview').src=photo;$('name').scrollIntoView({behavior:'smooth',block:'center'})}
+async function saveCatalog(next,message){const body={message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha,branch:BRANCH};await api('productos.json',{method:'PUT',body});await load()}
+async function uploadPhoto(file,id){if(!file)return '';const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};if(!allowed[file.type])throw Error('Usa imagen JPG, PNG o WebP.');if(file.size>4*1024*1024)throw Error('La imagen debe pesar menos de 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let raw='';for(let i=0;i<buffer.length;i+=8192)raw+=String.fromCharCode(...buffer.subarray(i,i+8192));const path=`images/${id}-${Date.now()}.${allowed[file.type]}`;await api(path,{method:'PUT',body:{message:`Olfactum: agregar foto de ${id}`,content:btoa(raw),branch:BRANCH}});return path}
+$('connect').addEventListener('click',async()=>{const value=$('token').value.trim();if(!value){status('Introduce tu token.',true);return}token=value;$('token').value='';setBusy(true);try{await load()}catch(e){token='';catalog=[];sha='';render();status('No se pudo conectar: '+e.message,true)}finally{setBusy(false)}});
+$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
+$('filter').addEventListener('input',render);$('new').addEventListener('click',clearForm);
+$('items').addEventListener('click',async e=>{const editBtn=e.target.closest('[data-edit]'),delBtn=e.target.closest('[data-delete]');if(editBtn)return edit(editBtn.dataset.edit);if(!delBtn||busy)return;const item=catalog.find(p=>p.id===delBtn.dataset.delete);if(!item||!confirm(`¿Eliminar «${item.name}» del catálogo?`))return;setBusy(true);try{await saveCatalog(catalog.filter(p=>p.id!==item.id),`Olfactum: eliminar ${item.name}`);status(`Eliminaste «${item.name}» del catálogo. La foto, si existía, permanece en images/.`);clearForm()}catch(e){status(e.message,true)}finally{setBusy(false)}});
+$('photo').addEventListener('change',()=>{const file=$('photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('preview').src=url;$('preview').style.display='block';$('preview').onload=()=>URL.revokeObjectURL(url)});
+$('form').addEventListener('submit',async e=>{e.preventDefault();if(busy||!token)return;const currentId=$('edit-id').value;const old=catalog.find(p=>p.id===currentId);const id=old?.id||`perfume-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;const name=$('name').value.trim(),brand=$('brand').value.trim(),price=$('price').value.trim();if(!name||!brand||!price){status('Completa el nombre, marca y precio.',true);return}const item={id,name,brand,category:$('category').value,tone:$('tone').value,status:$('status-select').value,price,desc:$('desc').value.trim(),image:old?.image||''};setBusy(true);try{const file=$('photo').files?.[0];if(file){status('Subiendo fotografía a GitHub…');item.image=await uploadPhoto(file,id)}status('Guardando catálogo en GitHub…');const next=old?catalog.map(p=>p.id===id?item:p):[...catalog,item];await saveCatalog(next,`Olfactum: ${old?'actualizar':'agregar'} ${name}`);clearForm();status(`¡Listo! «${name}» se guardó en GitHub. Revisa la tienda en unos minutos.`)}catch(error){status('No se pudo guardar: '+error.message+(item.image!==old?.image?' Si la imagen se subió, puede haber quedado sin asociar; vuelve a intentar guardar.':''),true)}finally{setBusy(false)}});
+updateButtons();
+})();
+</script>
+</body>
+</html>

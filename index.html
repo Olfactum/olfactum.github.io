@@ -306,7 +306,7 @@
             <div class="eyebrow">Catálogo base</div>
             <h2>Explora la colección.</h2>
           </div>
-          <p>Esta versión está preparada para mostrar tu catálogo de forma profesional. Hoy incluye una selección inicial de referencias frecuentes de Olfactum.</p>
+          <p>Encuentra opciones árabes, de diseñador, de nicho y decants. Consulta disponibilidad y confirma tu pedido por WhatsApp.</p>
         </div>
         <div class="catalog-tools">
           <div class="filters" role="group" aria-label="Filtrar perfumes">
@@ -431,7 +431,7 @@
         <div>
           <h4>Notas</h4>
           <p>Los precios y existencias se confirman por WhatsApp.</p>
-          <p>Las imágenes actuales son ilustrativas hasta cargar tus fotos reales.</p>
+          <p>Las imágenes sin fotografía cargada son ilustrativas.</p>
         </div>
       </div>
       <div class="copyright">© <span id="year"></span> Olfactum. Todos los derechos reservados.</div>
@@ -461,24 +461,21 @@
     // ======================================================
     const WHATSAPP_NUMBER = '528448801984';
 
-    // Puedes cambiar el precio por texto libre: "$950", "Consultar precio", "Preventa", etc.
-    // Cuando tengas fotografías reales, podemos agregar una propiedad image.
-    const products = [
-      {name:'Club de Nuit Intense Man', brand:'Armaf', category:'Árabes', tone:'night', status:'Disponible', price:'Consultar precio', desc:'Una opción intensa, masculina y muy solicitada dentro de la línea Club de Nuit.'},
-      {name:'Hawas Ice', brand:'Rasasi', category:'Árabes', tone:'blue', status:'Disponible', price:'Consultar precio', desc:'Perfil fresco y moderno, ideal para quienes buscan una salida limpia y juvenil.'},
-      {name:'Yara', brand:'Lattafa', category:'Árabes', tone:'rose', status:'Disponible', price:'Consultar precio', desc:'Una fragancia dulce y popular que se ha convertido en favorita para uso diario.'},
-      {name:'Odyssey Mandarin Sky', brand:'Armaf', category:'Árabes', tone:'amber', status:'Disponible', price:'Consultar precio', desc:'Aroma vibrante con personalidad, una propuesta atractiva y diferente.'},
-      {name:'9PM Night Oud', brand:'Afnan', category:'Árabes', tone:'night', status:'Disponible', price:'Consultar precio', desc:'Una opción llamativa para quien busca intensidad y presencia en la noche.'},
-      {name:'Rome Intense', brand:'Maison Alhambra', category:'Árabes', tone:'green', status:'Disponible', price:'Consultar precio', desc:'Alternativa con gran presencia, ideal para quien desea algo potente y elegante.'},
-      {name:'Eros', brand:'Versace', category:'Diseñador', tone:'blue', status:'Disponible', price:'Consultar precio', desc:'Un clásico versátil dentro de diseñador, fresco y de mucha aceptación.'},
-      {name:'Libre Le Parfum', brand:'Yves Saint Laurent', category:'Diseñador', tone:'rose', status:'Disponible', price:'Consultar precio', desc:'Una propuesta femenina elegante, intensa y sofisticada.'},
-      {name:'Le Male Le Parfum', brand:'Jean Paul Gaultier', category:'Diseñador', tone:'amber', status:'Disponible', price:'Consultar precio', desc:'Diseñador con gran carácter, cálido y muy apreciado para salidas especiales.'},
-      {name:'Layton', brand:'Parfums de Marly', category:'Nicho', tone:'night', status:'Sobre pedido', price:'Consultar precio', desc:'Nicho refinado para quienes quieren una experiencia olfativa más exclusiva.'},
-      {name:'Erba Pura', brand:'Xerjoff', category:'Nicho', tone:'amber', status:'Sobre pedido', price:'Consultar precio', desc:'Brillante y adictiva, una fragancia de nicho con mucha proyección.'},
-      {name:'Santal 33', brand:'Le Labo', category:'Nicho', tone:'clear', status:'Sobre pedido', price:'Consultar precio', desc:'Una referencia de nicho reconocida por su estilo distintivo y moderno.'},
-      {name:'Decants 5 ml', brand:'Olfactum', category:'Decants', tone:'clear', status:'Disponible', price:'Consultar opciones', desc:'Ideal para conocer una fragancia antes de adquirir el frasco completo.'},
-      {name:'Decants 10 ml', brand:'Olfactum', category:'Decants', tone:'green', status:'Disponible', price:'Consultar opciones', desc:'Perfectos para viajar, regalar o llevar varios aromas contigo.'}
-    ];
+    // El catálogo se administra en productos.json desde admin.html.
+    let products = [];
+    async function loadProducts(){
+      try {
+        const response = await fetch('productos.json', {cache:'no-store'});
+        if(!response.ok) throw new Error('No se pudo leer productos.json');
+        const data = await response.json();
+        if(!Array.isArray(data)) throw new Error('Catálogo no válido');
+        products = data;
+        renderProducts();
+      } catch(error) {
+        $('products').innerHTML = '<p class="empty">Estamos actualizando el catálogo. Escríbenos por WhatsApp para conocer las opciones disponibles.</p>';
+        console.error(error);
+      }
+    }
 
     let currentFilter = 'Todos';
     let cart = [];
@@ -516,18 +513,22 @@
       $('products').innerHTML = filtered.length ? filtered.map(product => `
         <article class="product" data-tone="${escapeHtml(product.tone)}">
           <div class="product-media">
-            <div class="product-tag">${escapeHtml(product.status)}</div>
-            <div class="mock-bottle" style="--tone:${getToneColor(product.tone)}">
-              <div class="mock-label"><strong style="font-size:13px;letter-spacing:.18em">OLFACTUM</strong><small>${escapeHtml(product.brand)}</small></div>
-            </div>
-            <div class="photo-note">Lista para foto real</div>
+            <div class="product-tag">${escapeHtml(product.status || "Consultar disponibilidad")}</div>
+            ${product.image && /^(images\/[a-zA-Z0-9._-]+\.(?:png|jpe?g|webp|gif))$/.test(product.image) ? `
+              <img loading="lazy" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" style="width:100%;height:100%;object-fit:contain;padding:18px">
+            ` : `
+              <div class="mock-bottle" style="--tone:${getToneColor(product.tone)}">
+                <div class="mock-label"><strong style="font-size:13px;letter-spacing:.18em">OLFACTUM</strong><small>${escapeHtml(product.brand)}</small></div>
+              </div>
+              <div class="photo-note">Foto pendiente</div>
+            `}
           </div>
           <div class="product-body">
             <div class="meta">${escapeHtml(product.category)} · ${escapeHtml(product.brand)}</div>
             <h3>${escapeHtml(product.name)}</h3>
-            <p>${escapeHtml(product.desc)}</p>
+            <p>${escapeHtml(product.desc || "Consulta detalles por WhatsApp.")}</p>
             <div class="product-bottom">
-              <span class="price">${escapeHtml(product.price)}</span>
+              <span class="price">${escapeHtml(product.price || "Consultar precio")}</span>
               <button class="mini-btn" type="button" data-add="${product.index}">+ Agregar</button>
             </div>
           </div>
@@ -644,8 +645,8 @@
     $('decant-button').addEventListener('click', () => sendWhatsApp('Hola, Olfactum. Me interesa conocer sus opciones de decants de 5 ml y 10 ml.'));
 
     $('year').textContent = new Date().getFullYear();
-    renderProducts();
     renderCart();
+    loadProducts();
   </script>
 </body>
 </html>

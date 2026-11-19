@@ -1,0 +1,156 @@
+[
+  {
+    "id": "producto-001",
+    "name": "Club de Nuit Intense Man",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "night",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-002",
+    "name": "Hawas Ice",
+    "brand": "Rasasi",
+    "category": "Árabes",
+    "tone": "blue",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-003",
+    "name": "Yara",
+    "brand": "Lattafa",
+    "category": "Árabes",
+    "tone": "rose",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-004",
+    "name": "Odyssey Mandarin Sky",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "amber",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-005",
+    "name": "9PM Night Oud",
+    "brand": "Afnan",
+    "category": "Árabes",
+    "tone": "night",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-006",
+    "name": "Rome Intense",
+    "brand": "Maison Alhambra",
+    "category": "Árabes",
+    "tone": "green",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-007",
+    "name": "Eros",
+    "brand": "Versace",
+    "category": "Diseñador",
+    "tone": "blue",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-008",
+    "name": "Libre Le Parfum",
+    "brand": "Yves Saint Laurent",
+    "category": "Diseñador",
+    "tone": "rose",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-009",
+    "name": "Le Male Le Parfum",
+    "brand": "Jean Paul Gaultier",
+    "category": "Diseñador",
+    "tone": "amber",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-010",
+    "name": "Layton",
+    "brand": "Parfums de Marly",
+    "category": "Nicho",
+    "tone": "night",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-011",
+    "name": "Erba Pura",
+    "brand": "Xerjoff",
+    "category": "Nicho",
+    "tone": "amber",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-012",
+    "name": "Santal 33",
+    "brand": "Le Labo",
+    "category": "Nicho",
+    "tone": "clear",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-013",
+    "name": "Decants 5 ml",
+    "brand": "Olfactum",
+    "category": "Decants",
+    "tone": "clear",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  },
+  {
+    "id": "producto-014",
+    "name": "Decants 10 ml",
+    "brand": "Olfactum",
+    "category": "Decants",
+    "tone": "green",
+    "status": "Consultar disponibilidad",
+    "price": "Consultar precio",
+    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
+    "image": ""
+  }
+]
