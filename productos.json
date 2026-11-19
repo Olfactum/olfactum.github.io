@@ -128,11 +128,25 @@
     "name": "Erba Pura",
     "brand": "Xerjoff",
     "category": "Nicho",
-    "tone": "amber",
-    "status": "Consultar disponibilidad",
+    "tone": "clear",
+    "status": "Disponible",
     "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
+    "desc": "Notas: 🍊 Naranja siciliana · 🍋 Bergamota de Calabria · 🍋 Limón siciliano · 🍓 Frutas · ☁️ Almizcle blanco · 🍦 Vainilla de Madagascar · 🔶 Ámbar",
+    "image": "images/producto-011-1795132061103.png",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$250"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$500"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    }
   },
   {
     "id": "producto-012",
