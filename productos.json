@@ -408,5 +408,30 @@
     },
     "desc": "Notas: 🍎 Manzana roja · 🌶️ Cardamomo · 🍋 Bergamota de Calabria · 💜 Lavanda · 🌺 Geranio bourbon · 🌿 Esclarea · 🍂 Hojas de tabaco · 🍃 Pachulí · 🌱 Vetiver de Haití",
     "image": "images/perfume-1795137896486-j1xjk-1795137896533.png"
+  },
+  {
+    "id": "perfume-1795138075899-ggorh",
+    "name": "Odyssey Mega",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Limón · 🍋 Bergamota · 🍊 Naranja · 🫚 Jengibre · 🌿 Menta · 🍍 Piña · 🌱 Salvia · 🌲 Enebro · 🌺 Geranio · ☁️ Almizcle · 🪵 Cedro · 🍮 Haba tonka · 🍃 Vetiver",
+    "image": "images/perfume-1795138075899-ggorh-1795138075945.png"
   }
 ]
