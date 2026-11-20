@@ -536,5 +536,30 @@
     },
     "desc": "Notas: 🌿 Notas verdes · 🌊 Notas acuosas · 🍃 Menta · 🫚 Jengibre · 🥥 Coco · 🍈 Higo · 🧂 Sal · 🍮 Haba tonka · 🪵 Sándalo",
     "image": "images/perfume-1795145375301-5qx6x-1795145375336.png"
+  },
+  {
+    "id": "perfume-1795145489760-2ebbp",
+    "name": "Jean Paul Gaultier Le Male Elixir",
+    "brand": "Jean Paul Gaultier",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 💜 Lavanda · 🌿 Menta · 🍦 Vainilla · 🔶 Benjuí · 🍯 Miel · 🍮 Haba tonka · 🍂 Tabaco",
+    "image": "images/perfume-1795145489760-2ebbp-1795145489796.png"
   }
 ]
