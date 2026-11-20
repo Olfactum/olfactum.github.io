@@ -828,5 +828,30 @@
     },
     "desc": "Notas: 🍋 Limón · 🍊 Mandarina · 🍋 Bergamota · 🍊 Naranja amarga · 🌿 Romero · 💜 Lavanda · 🍃 Mirto · 🌼 Neroli · 🍊 Flor de azahar · 🌸 Jazmín · 🌱 Angélica · 🔶 Ámbar · ☁️ Almizcle ambreta",
     "image": "images/perfume-1795150412757-h9sfy-1795150412791.png"
+  },
+  {
+    "id": "perfume-1795150584753-qb1s8",
+    "name": "Scandal",
+    "brand": "Jean Paul Gaultier",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Mandarina · 🌿 Esclarea · 🍬 Caramelo · 🍮 Haba tonka · 🍃 Vetiver",
+    "image": "images/perfume-1795150584753-qb1s8-1795150584791.png"
   }
 ]
