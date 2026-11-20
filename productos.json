@@ -358,5 +358,30 @@
     },
     "desc": "Notas: 🍋 Limón · 🌿 Romero · 🍃 Pachulí\n\n👨‍🔬 Perfumista: Alberto Morillas",
     "image": "images/perfume-1795137372369-oh8oa-1795137372402.png"
+  },
+  {
+    "id": "perfume-1795137516555-0vav5",
+    "name": "Valentino Intense",
+    "brand": "Valentino",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍦 Vainilla · 💜 Lavanda · 🌿 Vetiver",
+    "image": "images/perfume-1795137516555-0vav5-1795137516600.png"
   }
 ]
