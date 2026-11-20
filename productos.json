@@ -333,5 +333,30 @@
     },
     "desc": "Notas: 🌊 Notas marinas · 🍊 Toronja · 🍊 Mandarina · 🌿 Hoja de laurel · 🌼 Jazmín · 🔶 Ámbar gris · 🪵 Madera de gaiac · 🍃 Musgo de roble · 🌱 Pachulí",
     "image": "images/perfume-1795137078116-mtii1-1795137078152.png"
+  },
+  {
+    "id": "perfume-1795137372369-oh8oa",
+    "name": "Light Blue",
+    "brand": "Dolce & Gabbana",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Limón · 🌿 Romero · 🍃 Pachulí\n\n👨‍🔬 Perfumista: Alberto Morillas",
+    "image": "images/perfume-1795137372369-oh8oa-1795137372402.png"
   }
 ]
