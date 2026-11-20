@@ -636,5 +636,30 @@
     },
     "desc": "Notas: 🌶️ Cardamomo · 🌸 Pimienta rosa · 🌿 Menta · 🍃 Salvia · 🌊 Notas acuáticas · 🍍 Piña · 🍦 Vainilla · 🪵 Amberwood · 🌲 Cedro",
     "image": "images/perfume-1795147255538-ors93-1795147255570.png"
+  },
+  {
+    "id": "perfume-1795147375389-6ooie",
+    "name": "Odyssey Homme",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "green",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌶️ Cardamomo · 🍊 Mandarina · 🌼 Neroli · 🍊 Flor de azahar · 🌹 Rosa · 🍦 Vainilla · 🪵 Notas amaderadas · 🔶 Ámbar · 🌳 Sándalo",
+    "image": "images/perfume-1795147375389-6ooie-1795147375425.png"
   }
 ]
