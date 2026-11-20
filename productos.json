@@ -853,5 +853,30 @@
     },
     "desc": "Notas: 🍊 Mandarina · 🌿 Esclarea · 🍬 Caramelo · 🍮 Haba tonka · 🍃 Vetiver",
     "image": "images/perfume-1795150584753-qb1s8-1795150584791.png"
+  },
+  {
+    "id": "perfume-1795150714656-57z6j",
+    "name": "Yeah Man!",
+    "brand": "Maison Alhambra",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍏 Manzana · 🫚 Jengibre · 🍋 Bergamota · 🌿 Salvia · 🫐 Bayas de enebro · 🌺 Geranio · 🪵 Amberwood · 🍮 Haba tonka · 🌲 Cedro · 🍃 Vetiver · 🪔 Incienso de olíbano",
+    "image": "images/perfume-1795150714656-57z6j-1795150714690.png"
   }
 ]
