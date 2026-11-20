@@ -461,5 +461,30 @@
     },
     "desc": "Notas: 🍋 Limón · 🍍 Piña · 🍋 Bergamota · 🫐 Grosellas negras · 🍏 Manzana · 🌳 Abedul · 🌼 Jazmín · 🌹 Rosa · ☁️ Almizcle · 🔶 Ámbar gris · 🍃 Pachulí · 🍦 Vainilla",
     "image": "images/perfume-1795144762391-k9fo1-1795144762429.png"
+  },
+  {
+    "id": "perfume-1795145029272-50v4w",
+    "name": "Jean Paul Gaultier Le Beau",
+    "brand": "Jean Paul Gaultier",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Bergamota · 🥥 Coco · 🍮 Haba tonka\n\n👨‍🔬 Perfumistas: Quentin Bisch y Sonia Constant",
+    "image": "images/perfume-1795145029272-50v4w-1795145029304.png"
   }
 ]
