@@ -411,5 +411,30 @@
     },
     "desc": "Notas: 🍋 Limón · 🍋 Bergamota · 🍊 Naranja · 🫚 Jengibre · 🌿 Menta · 🍍 Piña · 🌱 Salvia · 🌲 Enebro · 🌺 Geranio · ☁️ Almizcle · 🪵 Cedro · 🍮 Haba tonka · 🍃 Vetiver",
     "image": "images/perfume-1795138075899-ggorh-1795138075945.png"
+  },
+  {
+    "id": "perfume-1795144616978-fj93h",
+    "name": "Club de Nuit Sillage",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Bergamota · 🍋 Limón · 🍈 Lima · 🫐 Grosellas negras · 🍃 Hojas de violeta · 🫚 Jengibre · 🌹 Rosa · 🌸 Iris · 🌼 Jazmín · ✨ Ambroxan · ☁️ Almizcle · 🪵 Sándalo · 🌲 Cedro",
+    "image": "images/perfume-1795144616978-fj93h-1795144617018.png"
   }
 ]
