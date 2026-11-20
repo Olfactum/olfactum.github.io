@@ -978,5 +978,30 @@
     },
     "desc": "Notas: 🥭 Mango · 🍍 Piña · 🍋 Bergamota · 🥃 Ron · 🥥 Coco · 🌸 Flores blancas · 🌊 Notas marinas · ☁️ Almizcle · 🔶 Ámbar · 🪵 Sándalo · 🍃 Vetiver",
     "image": "images/perfume-1795151475717-mg79q-1795151475754.png"
+  },
+  {
+    "id": "perfume-1795151711940-6pn5c",
+    "name": "Eros Flame",
+    "brand": "Versace",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Mandarina · 🌶️ Pimienta de Madagascar · 🍋 Limón · 🍊 Chinotto · 🌿 Romero · 🌺 Geranio · 🌹 Rosa · 🪵 Pepperwood™ · 🍦 Vainilla · 🍮 Haba tonka · 🪵 Sándalo · 🌲 Cedro de Texas · 🍃 Pachulí · 🌿 Musgo de roble",
+    "image": "images/perfume-1795151711940-6pn5c-1795151711979.png"
   }
 ]
