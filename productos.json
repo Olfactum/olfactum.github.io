@@ -511,5 +511,30 @@
     },
     "desc": "Notas: 🍍 Piña · 🌸 Iris · 🫚 Jengibre · 🌲 Ciprés · 🥥 Coco · 🪵 Notas amaderadas · 🍮 Haba tonka · 🌳 Sándalo · 🔶 Ámbar · ✨ Ámbar gris",
     "image": "images/perfume-1795145194493-md096-1795145194527.png"
+  },
+  {
+    "id": "perfume-1795145375301-5qx6x",
+    "name": "Jean Paul Gaultier Paradise Garden",
+    "brand": "Jean Paul Gaultier",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌿 Notas verdes · 🌊 Notas acuosas · 🍃 Menta · 🫚 Jengibre · 🥥 Coco · 🍈 Higo · 🧂 Sal · 🍮 Haba tonka · 🪵 Sándalo",
+    "image": "images/perfume-1795145375301-5qx6x-1795145375336.png"
   }
 ]
