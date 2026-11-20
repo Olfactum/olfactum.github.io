@@ -1063,7 +1063,7 @@
         "price": "$200"
       },
       "bottle": {
-        "enabled": true,
+        "enabled": false,
         "price": "Consultar precio"
       }
     },
