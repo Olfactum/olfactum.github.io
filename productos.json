@@ -308,5 +308,30 @@
     },
     "desc": "Notas: 🍵 Té verde · 🌶️ Pimienta de Sichuan · 🍋 Bergamota · 🌸 Pimienta rosa · 🍏 Manzana · 🌹 Rosa de mayo · 🌿 Notas aromáticas · 🫐 Grosellas negras · 🌺 Geranio · 🍂 Notas terrosas · 🌱 Vetiver · ☁️ Almizcle · 🪵 Cachemira · 🌲 Cedro · 🔶 Ámbar",
     "image": "images/perfume-1795132572691-we9zj-1795132572725.png"
+  },
+  {
+    "id": "perfume-1795137078116-mtii1",
+    "name": "Invictus Edt",
+    "brand": "Rabanne",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌊 Notas marinas · 🍊 Toronja · 🍊 Mandarina · 🌿 Hoja de laurel · 🌼 Jazmín · 🔶 Ámbar gris · 🪵 Madera de gaiac · 🍃 Musgo de roble · 🌱 Pachulí",
+    "image": "images/perfume-1795137078116-mtii1-1795137078152.png"
   }
 ]
