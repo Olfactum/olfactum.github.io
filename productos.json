@@ -778,5 +778,30 @@
     },
     "desc": "Notas: 🌿 Cannabis · 🍊 Toronja · 🌶️ Pimienta negra · 🌺 Geranio · 🤎 Cuero · 🍃 Vetiver",
     "image": "images/perfume-1795149919092-4y3xc-1795149919127.png"
+  },
+  {
+    "id": "perfume-1795150248586-mtcl5",
+    "name": "Adonis Icarus",
+    "brand": "Rayhaan",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Naranja · 🍊 Mandarina · 🍋 Bergamota · 🌼 Neroli · 🫚 Jengibre · 🌸 Pimienta rosa · ✨ Ámbar gris · ☁️ Almizcle · 🍃 Vetiver",
+    "image": "images/perfume-1795150248586-mtcl5-1795150248627.png"
   }
 ]
