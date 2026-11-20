@@ -1028,5 +1028,30 @@
     },
     "desc": "Notas: 🌿 Menta · 🍏 Manzana verde · 🍋 Limón · 🍮 Haba tonka · ✨ Ambroxan · 🌺 Geranio · 🍦 Vainilla de Madagascar · 🌲 Cedro de Virginia · 🪵 Cedro del Atlas · 🍃 Vetiver · 🌿 Musgo de roble",
     "image": "images/perfume-1795151890086-qgvk4-1795151890124.png"
+  },
+  {
+    "id": "perfume-1795152090663-7hsxa",
+    "name": "Eros edp",
+    "brand": "Versace",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌿 Menta · 🍏 Manzana acaramelada · 🍋 Limón · 🍊 Mandarina · ✨ Ambroxan · 🌺 Geranio · 🍃 Esclarea · 🍦 Vainilla · 🌲 Cedro · 🪵 Sándalo · 🍊 Naranja amarga · 🌿 Pachulí · 🤎 Cuero",
+    "image": "images/perfume-1795152090663-7hsxa-1795152090700.png"
   }
 ]
