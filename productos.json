@@ -436,5 +436,30 @@
     },
     "desc": "Notas: 🍋 Bergamota · 🍋 Limón · 🍈 Lima · 🫐 Grosellas negras · 🍃 Hojas de violeta · 🫚 Jengibre · 🌹 Rosa · 🌸 Iris · 🌼 Jazmín · ✨ Ambroxan · ☁️ Almizcle · 🪵 Sándalo · 🌲 Cedro",
     "image": "images/perfume-1795144616978-fj93h-1795144617018.png"
+  },
+  {
+    "id": "perfume-1795144762391-k9fo1",
+    "name": "Club de Nuit Intense Man",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Limón · 🍍 Piña · 🍋 Bergamota · 🫐 Grosellas negras · 🍏 Manzana · 🌳 Abedul · 🌼 Jazmín · 🌹 Rosa · ☁️ Almizcle · 🔶 Ámbar gris · 🍃 Pachulí · 🍦 Vainilla",
+    "image": "images/perfume-1795144762391-k9fo1-1795144762429.png"
   }
 ]
