@@ -47,17 +47,6 @@
     }
   },
   {
-    "id": "producto-007",
-    "name": "Eros",
-    "brand": "Versace",
-    "category": "Diseñador",
-    "tone": "blue",
-    "status": "Consultar disponibilidad",
-    "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
-  },
-  {
     "id": "producto-010",
     "name": "Layton",
     "brand": "Parfums de Marly",
