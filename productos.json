@@ -586,5 +586,30 @@
     },
     "desc": "Notas: 🍐 Pera · 💜 Lavanda · 🌿 Menta · 🍋 Bergamota · 🍋 Limón · 🍂 Canela · 🌱 Esclarea · 🌿 Alcaravea · 🍦 Vainilla negra · 🔶 Ámbar · 🍃 Pachulí · 🌲 Cedro",
     "image": "images/perfume-1795145664438-ghafn-1795145664476.png"
+  },
+  {
+    "id": "perfume-1795147107537-ptzqc",
+    "name": "Odyssey Aqua",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Naranja · 🍊 Toronja · 🌿 Abrótano · 🍃 Menta · 💜 Lavanda · ✨ Ambroxan · 🌲 Ciprés · 🍂 Pachulí",
+    "image": "images/perfume-1795147107537-ptzqc-1795147107571.png"
   }
 ]
