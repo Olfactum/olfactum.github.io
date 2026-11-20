@@ -1204,5 +1204,32 @@
     },
     "desc": "",
     "image": ""
+  },
+  {
+    "id": "perfume-1795196316580-wibuu",
+    "name": "Hawas for Her",
+    "brand": "Rasasi",
+    "category": "Árabes",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "",
+    "image": ""
   }
 ]
