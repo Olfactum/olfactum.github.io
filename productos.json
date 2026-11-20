@@ -686,5 +686,30 @@
     },
     "desc": "Notas: 🍈 Melón · 🍈 Melón cantalupo · 🧂 Sal · 🌊 Algas · 🍐 Pera · 🍏 Manzana Granny Smith · 🍑 Ciruela · 💧 Notas acuáticas · 🪷 Nenúfar · 🌿 Musgo de roble · 🪔 Incienso · ☁️ Almizcle · 🔶 Ámbar · 🍬 Azúcar · 🌲 Cedro",
     "image": "images/perfume-1795147573051-plrk2-1795147573109.png"
+  },
+  {
+    "id": "perfume-1795147888080-i6fzq",
+    "name": "Vulcan Feu",
+    "brand": "French Avenue",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🥭 Mango · 🍋 Limón · 🫚 Jengibre · 🌿 Ruibarbo · 🌸 Pimienta rosa · 🌼 Jazmín · 💜 Violeta · 🍬 Praliné · 🍮 Haba tonka · 🌲 Cedro · ✨ Ámbar gris · 🍃 Musgo",
+    "image": "images/perfume-1795147888080-i6fzq-1795147888119.png"
   }
 ]
