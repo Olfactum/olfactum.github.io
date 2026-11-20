@@ -761,5 +761,30 @@
     },
     "desc": "Notas: 🍋 Limón · 🍈 Lima · 🍊 Toronja · 🍊 Naranja sanguina · 🍋 Bergamota de Sicilia · 🍊 Mandarina · 🌸 Pimienta rosa · 🤍 Ámbar blanco · 🫐 Grosellas negras · ☁️ Almizcle · 🌿 Musgo de roble · 🍃 Pachulí",
     "image": "images/perfume-1795148299069-xa4la-1795148299108.png"
+  },
+  {
+    "id": "perfume-1795149811681-8c5ft",
+    "name": "Bad Boy Cobalt",
+    "brand": "Carolina Herrera",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 💜 Lavanda · 🌸 Pimienta rosa · 🍑 Ciruela · 🌺 Geranio · 🌲 Cedro · 🌿 Vetiver · 🍄 Trufa · 🌳 Roble",
+    "image": "images/perfume-1795149811681-8c5ft-1795149811717.png"
   }
 ]
