@@ -383,5 +383,30 @@
     },
     "desc": "Notas: 🍦 Vainilla · 💜 Lavanda · 🌿 Vetiver",
     "image": "images/perfume-1795137516555-0vav5-1795137516600.png"
+  },
+  {
+    "id": "perfume-1795137896486-j1xjk",
+    "name": "Valentino Coral Fantasy",
+    "brand": "Valentino",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍎 Manzana roja · 🌶️ Cardamomo · 🍋 Bergamota de Calabria · 💜 Lavanda · 🌺 Geranio bourbon · 🌿 Esclarea · 🍂 Hojas de tabaco · 🍃 Pachulí · 🌱 Vetiver de Haití",
+    "image": "images/perfume-1795137896486-j1xjk-1795137896533.png"
   }
 ]
