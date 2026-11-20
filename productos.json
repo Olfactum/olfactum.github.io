@@ -878,5 +878,30 @@
     },
     "desc": "Notas: 🍏 Manzana · 🫚 Jengibre · 🍋 Bergamota · 🌿 Salvia · 🫐 Bayas de enebro · 🌺 Geranio · 🪵 Amberwood · 🍮 Haba tonka · 🌲 Cedro · 🍃 Vetiver · 🪔 Incienso de olíbano",
     "image": "images/perfume-1795150714656-57z6j-1795150714690.png"
+  },
+  {
+    "id": "perfume-1795150934717-389ak",
+    "name": "Philos Messenger",
+    "brand": "Maison Alhambra",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🍋 Bergamota · 🌼 Jazmín · 🌸 Magnolia · 💜 Raíz de lirio · ☁️ Almizcle · 🌲 Cedro · 🍃 Pachulí · 🔶 Ámbar",
+    "image": "images/perfume-1795150934717-389ak-1795150934748.png"
   }
 ]
