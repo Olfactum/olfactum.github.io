@@ -928,5 +928,30 @@
     },
     "desc": "Notas: 🌶️ Cardamomo · 💜 Violeta · 🔶 Ámbar · 🌸 Iris · 🪵 Sándalo · 🤎 Cuero · 🌲 Cedro de Virginia · 📜 Papiro de Egipto",
     "image": "images/perfume-1795151152517-cmihp-1795151152553.png"
+  },
+  {
+    "id": "perfume-1795151305935-emnx8",
+    "name": "MYSLF edp",
+    "brand": "Yves Saint Laurent",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Bergamota de Calabria · 🍋 Bergamota · 🌼 Flor de azahar tunecina · ✨ Ambrofix™ · 🍃 Pachulí",
+    "image": "images/perfume-1795151305935-emnx8-1795151305965.png"
   }
 ]
