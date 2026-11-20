@@ -1177,5 +1177,32 @@
     },
     "desc": "",
     "image": ""
+  },
+  {
+    "id": "perfume-1795196286771-xlez3",
+    "name": "Rave Now Pink",
+    "brand": "Lattafa",
+    "category": "Árabes",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "",
+    "image": ""
   }
 ]
