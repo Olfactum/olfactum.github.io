@@ -56,14 +56,28 @@
   },
   {
     "id": "producto-006",
-    "name": "Rome Intense",
-    "brand": "Maison Alhambra",
+    "name": "Rome Pour Homme",
+    "brand": "Mast Perfumes",
     "category": "Árabes",
-    "tone": "green",
-    "status": "Consultar disponibilidad",
+    "tone": "clear",
+    "status": "Disponible",
     "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
+    "desc": "Notas: 🌺 Geranio · 🌹 Rosa · 🌿 Salvia · 🫚 Jengibre · 🌲 Cedro · 🍃 Vetiver",
+    "image": "images/producto-006-1795136473133.png",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    }
   },
   {
     "id": "producto-007",
