@@ -786,5 +786,30 @@
     },
     "desc": "Notas: 💜 Lavanda · 🌸 Pimienta rosa · 🍑 Ciruela · 🌺 Geranio · 🌲 Cedro · 🌿 Vetiver · 🍄 Trufa · 🌳 Roble",
     "image": "images/perfume-1795149811681-8c5ft-1795149811717.png"
+  },
+  {
+    "id": "perfume-1795149919092-4y3xc",
+    "name": "Bad Boy Le Parfum",
+    "brand": "Carolina Herrera",
+    "category": "Diseñador",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌿 Cannabis · 🍊 Toronja · 🌶️ Pimienta negra · 🌺 Geranio · 🤎 Cuero · 🍃 Vetiver",
+    "image": "images/perfume-1795149919092-4y3xc-1795149919127.png"
   }
 ]
