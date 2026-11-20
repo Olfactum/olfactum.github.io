@@ -903,5 +903,30 @@
     },
     "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🍋 Bergamota · 🌼 Jazmín · 🌸 Magnolia · 💜 Raíz de lirio · ☁️ Almizcle · 🌲 Cedro · 🍃 Pachulí · 🔶 Ámbar",
     "image": "images/perfume-1795150934717-389ak-1795150934748.png"
+  },
+  {
+    "id": "perfume-1795151152517-cmihp",
+    "name": "Stallion 53",
+    "brand": "Emper",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌶️ Cardamomo · 💜 Violeta · 🔶 Ámbar · 🌸 Iris · 🪵 Sándalo · 🤎 Cuero · 🌲 Cedro de Virginia · 📜 Papiro de Egipto",
+    "image": "images/perfume-1795151152517-cmihp-1795151152553.png"
   }
 ]
