@@ -803,5 +803,30 @@
     },
     "desc": "Notas: 🍊 Naranja · 🍊 Mandarina · 🍋 Bergamota · 🌼 Neroli · 🫚 Jengibre · 🌸 Pimienta rosa · ✨ Ámbar gris · ☁️ Almizcle · 🍃 Vetiver",
     "image": "images/perfume-1795150248586-mtcl5-1795150248627.png"
+  },
+  {
+    "id": "perfume-1795150412757-h9sfy",
+    "name": "Pacific Blue",
+    "brand": "Maison Alhambra",
+    "category": "Árabes",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Limón · 🍊 Mandarina · 🍋 Bergamota · 🍊 Naranja amarga · 🌿 Romero · 💜 Lavanda · 🍃 Mirto · 🌼 Neroli · 🍊 Flor de azahar · 🌸 Jazmín · 🌱 Angélica · 🔶 Ámbar · ☁️ Almizcle ambreta",
+    "image": "images/perfume-1795150412757-h9sfy-1795150412791.png"
   }
 ]
