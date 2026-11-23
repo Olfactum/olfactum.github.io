@@ -38,5 +38,15 @@
     "imageAlt": "Valentino edt",
     "approved": true,
     "published": true
+  },
+  {
+    "id": "testimonio-1795472852267-1ayeo",
+    "name": "Alejandro R",
+    "detail": "Decants",
+    "quote": "Todo bien con mi envio! Los recomiendo!",
+    "image": "images/testimonio-1795472852267-1ayeo-1795472852280.jpg",
+    "imageAlt": "",
+    "approved": true,
+    "published": true
   }
 ]
