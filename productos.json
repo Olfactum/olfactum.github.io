@@ -839,7 +839,20 @@
       }
     },
     "desc": "Notas: 🌶️ Cardamomo · 🍊 Mandarina · 🌼 Neroli · 🍊 Flor de azahar · 🌹 Rosa · 🍦 Vainilla · 🪵 Notas amaderadas · 🔶 Ámbar · 🌳 Sándalo",
-    "image": "images/perfume-1795147375389-6ooie-1795147375425.png"
+    "image": "images/perfume-1795147375389-6ooie-1795147375425.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Dulces",
+      "Especiadas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795147573051-plrk2",
