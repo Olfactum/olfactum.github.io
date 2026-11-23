@@ -2690,6 +2690,18 @@
       }
     },
     "desc": "Notas: 🫐 Grosellas negras · 🍋 Bergamota · 🍍 Piña · 🍊 Toronja · 🌸 Pimienta rosa · 🍋 Limón · 🌶️ Cardamomo · 🍂 Canela · 🫚 Jengibre · 🍃 Pachulí · 🌿 Vetiver",
-    "image": "images/perfume-1795409114178-wknkp-1795409114205.png"
+    "image": "images/perfume-1795409114178-wknkp-1795409114205.png",
+    "families": [
+      "Cítricas",
+      "Amaderadas",
+      "Frutales",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   }
 ]
