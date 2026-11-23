@@ -506,6 +506,60 @@
 @media(max-width:830px){.trust-items{grid-template-columns:repeat(2,minmax(0,1fr))}.trust-points{grid-template-columns:1fr}}
 @media(max-width:550px){.trust-items{grid-template-columns:1fr}.trust-photo{height:245px}.trust-section{padding:48px 0}}
 
+
+/* OLFACTUM · Experiencia de compra móvil: navegación compacta y pedido siempre accesible */
+.mobile-menu-toggle,.mobile-order-bar{display:none}
+@media(max-width:900px){
+  .header{z-index:80}
+  .nav{position:relative;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto;gap:8px!important;align-items:center!important;min-height:66px!important;padding:7px 0!important;flex-direction:row!important}
+  .brand{min-width:0;gap:7px}
+  .brand--official .official-seal{width:44px!important;height:44px!important}
+  .brand--official .brand-text strong{font-size:17px!important;letter-spacing:.12em}
+  .brand--official .brand-text span{font-size:8px;letter-spacing:.15em}
+  .nav-actions{gap:4px}
+  .nav-actions #nav-whatsapp{display:none}
+  .nav-actions #cart-open{padding:10px 11px;font-size:12px;white-space:nowrap;min-height:43px}
+  .mobile-menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:5px;background:white;color:#1e3b2b;border:1px solid #ced6cc;border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800;min-height:43px;cursor:pointer;white-space:nowrap;grid-column:2;grid-row:1}
+  .mobile-menu-toggle span:first-child{font-size:19px;line-height:1}
+  .nav-actions{grid-column:3;grid-row:1}
+  .nav-links{display:none!important;position:absolute;top:calc(100% + 3px);left:0;right:0;background:#fff;border:1px solid #e4e1d6;border-radius:0 0 18px 18px;box-shadow:0 13px 25px #10231a27;padding:13px;z-index:81;max-height:min(70vh,550px);overflow-y:auto}
+  .nav-links.mobile-open{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px!important}
+  .nav-links a{padding:12px 10px;border-radius:9px;background:#f6f5f0;font-size:12px;min-height:44px;display:flex;align-items:center}
+  .nav-links a:focus-visible,.nav-links a:hover{background:#eaece4}
+  main section[id]{scroll-margin-top:80px}
+  .mobile-order-bar{display:block;position:fixed;bottom:0;left:0;right:0;z-index:65;padding:9px max(12px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:rgba(248,247,242,.97);border-top:1px solid #dadfd5;backdrop-filter:blur(14px);box-shadow:0 -4px 18px #0a24121a}
+  .mobile-order-button{display:flex;align-items:center;gap:11px;width:100%;border:0;border-radius:14px;min-height:52px;background:#1b382a;color:#fff;padding:11px 15px;font-size:14px;text-align:left}
+  .mobile-order-button strong{display:inline-flex;justify-content:center;align-items:center;background:#d9ae6e;color:#14281d;border-radius:999px;min-width:22px;padding:1px 6px;font-size:12px}
+  .mobile-order-button span:last-child{font-size:19px}
+  .mobile-order-total{margin-left:auto;color:#f2dfb8;font-size:12px;font-weight:750;white-space:nowrap}
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  .float-whatsapp{bottom:calc(98px + env(safe-area-inset-bottom));left:13px;width:48px;height:48px;font-size:22px}
+  .float-top{bottom:calc(98px + env(safe-area-inset-bottom));right:13px;width:43px;height:43px;font-size:21px}
+  .drawer-backdrop{z-index:120}
+  .drawer{width:min(480px,100%)!important;max-height:100dvh;height:100dvh;padding:18px 16px calc(15px + env(safe-area-inset-bottom))!important;overflow:hidden!important;gap:10px}
+  .drawer-head{flex-shrink:0}
+  .drawer-head h3{font-size:32px}
+  .drawer>.muted{font-size:12px;margin:0;flex-shrink:0}
+  .cart-items{min-height:70px;flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain}
+  .cart-summary{flex-shrink:0}
+  .checkout-fields{flex-shrink:0;max-height:39dvh;overflow:auto;overscroll-behavior:contain}
+  .checkout-field input,.checkout-field select,.checkout-field textarea{min-height:42px;font-size:16px}
+  .drawer-actions{flex-shrink:0;gap:7px;grid-template-columns:minmax(0,1fr) auto}
+  #cart-send{min-width:0;padding:13px 10px;min-height:48px}
+  #cart-clear{padding:12px 13px;min-height:48px}
+  .toast{bottom:calc(88px + env(safe-area-inset-bottom));z-index:115}
+}
+@media(max-width:390px){
+  .brand--official .brand-text strong{font-size:15px!important}
+  .brand--official .brand-text span{display:none}
+  .brand--official .official-seal{width:37px!important;height:39px!important}
+  .mobile-menu-toggle{padding:8px;min-height:40px}
+  .nav-actions #cart-open{font-size:11px;padding:8px;min-height:40px}
+  .nav{gap:4px!important}
+  .mobile-order-button{gap:7px;padding:10px 12px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-order-bar,.nav-links{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
@@ -520,7 +574,8 @@
           <span>Always authentic</span>
         </div>
       </a>
-      <nav class="nav-links" aria-label="Navegación principal">
+      <button class="mobile-menu-toggle" type="button" id="mobile-menu-toggle" aria-label="Abrir menú de navegación" aria-controls="main-navigation" aria-expanded="false"><span aria-hidden="true">☰</span><span>Menú</span></button>
+      <nav class="nav-links" id="main-navigation" aria-label="Navegación principal">
         <a href="#catalogo">Catálogo</a>
         <a href="#novedades">Novedades</a>
         <a href="#decants">Decants</a>
@@ -953,6 +1008,9 @@
     </aside>
   </div>
 
+  <div class="mobile-order-bar" id="mobile-order-bar" aria-label="Acceso rápido al pedido">
+    <button class="mobile-order-button" type="button" id="mobile-cart-open"><span aria-hidden="true">🛍</span><span>Mi pedido <strong id="mobile-cart-count">0</strong></span><span class="mobile-order-total" id="mobile-cart-total">Ver pedido</span><span aria-hidden="true">→</span></button>
+  </div>
   <button class="float-whatsapp" type="button" id="floating-contact" aria-label="Consultar por WhatsApp">✆</button>
   <button class="float-top" type="button" id="floating-top" aria-label="Volver arriba">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1285,6 +1343,8 @@
     function renderCart(){
       const quantity=cart.reduce((sum,item)=>sum+item.qty,0);
       $('cart-count').textContent=quantity;
+      $('mobile-cart-count').textContent=quantity;
+      $('mobile-cart-open').setAttribute('aria-label',`Abrir mi pedido, ${quantity} artículo${quantity===1?'':'s'}`);
       $('cart-items').innerHTML=cart.length?cart.map((item,index)=>`
         <div class="cart-item">
           <div><strong>${escapeHtml(item.name)}</strong>
@@ -1294,14 +1354,23 @@
         </div>`).join(''):'<p class="muted">Tu lista está vacía. Agrega perfumes o decants para consultar por WhatsApp.</p>';
       const known=cart.reduce((sum,item)=>sum+(getAmount(item.price)??0)*item.qty,0);
       const unknown=cart.some(item=>getAmount(item.price)===null);
+      $('mobile-cart-total').textContent=!cart.length?'Explorar pedido':(unknown?'Por cotizar':money(known));
       $('cart-subtotal').textContent='Subtotal: '+money(known)+(unknown?' + precios por confirmar':'');
       $('cart-total-note').textContent=unknown?'Algunos precios requieren cotización. Envío y disponibilidad por confirmar.':'Subtotal sin envío. Precios y disponibilidad sujetos a confirmación.';
       persistCart();
     }
 
+    let cartReturnFocus=null;
     function openCart(open){
+      const wasOpen=$('cart-backdrop').classList.contains('open');
+      if(open&&!wasOpen)cartReturnFocus=document.activeElement;
       $('cart-backdrop').classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
+      document.body.style.overflow=open?'hidden':'';
+      if(open){
+        $('cart-close').focus();
+      }else if(wasOpen&&cartReturnFocus?.isConnected){
+        cartReturnFocus.focus();
+      }
     }
 
     function addToCart(index){
@@ -1579,6 +1648,19 @@
     });
 
     $('cart-open').addEventListener('click', () => openCart(true));
+    $('mobile-cart-open').addEventListener('click', () => openCart(true));
+    const mobileToggle=$('mobile-menu-toggle');
+    function setMobileMenu(open){
+      const expanded=!!open;
+      $('main-navigation').classList.toggle('mobile-open',expanded);
+      mobileToggle.setAttribute('aria-expanded',String(expanded));
+      mobileToggle.setAttribute('aria-label',expanded?'Cerrar menú de navegación':'Abrir menú de navegación');
+      mobileToggle.querySelector('span').textContent=expanded?'✕':'☰';
+    }
+    mobileToggle.addEventListener('click',()=>setMobileMenu(mobileToggle.getAttribute('aria-expanded')!=='true'));
+    $('main-navigation').addEventListener('click',event=>{if(event.target.closest('a'))setMobileMenu(false)});
+    document.addEventListener('click',event=>{if(!event.target.closest('.nav')&&mobileToggle.getAttribute('aria-expanded')==='true')setMobileMenu(false)});
+    window.addEventListener('resize',()=>{if(window.innerWidth>900)setMobileMenu(false)});
     $('cart-close').addEventListener('click', () => openCart(false));
     $('cart-backdrop').addEventListener('click', (event) => {
       if(event.target === $('cart-backdrop')) openCart(false);
@@ -1586,6 +1668,7 @@
 
     document.addEventListener('keydown', (event) => {
       if(event.key === 'Escape' && $('cart-backdrop').classList.contains('open')) openCart(false);
+      if(event.key === 'Escape' && mobileToggle.getAttribute('aria-expanded')==='true'){setMobileMenu(false);mobileToggle.focus();}
     });
 
     $('cart-send').addEventListener('click', () => {
