@@ -1408,7 +1408,7 @@
   },
   {
     "id": "perfume-1795151890086-qgvk4",
-    "name": "Eros edt",
+    "name": "Eros",
     "brand": "Versace",
     "category": "Diseñador",
     "tone": "clear",
@@ -1429,7 +1429,20 @@
       }
     },
     "desc": "Notas: 🌿 Menta · 🍏 Manzana verde · 🍋 Limón · 🍮 Haba tonka · ✨ Ambroxan · 🌺 Geranio · 🍦 Vainilla de Madagascar · 🌲 Cedro de Virginia · 🪵 Cedro del Atlas · 🍃 Vetiver · 🌿 Musgo de roble",
-    "image": "images/perfume-1795151890086-qgvk4-1795151890124.png"
+    "image": "images/perfume-1795151890086-qgvk4-1795151890124.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Toilette",
+    "families": [
+      "Cítricas",
+      "Dulces",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795152090663-7hsxa",
