@@ -1744,5 +1744,32 @@
     },
     "desc": "Notas: 🍊 Naranja sanguina · 🍊 Mandarina roja · 🍈 Lima · 🍋 Limón · 🍋 Bergamota · 🌺 Flor de tiaré · 🪵 Sándalo · ☁️ Notas atalcadas · 🤍 Almizcle",
     "image": "images/perfume-1795406630949-61un8-1795406630987.png"
+  },
+  {
+    "id": "perfume-1795406870294-vzoez",
+    "name": "Aun Kissed Aromatix",
+    "brand": "French Avenue",
+    "category": "Árabes",
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Naranja amarga · 🍊 Toronja · 🍋 Bergamota · 🍵 Té · 🍹 Aperol · 🥤 Refresco de vainilla · 🌶️ Cardamomo · 🌲 Cedro · 🍃 Vetiver · ✨ Ambertonic · 🍦 Vainilla · 🪵 Cachemira",
+    "image": "images/perfume-1795406870294-vzoez-1795406870327.png"
   }
 ]
