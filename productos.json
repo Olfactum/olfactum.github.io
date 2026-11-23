@@ -426,7 +426,20 @@
       }
     },
     "desc": "Notas: 🍎 Manzana roja · 🌶️ Cardamomo · 🍋 Bergamota de Calabria · 💜 Lavanda · 🌺 Geranio bourbon · 🌿 Esclarea · 🍂 Hojas de tabaco · 🍃 Pachulí · 🌱 Vetiver de Haití",
-    "image": "images/perfume-1795137896486-j1xjk-1795137896533.png"
+    "image": "images/perfume-1795137896486-j1xjk-1795137896533.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Florales",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795138075899-ggorh",
