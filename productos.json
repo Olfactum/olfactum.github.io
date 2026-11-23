@@ -1544,7 +1544,18 @@
       }
     },
     "desc": "Notas: 💜 Lavanda · 🌿 Salvia · 🍋 Bergamota · 🍑 Ciruela · 🪵 Palo santo · 🌶️ Pimienta negra · 🌳 Sándalo · 🤎 Madera de oud",
-    "image": "images/perfume-1795196098186-ipzp9-1795399934495.png"
+    "image": "images/perfume-1795196098186-ipzp9-1795399934495.png",
+    "families": [
+      "Dulces",
+      "Frutales",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795196131218-hmbf3",
