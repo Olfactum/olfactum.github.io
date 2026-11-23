@@ -431,6 +431,32 @@
     .product-detail-link:hover{background:#e9f0e8}
     @media(max-width:760px){.detail-overlay{padding:9px}.detail-dialog{max-height:96vh;border-radius:16px}.detail-grid{grid-template-columns:1fr}.detail-photo{min-height:270px;padding:14px}.detail-photo img{height:270px}.detail-content{padding:22px 20px 30px}.detail-close{top:8px;margin:8px 9px -50px 0}.detail-similar{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* Portada editorial de Olfactum: collage con fotografías existentes del catálogo */
+.hero{background:radial-gradient(circle at 76% 36%,#385340 0,transparent 38%),linear-gradient(125deg,#0d2118 6%,#182e22 56%,#253c2b 100%);padding:0}
+.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);min-height:680px;gap:28px}
+.hero-copy{position:relative;z-index:2}
+.hero h1{font-size:clamp(50px,6.3vw,85px);line-height:.99;letter-spacing:-.04em}
+.hero h1 em{color:#f2dfb8;font-weight:500}
+.hero .btn-outline{border-color:#d8b478;color:#f7e9c8}
+.brand-showcase{position:relative;align-self:stretch;min-height:590px;isolation:isolate;display:flex;align-items:end;justify-content:center;overflow:hidden}
+.brand-arch{position:absolute;z-index:-2;top:9%;right:5%;width:84%;height:72%;border-radius:46% 46% 3% 3%;border:3px solid #c49e68;background:radial-gradient(circle at 55% 30%,#e7d7b7 0,#d2ba91 62%,#9f875e 100%);box-shadow:inset 0 0 50px #6d583a45,0 20px 40px #05140a55}
+.brand-pedestal{position:absolute;z-index:-1;background:linear-gradient(125deg,#f2e6cd,#b7a487);border-top:8px solid #f7ebd6;box-shadow:0 20px 40px #07150e55}
+.pedestal-left{bottom:9%;left:8%;height:19%;width:47%;border-radius:16px 16px 6px 6px}
+.pedestal-right{bottom:7%;right:2%;height:25%;width:54%;border-radius:50% 50% 8px 8px / 25% 25% 8px 8px}
+.brand-bottles{position:relative;width:100%;height:560px}
+.brand-bottle{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:end;filter:drop-shadow(0 13px 14px #1620154d)}
+.brand-bottle img{display:block;object-fit:contain;width:100%;height:100%;mix-blend-mode:multiply}
+.brand-bottle span{position:absolute;bottom:-21px;left:50%;transform:translateX(-50%);font-size:10px;white-space:nowrap;letter-spacing:.04em;color:#f5e4ca;background:#16281fc9;padding:4px 9px;border-radius:999px}
+.brand-bottle.bottle-1{width:37%;height:58%;left:1%;bottom:10%;z-index:3}
+.brand-bottle.bottle-2{width:36%;height:60%;left:35%;bottom:26%;z-index:2}
+.brand-bottle.bottle-3{width:30%;height:54%;right:-2%;bottom:20%;z-index:2}
+.brand-bottle.bottle-4{width:33%;height:53%;left:22%;bottom:6%;z-index:4}
+.brand-bottle.bottle-5{width:31%;height:49%;right:11%;bottom:4%;z-index:5}
+.brand-showcase-label{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.17em;color:#f2dfb7}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;min-height:0}.hero-copy{padding:72px 0 20px}.brand-showcase{min-height:470px}.brand-bottles{height:460px}.brand-arch{top:4%;height:83%}}
+@media(max-width:640px){.hero h1{font-size:clamp(43px,11vw,63px)}.brand-showcase{display:flex!important;min-height:365px!important}.brand-bottles{height:355px}.brand-bottle span{font-size:8px}.hero-copy{padding:53px 0 12px}.brand-showcase-label{font-size:8px}}
+
 </style>
 </head>
 <body>
@@ -464,37 +490,35 @@
   <main>
     <section class="hero" id="inicio">
       <div class="container hero-grid">
+
         <div class="hero-copy">
-          <div class="eyebrow">Perfumes árabes, de diseñador y de nicho</div>
-          <h1>Descubre el aroma que <em>deja huella</em>.</h1>
-          <p>En Olfactum seleccionamos fragancias completas y decants para quienes disfrutan oler distinto, explorar nuevas propuestas y encontrar un perfume que hable por ellos.</p>
+          <div class="eyebrow">OLFACTUM · ALWAYS AUTHENTIC</div>
+          <h1>Selección destacada <em>de Olfactum.</em></h1>
+          <p>Explora fragancias seleccionadas y encuentra tu próximo aroma. Perfumería árabe, de diseñador y de nicho en una experiencia creada para ti.</p>
           <div class="hero-badges">
-            <span>Perfumes completos</span>
-            <span>Decants 5 ml y 10 ml</span>
-            <span>Atención por WhatsApp</span>
+            <span>Perfumes originales</span>
+            <span>Decants de 5 y 10 ml</span>
+            <span>Atención personalizada</span>
           </div>
           <div class="hero-actions">
             <a class="btn btn-light" href="#catalogo">Explorar catálogo</a>
-            <button class="btn btn-outline" id="hero-contact">Consultar por WhatsApp ↗</button>
+            <button class="btn btn-outline" id="hero-contact">Comprar por WhatsApp ↗</button>
           </div>
         </div>
-        <div class="hero-card-wrap" aria-hidden="true">
-          <div class="hero-stage">
-            <div class="hero-shadow"></div>
-            <div class="bottle-big">
-              <div class="label">
-                <strong>OLFACTUM</strong>
-                <span>Signature selection</span>
-              </div>
-            </div>
-            <div class="bottle-small">
-              <div class="label small">
-                <strong>DE CANT</strong>
-                <span>5 ml · 10 ml</span>
-              </div>
-            </div>
+        <div class="brand-showcase" aria-label="Selección de perfumes reales de Olfactum">
+          <div class="brand-arch"></div>
+          <div class="brand-pedestal pedestal-left"></div>
+          <div class="brand-pedestal pedestal-right"></div>
+          <div class="brand-bottles">
+            <div class="brand-bottle bottle-1"><img src="images/producto-010-1795131799761.png" alt="Layton" loading="eager"><span>Layton</span></div>
+            <div class="brand-bottle bottle-2"><img src="images/producto-011-1795132061103.png" alt="Erba Pura" loading="lazy"><span>Erba Pura</span></div>
+            <div class="brand-bottle bottle-3"><img src="images/perfume-1795147107537-ptzqc-1795147107571.png" alt="Odyssey Aqua" loading="lazy"><span>Odyssey Aqua</span></div>
+            <div class="brand-bottle bottle-4"><img src="images/producto-006-1795136473133.png" alt="Rome Pour Homme" loading="lazy"><span>Rome Pour Homme</span></div>
+            <div class="brand-bottle bottle-5"><img src="images/perfume-1795137896486-j1xjk-1795137896533.png" alt="Valentino Coral Fantasy" loading="lazy"><span>Valentino Coral Fantasy</span></div>
           </div>
+          <span class="brand-showcase-label">THE OLFACTUM EDIT · FRAGRANCE COLLECTION</span>
         </div>
+
       </div>
     </section>
 
@@ -525,8 +549,8 @@
       <div class="container highlights">
         <article class="promo-card">
           <div class="eyebrow">Novedades y preventas</div>
-          <h2>Lo más buscado en Olfactum.</h2>
-          <p>Una selección de lanzamientos, favoritos del público y piezas especiales para quienes aman descubrir nuevos aromas.</p>
+          <h2>Selección destacada de Olfactum.</h2>
+          <p>Explora fragancias seleccionadas y encuentra tu próximo aroma. Una colección curada para descubrir algo diferente.</p>
           <div class="promo-grid">
             <div class="promo-item"><strong>Club de Nuit Elite</strong><p>Wild Vetiver · Preventa especial.</p></div>
             <div class="promo-item"><strong>Jean Lowe Summer Vibes</strong><p>Fresco, moderno y perfecto para clima cálido.</p></div>
@@ -795,8 +819,8 @@
           <p>Sí. Realizamos envíos por DHL; el costo se cotiza según el destino y se confirma antes de la compra.</p>
         </div>
         <div class="card faq">
-          <h4>¿Manejan imágenes reales?</h4>
-          <p>Nuestro logotipo oficial ya está integrado. Las fotografías de los productos se pueden subir desde el panel de administración.</p>
+          <h4>¿Qué encontrarás en Olfactum?</h4>
+          <p>Perfumes árabes, de diseñador y de nicho, además de decants y recomendaciones personalizadas para ayudarte a descubrir tu próxima fragancia.</p>
         </div>
       </div>
     </section>
