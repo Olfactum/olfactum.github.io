@@ -1285,5 +1285,32 @@
     },
     "desc": "Notas: 🫚 Jengibre · 🍋 Limón · 🍋 Bergamota · 🌿 Menta · 🌲 Ciprés · 🍃 Musgo",
     "image": "images/perfume-1795400931481-te3y2-1795400931523.png"
+  },
+  {
+    "id": "perfume-1795403807769-jm2jr",
+    "name": "Nocturno Elixir",
+    "brand": "Rayhaan",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Ralladura de limón · 🍋 Bergamota · 🌿 Menta · 🍃 Abrótano · 💜 Lavanda · 🌺 Geranio · 🍍 Piña · 🪵 Sándalo",
+    "image": "images/perfume-1795403807769-jm2jr-1795403807794.png"
   }
 ]
