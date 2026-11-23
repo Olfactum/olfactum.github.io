@@ -16,6 +16,18 @@ header .admin-brand h1{margin-bottom:4px;font-size:24px}
 .news-selects label{margin:0;font-size:12px}
 .news-admin-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 @media(max-width:690px){.news-admin-grid,.news-selects{grid-template-columns:1fr}}
+
+.testimonial-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.testimonial-entry{display:flex;align-items:flex-start;gap:12px;border:1px solid #e1ded2;padding:12px;border-radius:12px;min-width:0}
+.testimonial-entry img{width:76px;height:88px;object-fit:contain;background:#f3f1eb;border-radius:9px}
+.testimonial-entry .testimonial-copy{min-width:0;flex:1}
+.testimonial-entry strong,.testimonial-entry span{display:block;font-size:12px}
+.testimonial-entry p{font-size:12px;color:#626e63;line-height:1.5;margin:5px 0;overflow-wrap:anywhere}
+.testimonial-entry .actions{margin-top:8px;gap:5px}
+.testimonial-entry button{padding:7px 9px;font-size:11px}
+.testimonial-image-preview{display:none;width:150px;max-height:180px;object-fit:contain;border:1px solid #e1ded2;border-radius:11px;margin-top:8px}
+@media(max-width:760px){.testimonial-list{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -97,15 +109,45 @@ header .admin-brand h1{margin-bottom:4px;font-size:24px}
     <div class="actions news-admin-actions"><button id="news-save" type="submit" disabled>Guardar novedades en GitHub</button><a href="./index.html#novedades" target="_blank" rel="noopener">Ver sección en la tienda ↗</a></div>
   </form>
 </section>
+
+<section class="card full" id="testimonials-admin">
+  <h2>5. Testimonios de clientes</h2>
+  <p class="hint">Aquí tú eliges qué testimonios y fotografías publicar. Puedes añadir una foto de una entrega, una captura de mensaje (sin datos personales) o una imagen compartida por el cliente. <b>Solo publica imágenes y palabras con autorización de quien las compartió.</b> No se generan reseñas automáticamente.</p>
+  <form id="testimonial-form">
+    <input type="hidden" id="testimonial-id">
+    <div class="two">
+      <div><label for="testimonial-name">Nombre público del cliente *</label><input id="testimonial-name" maxlength="70" required placeholder="Ej. Andrea M."></div>
+      <div><label for="testimonial-detail">Detalle opcional</label><input id="testimonial-detail" maxlength="100" placeholder="Ej. Compra de decants"></div>
+    </div>
+    <label for="testimonial-quote">Testimonio real *</label>
+    <textarea id="testimonial-quote" required maxlength="450" placeholder="Escribe exactamente lo que el cliente autorizó publicar."></textarea>
+    <label for="testimonial-photo">Fotografía (opcional; JPG, PNG o WebP, máximo 4 MB)</label>
+    <input type="file" id="testimonial-photo" accept="image/jpeg,image/png,image/webp">
+    <img class="testimonial-image-preview" id="testimonial-preview" alt="Vista previa del testimonio">
+    <p class="hint">Al guardar, se subirá automáticamente a la carpeta <b>images/</b> de GitHub. Si editas un testimonio sin seleccionar otra imagen, conservará la que ya tenía.</p>
+    <label for="testimonial-alt">Descripción de la fotografía (opcional)</label>
+    <input id="testimonial-alt" maxlength="135" placeholder="Ej. Perfume recibido por cliente">
+    <label class="extra-option"><input type="checkbox" id="testimonial-approved" required> Confirmo que tengo permiso para publicar el testimonio, el nombre y la fotografía (si hay).</label>
+    <label class="extra-option"><input type="checkbox" id="testimonial-published"> Mostrar este testimonio en la tienda</label>
+    <p class="hint">Deja «Mostrar» sin marcar para guardar como borrador. Puedes ocultar o eliminar cualquier testimonio después.</p>
+    <div class="actions">
+      <button id="testimonial-save" type="submit" disabled>Guardar testimonio en GitHub</button>
+      <button class="secondary" type="button" id="testimonial-reset">Nuevo / limpiar</button>
+      <a href="./index.html#testimonios" target="_blank" rel="noopener">Ver testimonios en la tienda ↗</a>
+    </div>
+  </form>
+  <h3 style="font:700 17px system-ui;margin:24px 0 10px">Testimonios guardados (<span id="testimonial-count">0</span>)</h3>
+  <div id="testimonial-list" class="testimonial-list"><p class="hint">Conecta GitHub para ver los testimonios.</p></div>
+</section>
 <section class="card full"><h3>Después de guardar</h3><p class="hint">Los cambios se envían a la rama <b>main</b> del repositorio <b>olfactum/olfactum.github.io</b>. GitHub Pages puede tardar unos minutos en reflejarlos. Actualiza la tienda si no aparecen enseguida. No necesitas volver a subir <code>index.html</code>.</p></section>
 </main>
 <script>
 (()=>{'use strict';
 const OWNER='olfactum', REPO='olfactum.github.io', BRANCH='main', API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
-const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='';
+const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='',testimonials=[],testimonialSha='';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
-function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('connect').disabled=busy; }
+function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('testimonial-save').disabled=!token||busy;$('connect').disabled=busy; }
 function setBusy(v){busy=v;updateButtons()}
 function b64Utf8(str){const bytes=new TextEncoder().encode(str);let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s)}
 function fromB64(str){const bytes=Uint8Array.from(atob(str.replace(/\s/g,'')),c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}
@@ -154,7 +196,112 @@ $('news-form').addEventListener('submit',async event=>{
   }catch(error){status('Error al guardar novedades: '+error.message,true)}finally{setBusy(false)}
 });
 
-async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();if(newsSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
+
+function renderTestimonialsAdmin(){
+  $('testimonial-count').textContent=testimonials.length;
+  const photosafe=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/;
+  $('testimonial-list').innerHTML=testimonials.length?testimonials.map(item=>{
+    const photo=photosafe.test(item.image||'')?'<img src="./'+esc(item.image)+'" alt="">':'';
+    const label=item.published===true?'Publicado':'Borrador';
+    return '<article class="testimonial-entry">'+photo+'<div class="testimonial-copy"><strong>'+esc(item.name||'Sin nombre')+' · '+esc(label)+'</strong><span>'+esc(item.detail||'')+'</span><p>'+esc((item.quote||'').slice(0,170))+'</p><div class="actions"><button class="secondary" type="button" data-testimonial-edit="'+esc(item.id)+'">Editar</button><button class="danger" type="button" data-testimonial-delete="'+esc(item.id)+'">Eliminar</button></div></div></article>';
+  }).join(''):'<p class="hint">Todavía no has agregado testimonios. Puedes comenzar con una reseña real cuando tengas permiso para compartirla.</p>';
+}
+function resetTestimonialForm(){
+  $('testimonial-form').reset();
+  $('testimonial-id').value='';
+  $('testimonial-preview').style.display='none';
+  $('testimonial-preview').removeAttribute('src');
+  $('testimonial-photo').value='';
+}
+function editTestimonial(id){
+  const item=testimonials.find(t=>t.id===id);if(!item)return;
+  $('testimonial-id').value=item.id;
+  $('testimonial-name').value=item.name||'';
+  $('testimonial-detail').value=item.detail||'';
+  $('testimonial-quote').value=item.quote||'';
+  $('testimonial-alt').value=item.imageAlt||'';
+  $('testimonial-approved').checked=item.approved===true;
+  $('testimonial-published').checked=item.published===true;
+  $('testimonial-photo').value='';
+  const url=imgUrl(item.image);
+  $('testimonial-preview').style.display=url?'block':'none';
+  if(url)$('testimonial-preview').src=url;
+  $('testimonial-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function loadTestimonialsAdmin(){
+  testimonialSha='';
+  testimonials=[];
+  try{
+    const file=await api('testimonios.json');
+    const items=JSON.parse(fromB64(file.content));
+    if(!Array.isArray(items))throw Error('testimonios.json debe ser una lista');
+    testimonials=items;testimonialSha=file.sha;
+  }catch(error){
+    status('Catálogo conectado, pero hubo un error al cargar Testimonios: '+error.message,true);
+  }
+  renderTestimonialsAdmin();
+}
+async function saveTestimonials(next,msg){
+  if(!testimonialSha)throw Error('No se verificó testimonios.json. Reconecta el panel antes de guardar.');
+  await api('testimonios.json',{method:'PUT',body:{message:msg,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha:testimonialSha,branch:BRANCH}});
+  const file=await api('testimonios.json');
+  testimonials=JSON.parse(fromB64(file.content));testimonialSha=file.sha;
+  renderTestimonialsAdmin();
+}
+$('testimonial-reset').addEventListener('click',resetTestimonialForm);
+$('testimonial-photo').addEventListener('change',()=>{
+  const file=$('testimonial-photo').files?.[0];if(!file)return;
+  const url=URL.createObjectURL(file);
+  $('testimonial-preview').src=url;
+  $('testimonial-preview').style.display='block';
+  $('testimonial-preview').onload=()=>URL.revokeObjectURL(url);
+});
+$('testimonial-list').addEventListener('click',async event=>{
+  const editing=event.target.closest('[data-testimonial-edit]');
+  if(editing){editTestimonial(editing.dataset.testimonialEdit);return}
+  const deleting=event.target.closest('[data-testimonial-delete]');
+  if(!deleting||busy||!token)return;
+  const item=testimonials.find(t=>t.id===deleting.dataset.testimonialDelete);
+  if(!item||!confirm('¿Eliminar definitivamente el testimonio de '+item.name+'?'))return;
+  setBusy(true);
+  try{
+    await saveTestimonials(testimonials.filter(t=>t.id!==item.id),'Olfactum: eliminar testimonio de '+item.name);
+    resetTestimonialForm();
+    status('Testimonio eliminado del sitio. Las fotografías previas permanecen en GitHub.');
+  }catch(error){status('No se pudo eliminar: '+error.message,true)}
+  finally{setBusy(false)}
+});
+$('testimonial-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(!token||busy)return;
+  const name=$('testimonial-name').value.trim();
+  const detail=$('testimonial-detail').value.trim();
+  const quote=$('testimonial-quote').value.trim();
+  if(!name||!quote){status('Escribe el nombre público y el testimonio.',true);return}
+  if(!$('testimonial-approved').checked){status('Se necesita autorización del cliente para publicar su testimonio.',true);return}
+  const id=$('testimonial-id').value;
+  const old=testimonials.find(t=>t.id===id);
+  if(!old&&testimonials.length>=12){status('Se permiten hasta 12 testimonios. Elimina uno antes de agregar otro.',true);return}
+  const entry={...old,id:old?.id||'testimonio-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),
+    name,detail,quote,image:old?.image||'',imageAlt:$('testimonial-alt').value.trim(),
+    approved:true,published:$('testimonial-published').checked};
+  setBusy(true);
+  try{
+    const file=$('testimonial-photo').files?.[0];
+    if(file){
+      status('Subiendo fotografía a GitHub...');
+      entry.image=await uploadPhoto(file,entry.id);
+    }
+    status('Guardando testimonio en GitHub...');
+    const next=old?testimonials.map(t=>t.id===old.id?entry:t):[...testimonials,entry];
+    await saveTestimonials(next,'Olfactum: '+(old?'actualizar':'agregar')+' testimonio de '+name);
+    resetTestimonialForm();
+    status('Testimonio guardado. '+(entry.published?'Se mostrará en la tienda.':'Se guardó como borrador.'));
+  }catch(error){
+    status('No se pudo guardar el testimonio: '+error.message+(entry.image!==old?.image?' Si se subió la imagen, puede haber quedado sin asociar.':''),true);
+  }finally{setBusy(false)}
+});
+
+async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();await loadTestimonialsAdmin();if(newsSha&&testimonialSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
 function imgUrl(p){return /^images\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp)$/.test(p||'')?`./${p}`:''}
 function render(){const q=$('filter').value.trim().toLocaleLowerCase('es');$('total').textContent=catalog.length;const shown=catalog.filter(p=>[p.name,p.brand,p.category].join(' ').toLocaleLowerCase('es').includes(q));$('items').innerHTML=shown.length?shown.map(p=>`<div class="item">${imgUrl(p.image)?`<img src="${esc(imgUrl(p.image))}" alt="">`:'<div style="width:54px;height:58px;background:#efe8da;border-radius:8px"></div>'}<div class="item-info"><strong>${esc(p.name)}</strong><span>${p.featured?'⭐ Destacado · ':''}${p.promotion?.enabled?'🏷️ '+esc(p.promotion.label)+' · ':''}${esc(p.brand)} · ${esc((p.variants ? Object.entries(p.variants).filter(([key,v])=>v?.enabled).map(([key,v])=>( {decant5:"5 ml",decant10:"10 ml",bottle:"Botella"}[key]||key)+": "+v.price).join(" · ") : p.price) || "Consultar precio")}</span></div><button class="secondary" data-edit="${esc(p.id)}" type="button">Editar</button><button class="danger" data-delete="${esc(p.id)}" type="button">×</button></div>`).join(''):'<p class="hint">No hay productos que coincidan.</p>'}
 function clearForm(){$('form').reset();$('vb-enabled').checked=true;$('edit-id').value='';$('preview').style.display='none';$('preview').removeAttribute('src');$('name').focus()}
@@ -162,7 +309,7 @@ function edit(id){const p=catalog.find(p=>p.id===id);if(!p)return; $('edit-id').
 async function saveCatalog(next,message){const body={message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha,branch:BRANCH};await api('productos.json',{method:'PUT',body});await load()}
 async function uploadPhoto(file,id){if(!file)return '';const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};if(!allowed[file.type])throw Error('Usa imagen JPG, PNG o WebP.');if(file.size>4*1024*1024)throw Error('La imagen debe pesar menos de 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let raw='';for(let i=0;i<buffer.length;i+=8192)raw+=String.fromCharCode(...buffer.subarray(i,i+8192));const path=`images/${id}-${Date.now()}.${allowed[file.type]}`;await api(path,{method:'PUT',body:{message:`Olfactum: agregar foto de ${id}`,content:btoa(raw),branch:BRANCH}});return path}
 $('connect').addEventListener('click',async()=>{const value=$('token').value.trim();if(!value){status('Introduce tu token.',true);return}token=value;$('token').value='';setBusy(true);try{await load()}catch(e){token='';catalog=[];sha='';render();status('No se pudo conectar: '+e.message,true)}finally{setBusy(false)}});
-$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
+$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';testimonialSha='';testimonials=[];renderTestimonialsAdmin();$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
 $('filter').addEventListener('input',render);$('new').addEventListener('click',clearForm);
 $('items').addEventListener('click',async e=>{const editBtn=e.target.closest('[data-edit]'),delBtn=e.target.closest('[data-delete]');if(editBtn)return edit(editBtn.dataset.edit);if(!delBtn||busy)return;const item=catalog.find(p=>p.id===delBtn.dataset.delete);if(!item||!confirm(`¿Eliminar «${item.name}» del catálogo?`))return;setBusy(true);try{await saveCatalog(catalog.filter(p=>p.id!==item.id),`Olfactum: eliminar ${item.name}`);status(`Eliminaste «${item.name}» del catálogo. La foto, si existía, permanece en images/.`);clearForm()}catch(e){status(e.message,true)}finally{setBusy(false)}});
 $('photo').addEventListener('change',()=>{const file=$('photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('preview').src=url;$('preview').style.display='block';$('preview').onload=()=>URL.revokeObjectURL(url)});
