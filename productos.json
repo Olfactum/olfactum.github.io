@@ -2212,7 +2212,16 @@
       }
     },
     "desc": "Notas: 🍐 Pera · 🍋 Bergamota · 🍊 Mandarina · 🍑 Durazno · 💜 Violeta · 🌸 Notas florales · 💐 Lavanda · ☁️ Almizcle · 🪵 Sándalo · 🍦 Vainilla · 🍃 Pachulí",
-    "image": "images/perfume-1795405393635-wa94b-1795405393669.png"
+    "image": "images/perfume-1795405393635-wa94b-1795405393669.png",
+    "families": [
+      "Florales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795405586934-xjsji",
