@@ -1061,7 +1061,19 @@
       }
     },
     "desc": "Notas: 🌿 Cannabis · 🍊 Toronja · 🌶️ Pimienta negra · 🌺 Geranio · 🤎 Cuero · 🍃 Vetiver",
-    "image": "images/perfume-1795149919092-4y3xc-1795149919127.png"
+    "image": "images/perfume-1795149919092-4y3xc-1795149919127.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795150248586-mtcl5",
