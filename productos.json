@@ -44,6 +44,18 @@
         "enabled": false,
         "price": "Consultar precio"
       }
+    },
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Florales",
+      "Especiadas"
+    ],
+    "featured": true,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
     }
   },
   {
