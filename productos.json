@@ -1880,7 +1880,17 @@
       }
     },
     "desc": "Notas: 💜 Lavanda · 🍑 Ciruela Mirabel · 🌸 Pimienta rosa · 🍫 Cacao · 🌰 Nuez moscada · 🌿 Davana · 🍦 Vainilla Bourbon · 🔶 Ámbar · 🍃 Vetiver",
-    "image": "images/perfume-1795403926072-o5uok-1795403926099.png"
+    "image": "images/perfume-1795403926072-o5uok-1795403926099.png",
+    "families": [
+      "Dulces",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795404073156-85qe5",
