@@ -1420,5 +1420,32 @@
     },
     "desc": "Notas: 🍋 Limón · 🍧 Sorbete · 🌿 Orégano · 🏖️ Arena · 🌸 Fresia · 🌼 Jazmín · ☁️ Almizcle · 🌲 Ciprés · 🍃 Vetiver",
     "image": "images/perfume-1795404345476-sf9f3-1795404345511.png"
+  },
+  {
+    "id": "perfume-1795404533267-yzlzr",
+    "name": "Purr",
+    "brand": "Katy Perry",
+    "category": "Diseñador",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍑 Durazno · 🍎 Manzana roja · 🌼 Gardenia · 🎋 Bambú · 🌸 Jazmín · 🌹 Rosa · 💐 Fresia · 🍦 Vainilla · 🥥 Coco · 🌺 Orquídea · ☁️ Almizcle · 🔶 Ámbar · 🪵 Sándalo",
+    "image": "images/perfume-1795404533267-yzlzr-1795404533296.png"
   }
 ]
