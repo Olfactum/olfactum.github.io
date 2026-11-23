@@ -2063,7 +2063,17 @@
       }
     },
     "desc": "Notas: 🌸 Iris · 🌺 Peonía · 🤍 Lirio de los valles · 🌹 Rosa · 🍑 Chabacano · 🍑 Durazno · 🍦 Vainilla · ☁️ Almizcle · 🍮 Haba tonka · 🪵 Sándalo · 🔶 Benjuí",
-    "image": "images/perfume-1795404783084-fc1n7-1795404783125.png"
+    "image": "images/perfume-1795404783084-fc1n7-1795404783125.png",
+    "families": [
+      "Florales",
+      "Amaderadas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795404919725-pwlbu",
