@@ -501,7 +501,19 @@
       }
     },
     "desc": "Notas: 🍋 Bergamota · 🍋 Limón · 🍈 Lima · 🫐 Grosellas negras · 🍃 Hojas de violeta · 🫚 Jengibre · 🌹 Rosa · 🌸 Iris · 🌼 Jazmín · ✨ Ambroxan · ☁️ Almizcle · 🪵 Sándalo · 🌲 Cedro",
-    "image": "images/perfume-1795144616978-fj93h-1795144617018.png"
+    "image": "images/perfume-1795144616978-fj93h-1795144617018.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Florales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795144762391-k9fo1",
