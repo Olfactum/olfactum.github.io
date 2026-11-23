@@ -1768,7 +1768,18 @@
       }
     },
     "desc": "Notas: 🍋 Limón siciliano · 🍏 Manzana · 🌲 Cedro · 🔔 Campanilla · 🎋 Bambú · 🌼 Jazmín · 🤍 Rosa blanca · ☁️ Almizcle · 🔶 Ámbar",
-    "image": "images/perfume-1795196369379-61mgm-1795400766783.png"
+    "image": "images/perfume-1795196369379-61mgm-1795400766783.png",
+    "families": [
+      "Cítricas",
+      "Amaderadas",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795400931481-te3y2",
