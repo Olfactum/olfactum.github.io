@@ -155,6 +155,17 @@
         "enabled": false,
         "price": "Consultar precio"
       }
+    },
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Amaderadas"
+    ],
+    "featured": true,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
     }
   },
   {
