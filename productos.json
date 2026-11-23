@@ -2396,7 +2396,17 @@
       }
     },
     "desc": "Notas: 🍦 Vainilla · 🍂 Canela · 🌶️ Cardamomo · 🍋 Bergamota · 🌼 Flor de azahar · 🪵 Madera de gaiac · 🍬 Praliné · 🔶 Ámbar · ☁️ Almizcle",
-    "image": "images/perfume-1795406442281-indim-1795406442320.png"
+    "image": "images/perfume-1795406442281-indim-1795406442320.png",
+    "families": [
+      "Dulces",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795406630949-61un8",
