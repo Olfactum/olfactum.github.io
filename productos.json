@@ -1798,5 +1798,32 @@
     },
     "desc": "Notas: 🍊 Toronja rosada · 🍋 Bergamota de Sicilia · 🍃 Hojas de grosellero rojo · 🌵 Cactus · 🌺 Orquídea · 🍦 Vainilla · 🌲 Cedro rojo · 🔶 Ámbar",
     "image": "images/perfume-1795407074272-pfoft-1795407074299.png"
+  },
+  {
+    "id": "perfume-1795407246258-or3e1",
+    "name": "Jasoor",
+    "brand": "Lattafa",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍎 Manzana · 🌶️ Cardamomo · 🍋 Bergamota · 🍂 Tabaco · 💜 Lavanda · 🌺 Geranio · 🍮 Haba tonka · 🤎 Cuero · 🌿 Vetiver · 🍃 Pachulí",
+    "image": "images/perfume-1795407246258-or3e1-1795407246287.png"
   }
 ]
