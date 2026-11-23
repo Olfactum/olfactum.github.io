@@ -2248,7 +2248,18 @@
       }
     },
     "desc": "Notas: 🍋 Cítricos · ✨ Polvo de estrellas · 🌸 Prisma floral · 🪵 Maderas aterciopeladas · 🍦 Vainilla",
-    "image": "images/perfume-1795405586934-xjsji-1795405586978.png"
+    "image": "images/perfume-1795405586934-xjsji-1795405586978.png",
+    "families": [
+      "Cítricas",
+      "Especiadas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795405882075-kns7m",
