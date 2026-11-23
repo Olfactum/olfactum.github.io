@@ -1446,7 +1446,7 @@
   },
   {
     "id": "perfume-1795152090663-7hsxa",
-    "name": "Eros edp",
+    "name": "Eros",
     "brand": "Versace",
     "category": "Diseñador",
     "tone": "clear",
@@ -1467,7 +1467,20 @@
       }
     },
     "desc": "Notas: 🌿 Menta · 🍏 Manzana acaramelada · 🍋 Limón · 🍊 Mandarina · ✨ Ambroxan · 🌺 Geranio · 🍃 Esclarea · 🍦 Vainilla · 🌲 Cedro · 🪵 Sándalo · 🍊 Naranja amarga · 🌿 Pachulí · 🤎 Cuero",
-    "image": "images/perfume-1795152090663-7hsxa-1795152090700.png"
+    "image": "images/perfume-1795152090663-7hsxa-1795152090700.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Dulces",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795196054506-8t2ge",
