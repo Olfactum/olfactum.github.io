@@ -243,7 +243,19 @@
       }
     },
     "desc": "Notas: 🍍 Piña · 🍊 Naranja · 🍋 Toronja · 🔶 Ámbar · 🌸 Raíz de lirio · 💜 Lavanda · 🍮 Haba tonka · ☁️ Almizcle · 🍃 Pachulí · 🪵 Cachemira",
-    "image": "images/perfume-1795130088042-s08ci-1795132737572.png"
+    "image": "images/perfume-1795130088042-s08ci-1795132737572.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Dulces",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795132572691-we9zj",
