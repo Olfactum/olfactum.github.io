@@ -587,6 +587,41 @@
 @media(max-width:600px){.olf-gifts{padding:52px 0}.olf-gifts-options{grid-template-columns:1fr;gap:12px}.olf-gifts-options article{padding:23px}.olf-gifts-formcard{padding:22px 17px;border-radius:17px}.olf-gift-pair{grid-template-columns:1fr}.olf-gift-form input,.olf-gift-form textarea,.olf-gift-form select{font-size:16px}}
 
 .ps-section{padding:75px 0;background:#192f24;color:#f8f4e9;scroll-margin-top:85px}.ps-heading{max-width:760px;margin-bottom:28px}.ps-heading .eyebrow{color:#d4ad70}.ps-heading h2{font-size:clamp(40px,6vw,69px);color:#f8f4e9;line-height:1.05;margin:12px 0}.ps-heading p{color:#d0d8cb;font-size:14px}.ps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.ps-card{border-radius:20px;overflow:hidden;background:#faf8f2;color:#22392b;display:flex;flex-direction:column}.ps-image{height:240px;background:#ede8dd;display:grid;place-items:center;padding:18px}.ps-image img{width:100%;height:100%;object-fit:contain}.ps-image span{font-size:64px;color:#bd9b6d}.ps-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}.ps-body h3{font-size:27px;margin:0;line-height:1.1}.ps-body p{font-size:12px;color:#5c6d60;margin:0;line-height:1.65;overflow-wrap:anywhere}.ps-status{font-size:10px;color:#9d7644;font-weight:800;letter-spacing:.12em}.ps-body button{margin-top:auto;background:#1b382a;color:white;border:0;border-radius:12px;padding:13px;min-height:45px;font-size:12px;font-weight:800}.ps-disclaimer{color:#ccd5ca;font-size:11px;margin-top:20px}.ps-empty{grid-column:1/-1;border:1px dashed #819283;border-radius:15px;padding:25px;text-align:center;color:#e8e8de}@media(max-width:900px){.ps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.ps-section{padding:52px 0}.ps-grid{grid-template-columns:1fr}}
+
+/* Refinamiento editorial de las tarjetas de preventa: prioridad móvil */
+.ps-grid{align-items:start}
+.ps-card{border:1px solid #ded9ce;border-radius:22px;box-shadow:0 12px 25px rgba(8,24,13,.12)}
+.ps-image{height:210px;min-height:0;padding:13px 18px 8px;background:#eee9df;overflow:hidden}
+.ps-image img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;object-position:center;mix-blend-mode:multiply}
+.ps-body{padding:23px;gap:7px}
+.ps-body h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;line-height:1.02;letter-spacing:-.025em;margin:1px 0}
+.ps-body p.ps-brand{font-size:13px;color:#74796f;margin:0 0 9px}
+.ps-status{align-self:flex-start;border:1px solid #d9c4a5;border-radius:99px;background:#f3eadb;padding:6px 10px;letter-spacing:.11em}
+.ps-notes{border-top:1px solid #e6e4de;border-bottom:1px solid #e6e4de;margin:2px 0 12px;padding:11px 0}
+.ps-notes summary{cursor:pointer;color:#405b44;font-size:12px;font-weight:800;list-style-position:inside}
+.ps-notes summary:focus-visible{outline:2px solid #ab895c;outline-offset:4px}
+.ps-notes p{padding:12px 0 1px;line-height:1.7;overflow-wrap:anywhere}
+.ps-details{display:grid;grid-template-columns:1fr;gap:0;margin:0 0 12px;border:1px solid #e6e5de;border-radius:14px;background:#fffdf8;overflow:hidden}
+.ps-detail{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;border-bottom:1px solid #eae8e1}
+.ps-detail:last-child{border-bottom:0}
+.ps-detail span{font-size:11px;color:#697369;line-height:1.4}
+.ps-detail strong{font-size:12px;font-weight:800;text-align:right;color:#26442e;line-height:1.35}
+.ps-body button{margin-top:auto;padding:14px 12px;min-height:49px;border-radius:12px;background:#1c3c2b}
+@media(max-width:600px){
+ .ps-section{padding:45px 0 52px}
+ .ps-grid{gap:16px}
+ .ps-card{border-radius:22px}
+ .ps-image{height:195px;padding:12px 16px 5px}
+ .ps-image img{max-width:100%;mix-blend-mode:multiply}
+ .ps-body{padding:19px 19px 21px;gap:7px}
+ .ps-body h3{font-size:34px}
+ .ps-status{font-size:10px}
+ .ps-note{margin-top:10px}
+ .ps-body button{font-size:13px}
+ .ps-section.ps-in-view~* .float-whatsapp{display:none}
+ body.ps-card-visible #floating-contact,body.ps-card-visible #floating-top{opacity:0;pointer-events:none;visibility:hidden}
+}
+
 </style>
 </head>
 <body>
@@ -1350,7 +1385,9 @@ async function loadPresales(){
     grid.innerHTML=presaleItems.length?presaleItems.map(p=>{
       const image=validImage.test(p.image||'')?'<img loading="lazy" src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name)+'">':'<span aria-hidden="true">✧</span>';
       const state=['Preventa','Próximo lanzamiento','Disponible para apartado'].includes(p.status)?p.status:'Preventa';
-      return '<article class="ps-card"><div class="ps-image">'+image+'</div><div class="ps-body"><span class="ps-status">'+escapeHtml(state.toUpperCase())+'</span><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.brand)+'</p>'+(p.description?'<p>'+escapeHtml(p.description)+'</p>':'')+(p.price?'<p>Precio de referencia: '+escapeHtml(p.price)+'</p>':'')+(p.arrival?'<p>Llegada estimada: '+escapeHtml(p.arrival)+'</p>':'')+(p.deposit?'<p>Apartado: '+escapeHtml(p.deposit)+'</p>':'')+'<button type="button" data-presale="'+escapeHtml(p.id)+'">Consultar y apartar por WhatsApp ↗</button></div></article>';
+      const notes=p.description?'<details class="ps-notes"><summary>Ver descripción y notas olfativas</summary><p>'+escapeHtml(p.description)+'</p></details>':'';
+      const details=[p.price?'<div class="ps-detail"><span>Precio de referencia</span><strong>'+escapeHtml(p.price)+'</strong></div>':'',p.arrival?'<div class="ps-detail"><span>Llegada estimada</span><strong>'+escapeHtml(p.arrival)+'</strong></div>':'',p.deposit?'<div class="ps-detail"><span>Apartado</span><strong>'+escapeHtml(p.deposit)+'</strong></div>':''].join('');
+      return '<article class="ps-card"><div class="ps-image">'+image+'</div><div class="ps-body"><span class="ps-status">'+escapeHtml(state.toUpperCase())+'</span><h3>'+escapeHtml(p.name)+'</h3><p class="ps-brand">'+escapeHtml(p.brand)+'</p>'+notes+(details?'<div class="ps-details">'+details+'</div>':'')+'<button type="button" data-presale="'+escapeHtml(p.id)+'">Consultar y apartar por WhatsApp ↗</button></div></article>';
     }).join(''):'<p class="ps-empty">Muy pronto publicaremos nuevos lanzamientos y preventas.</p>';
   }catch(e){presaleItems=[];grid.innerHTML='<p class="ps-empty">Próximamente compartiremos lanzamientos.</p>';console.warn(e)}
 }
@@ -1834,6 +1871,14 @@ $('gift-company-form').addEventListener('submit',event=>{
     loadProducts();
     loadNews();
     loadPresales();
+
+    if('IntersectionObserver' in window){
+      const psObserver=new IntersectionObserver(entries=>{
+        document.body.classList.toggle('ps-card-visible',entries.some(entry=>entry.isIntersecting));
+      },{rootMargin:'-10% 0px -18% 0px',threshold:0});
+      psObserver.observe($('presale-grid'));
+    }
+
     loadTestimonials();
   </script>
 </body>
