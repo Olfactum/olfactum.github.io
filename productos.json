@@ -1366,5 +1366,32 @@
     },
     "desc": "Notas: 🌸 Pimienta rosa · 🍐 Pera · 🌰 Nuez moscada de Indonesia · 🌿 Elemí · 🍋 Bergamota · 🌹 Rosa · 🌺 Clavo de olor · 🌸 Magnolia · 🧵 Lino · 🍃 Vetiver de Haití · 🪵 Cachemira · 🌳 Sándalo · 🔶 Ámbar · ✨ Sylkolide",
     "image": "images/perfume-1795404073156-85qe5-1795404073185.png"
+  },
+  {
+    "id": "perfume-1795404191171-1tsht",
+    "name": "Toy 2 Bubble Gum",
+    "brand": "Moschino",
+    "category": "Diseñador",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍬 Frutas confitadas · 🍊 Naranja amarga · 🍋 Limón · 🫧 Goma de mascar · 🌹 Rosa de Bulgaria · 🍑 Durazno · 🫐 Moras azules · 🌸 Flor de duraznero · 🍂 Canela · 🫚 Jengibre · ☁️ Almizcle · ✨ Ambroxan · 🌲 Cedro",
+    "image": "images/perfume-1795404191171-1tsht-1795404191200.png"
   }
 ]
