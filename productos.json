@@ -2534,7 +2534,17 @@
       }
     },
     "desc": "Notas: 🍎 Manzana · 🌶️ Cardamomo · 🍋 Bergamota · 🍂 Tabaco · 💜 Lavanda · 🌺 Geranio · 🍮 Haba tonka · 🤎 Cuero · 🌿 Vetiver · 🍃 Pachulí",
-    "image": "images/perfume-1795407246258-or3e1-1795407246287.png"
+    "image": "images/perfume-1795407246258-or3e1-1795407246287.png",
+    "families": [
+      "Frutales",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795407509844-82t14",
