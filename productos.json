@@ -1245,7 +1245,19 @@
       }
     },
     "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🍋 Bergamota · 🌼 Jazmín · 🌸 Magnolia · 💜 Raíz de lirio · ☁️ Almizcle · 🌲 Cedro · 🍃 Pachulí · 🔶 Ámbar",
-    "image": "images/perfume-1795150934717-389ak-1795150934748.png"
+    "image": "images/perfume-1795150934717-389ak-1795150934748.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Amaderadas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795151152517-cmihp",
