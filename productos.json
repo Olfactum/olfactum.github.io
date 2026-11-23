@@ -1098,7 +1098,18 @@
       }
     },
     "desc": "Notas: 🍊 Naranja · 🍊 Mandarina · 🍋 Bergamota · 🌼 Neroli · 🫚 Jengibre · 🌸 Pimienta rosa · ✨ Ámbar gris · ☁️ Almizcle · 🍃 Vetiver",
-    "image": "images/perfume-1795150248586-mtcl5-1795150248627.png"
+    "image": "images/perfume-1795150248586-mtcl5-1795150248627.png",
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795150412757-h9sfy",
