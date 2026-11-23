@@ -2027,7 +2027,16 @@
       }
     },
     "desc": "Notas: 🍑 Durazno · 🍎 Manzana roja · 🌼 Gardenia · 🎋 Bambú · 🌸 Jazmín · 🌹 Rosa · 💐 Fresia · 🍦 Vainilla · 🥥 Coco · 🌺 Orquídea · ☁️ Almizcle · 🔶 Ámbar · 🪵 Sándalo",
-    "image": "images/perfume-1795404533267-yzlzr-1795404533296.png"
+    "image": "images/perfume-1795404533267-yzlzr-1795404533296.png",
+    "families": [
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795404783084-fc1n7",
