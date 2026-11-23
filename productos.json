@@ -1171,7 +1171,19 @@
       }
     },
     "desc": "Notas: 🍊 Mandarina · 🌿 Esclarea · 🍬 Caramelo · 🍮 Haba tonka · 🍃 Vetiver",
-    "image": "images/perfume-1795150584753-qb1s8-1795150584791.png"
+    "image": "images/perfume-1795150584753-qb1s8-1795150584791.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Toilette",
+    "families": [
+      "Cítricas",
+      "Dulces"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795150714656-57z6j",
