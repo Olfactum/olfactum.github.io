@@ -2100,7 +2100,18 @@
       }
     },
     "desc": "Notas: 🍑 Nectarina · 🫐 Grosellas negras · 🍊 Clementina · 🌺 Orquídea silvestre · 🌼 Flor de azahar · 🔶 Ámbar · ☁️ Almizcle · 🪵 Notas amaderadas",
-    "image": "images/perfume-1795404919725-pwlbu-1795404919754.png"
+    "image": "images/perfume-1795404919725-pwlbu-1795404919754.png",
+    "families": [
+      "Florales",
+      "Amaderadas",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795405027788-xccy3",
