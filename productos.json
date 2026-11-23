@@ -1906,5 +1906,32 @@
     },
     "desc": "Notas: 🥜 Pistacho · 🍨 Helado · 🍋 Bergamota · 🌰 Avellana · 🌶️ Cardamomo · 🥃 Ron · 🍐 Pera · 🌼 Jazmín · 🌸 Peonía · 🌺 Geranio · 🍓 Frambuesa · 🍑 Durazno blanco · 🍦 Crema batida · 🍡 Malvavisco · 🍭 Algodón de azúcar · 🍮 Haba tonka · 🌲 Cedro",
     "image": "images/perfume-1795407976780-jz9bv-1795407976812.png"
+  },
+  {
+    "id": "perfume-1795408226906-wz0cm",
+    "name": "Agua Fresca Citrus Cedro",
+    "brand": "Adolfo Dominguez",
+    "category": "Diseñador",
+    "gender": "Masculino",
+    "concentration": "Eau de Toilette",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🌲 Cedro · 🌿 Cedrón · 🍃 Menta · ☁️ Almizcle · 🌸 Pimienta rosa · 🔶 Ámbar · 🌶️ Comino\n\n👨‍🔬 Perfumista: Ramon Monegal",
+    "image": "images/perfume-1795408226906-wz0cm-1795408226941.png"
   }
 ]
