@@ -515,6 +515,8 @@
                 <option value="Especiadas">🌶️ Especiadas</option>
                 <option value="Frutales">🍑 Frutales</option>
                   <option value="Acuáticas">🌊 Acuáticas</option>
+                  <option value="Aromáticos">🌿 Aromáticos</option>
+                  <option value="Gourmand">🍮 Gourmand</option>
               </select>
             </label>
             <label class="finder-field">¿Para quién?
@@ -585,6 +587,8 @@
           <button type="button" class="note-filter" data-note="Especiadas" aria-pressed="false">🌶️ Especiadas</button>
           <button type="button" class="note-filter" data-note="Frutales" aria-pressed="false">🍑 Frutales</button>
           <button type="button" class="note-filter" data-note="Acuáticas" aria-pressed="false">🌊 Acuáticas</button>
+          <button type="button" class="note-filter" data-note="Aromáticos" aria-pressed="false">🌿 Aromáticos</button>
+          <button type="button" class="note-filter" data-note="Gourmand" aria-pressed="false">🍮 Gourmand</button>
           <button type="button" class="reset-filters" id="reset-filters">Limpiar filtros</button>
         </div>
         <div class="catalog-meta"><span id="product-count" aria-live="polite">Cargando catálogo...</span><label class="sort-wrap">Ordenar <select class="sort-select" id="product-sort" aria-label="Ordenar productos"><option value="default">Destacados</option><option value="az">Nombre A–Z</option><option value="price-up">Precio: menor a mayor</option><option value="price-down">Precio: mayor a menor</option></select></label></div>
@@ -687,6 +691,8 @@
                   <option value="Especiadas">🌶️ Especiados</option>
                   <option value="Frutales">🍑 Frutales</option>
                   <option value="Acuáticas">🌊 Acuáticas</option>
+                  <option value="Aromáticos">🌿 Aromáticos</option>
+                  <option value="Gourmand">🍮 Gourmand</option>
                 </select>
               </label>
               <label class="mystery-field">Presentación preferida
@@ -844,7 +850,9 @@
       'Dulces':['vainilla','caramelo','chocolate','miel','tonka','praline','malvavisco','bombon','algodon de azucar','azucar','crema batida'],
       'Especiadas':['canela','cardamomo','pimienta','azafran','jengibre','clavo','nuez moscada','comino'],
       'Frutales':['manzana','pera','durazno','melocoton','frambuesa','fresa','cereza','pina','mango','grosella','ciruela','frutas'],
-      'Acuáticas':['notas marinas','notas acuaticas','acorde marino','acordes marinos','agua de mar','sal marina','brisa marina','algas','ozonicas','ozonico','oceano','calone','sea salt','marine notes','aquatic notes','marino','marina']
+      'Acuáticas':['notas marinas','notas acuaticas','acorde marino','acordes marinos','agua de mar','sal marina','brisa marina','algas','ozonicas','ozonico','oceano','calone','sea salt','marine notes','aquatic notes','marino','marina'],
+      'Aromáticos':['lavanda','romero','salvia','albahaca','tomillo','menta','hierbabuena','artemisa','estragon','enebro','geranio','cilantro','helecho'],
+      'Gourmand':['caramelo','chocolate','cacao','cafe','praline','praliné','toffee','malvavisco','bombon','algodon de azucar','crema batida','pastel','galleta','bizcocho','helado','pistacho','pistache','avellana','almendra','leche condensada','crema de vainilla']
     };
     function matchesNote(product){
       if(currentNote==='Todas')return true;
