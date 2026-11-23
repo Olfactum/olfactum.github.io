@@ -1507,7 +1507,17 @@
       }
     },
     "desc": "Notas: 🍊 Mandarina · 🍊 Naranja · 💜 Lavanda · 🌶️ Cardamomo · 🌶️ Pimienta negra · 🍬 Caramelo · 🍮 Haba tonka · 🍃 Pachulí · 🪔 Incienso · 🍦 Vainilla · 🌿 Vetiver",
-    "image": "images/perfume-1795196054506-8t2ge-1795399837162.png"
+    "image": "images/perfume-1795196054506-8t2ge-1795399837162.png",
+    "families": [
+      "Cítricas",
+      "Dulces"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795196098186-ipzp9",
