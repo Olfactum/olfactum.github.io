@@ -296,7 +296,7 @@
   },
   {
     "id": "perfume-1795137078116-mtii1",
-    "name": "Invictus Edt",
+    "name": "Invictus",
     "brand": "Rabanne",
     "category": "Diseñador",
     "tone": "clear",
@@ -317,7 +317,18 @@
       }
     },
     "desc": "Notas: 🌊 Notas marinas · 🍊 Toronja · 🍊 Mandarina · 🌿 Hoja de laurel · 🌼 Jazmín · 🔶 Ámbar gris · 🪵 Madera de gaiac · 🍃 Musgo de roble · 🌱 Pachulí",
-    "image": "images/perfume-1795137078116-mtii1-1795137078152.png"
+    "image": "images/perfume-1795137078116-mtii1-1795137078152.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Toilette",
+    "families": [
+      "Cítricas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795137372369-oh8oa",
