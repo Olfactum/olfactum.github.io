@@ -1933,5 +1933,32 @@
     },
     "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🌲 Cedro · 🌿 Cedrón · 🍃 Menta · ☁️ Almizcle · 🌸 Pimienta rosa · 🔶 Ámbar · 🌶️ Comino\n\n👨‍🔬 Perfumista: Ramon Monegal",
     "image": "images/perfume-1795408226906-wz0cm-1795408226941.png"
+  },
+  {
+    "id": "perfume-1795409114178-wknkp",
+    "name": "Intenso by Stallion 53",
+    "brand": "Emper",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🫐 Grosellas negras · 🍋 Bergamota · 🍍 Piña · 🍊 Toronja · 🌸 Pimienta rosa · 🍋 Limón · 🌶️ Cardamomo · 🍂 Canela · 🫚 Jengibre · 🍃 Pachulí · 🌿 Vetiver",
+    "image": "images/perfume-1795409114178-wknkp-1795409114205.png"
   }
 ]
