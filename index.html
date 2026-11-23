@@ -560,6 +560,32 @@
 }
 @media(prefers-reduced-motion:reduce){.mobile-order-bar,.nav-links{scroll-behavior:auto}}
 
+
+.olf-gifts{padding:78px 0;background:#f6f4ee;scroll-margin-top:88px}
+.olf-gifts-head{max-width:770px;margin-bottom:27px}.olf-gifts .eyebrow{color:#977344}
+.olf-gifts-head h2{font-size:clamp(45px,6vw,69px);margin:10px 0 13px}.olf-gifts-head p{max-width:580px;color:#66736a;font-size:15px}
+.olf-gifts-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:0 0 25px}
+.olf-gifts-options article{background:#fff;border:1px solid #e3ded2;border-radius:21px;padding:26px;display:flex;flex-direction:column;box-shadow:0 9px 26px #172b2109}
+.olf-gifts-options span{font-size:11px;letter-spacing:.12em;font-weight:800;color:#a1875e}
+.olf-gifts-options h3{font-size:32px;line-height:1.04;margin:18px 0 12px}
+.olf-gifts-options p{font-size:13px;color:#637164;line-height:1.7;margin:0 0 19px}
+.olf-gifts-options a{font-size:13px;color:#245339;font-weight:800;margin-top:auto}
+.olf-gifts-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.olf-gifts-formcard{border:1px solid #e1dccc;border-radius:23px;background:#fff;padding:29px;min-width:0;scroll-margin-top:95px}
+.olf-gifts-formcard h3{font-size:clamp(32px,4vw,45px);margin:12px 0}
+.olf-gifts-formcard>p{font-size:13px;color:#66736a;margin:0 0 18px}
+.olf-gift-form{display:grid;gap:13px}
+.olf-gift-form label{display:grid;gap:5px;min-width:0;font-size:12px;font-weight:750;color:#304534}
+.olf-gift-form input,.olf-gift-form textarea,.olf-gift-form select{width:100%;min-width:0;min-height:45px;border-radius:11px;border:1px solid #d7d8d1;background:#fff;padding:11px 12px;color:#1b3526;font-size:15px}
+.olf-gift-form textarea{min-height:75px;resize:vertical}
+.olf-gift-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0}
+.olf-gift-form .olf-gift-check{display:flex;align-items:center;gap:9px;flex-direction:row}
+.olf-gift-check input{min-height:19px;width:19px;height:19px;accent-color:#234632}
+.olf-gift-form .btn{width:100%;min-height:50px;text-align:center;white-space:normal}
+.olf-gifts-note{font-size:12px;color:#6e776f;margin:17px 0 0}
+@media(max-width:930px){.olf-gifts-options{grid-template-columns:1fr 1fr}.olf-gifts-forms{grid-template-columns:1fr}}
+@media(max-width:600px){.olf-gifts{padding:52px 0}.olf-gifts-options{grid-template-columns:1fr;gap:12px}.olf-gifts-options article{padding:23px}.olf-gifts-formcard{padding:22px 17px;border-radius:17px}.olf-gift-pair{grid-template-columns:1fr}.olf-gift-form input,.olf-gift-form textarea,.olf-gift-form select{font-size:16px}}
+
 </style>
 </head>
 <body>
@@ -581,6 +607,7 @@
         <a href="#decants">Decants</a>
         <a href="#combos">Arma tu combo</a>
         <a href="#mystery">Mystery Boxes</a>
+        <a href="#regalos">Regalos</a>
         <a href="#comprar">Cómo comprar</a>
         <a href="#testimonios">Testimonios</a>
         <a href="#contacto">Contacto</a>
@@ -859,6 +886,43 @@
         </div>
       </div>
     </section>
+
+<section class="olf-gifts" id="regalos">
+  <div class="container">
+    <div class="olf-gifts-head"><div class="eyebrow">OLFACTUM · REGALOS CON PERSONALIDAD</div><h2>Un detalle que deja huella.</h2><p>Desde un perfume especial hasta detalles para todo un equipo. Encontramos alternativas para cada ocasión y presupuesto.</p></div>
+    <div class="olf-gifts-options">
+      <article><span>01 · REGALOS PERSONALES</span><h3>Una fragancia para recordar.</h3><p>Perfumes completos árabes, de diseñador o de nicho, elegidos según los gustos de quien lo recibirá.</p><a href="#gift-personal">Solicitar recomendación ↗</a></article>
+      <article><span>02 · EXPERIENCIAS</span><h3>Decants y descubrimientos.</h3><p>Decants de 5 y 10 ml, combos o Mystery Boxes para quienes aman explorar nuevos aromas.</p><a href="#combos">Explorar combos ↗</a></article>
+      <article><span>03 · EMPRESAS</span><h3>Regalos para tu equipo.</h3><p>Opciones de perfumería para colaboradores y clientes. Cotizaciones por volumen y facturación disponible.</p><a href="#gift-business">Solicitar cotización ↗</a></article>
+    </div>
+    <div class="olf-gifts-forms">
+      <article class="olf-gifts-formcard">
+        <div class="eyebrow">UN REGALO PERSONAL</div><h3>Cuéntanos para quién es.</h3><p>Te ayudamos a encontrar una opción según tus preferencias.</p>
+        <form id="gift-personal" class="olf-gift-form">
+          <label>Ocasión<select id="gift-occasion" required><option value="">Selecciona</option><option>Cumpleaños</option><option>Aniversario</option><option>Agradecimiento</option><option>Navidad o fin de año</option><option>Otra ocasión</option></select></label>
+          <label>¿Para quién es?<select id="gift-recipient" required><option value="">Selecciona</option><option>Para mujer</option><option>Para hombre</option><option>Unisex</option><option>No lo sé todavía</option></select></label>
+          <label>Formato<select id="gift-format" required><option value="">Selecciona</option><option>Perfume completo</option><option>Decants de 5 o 10 ml</option><option>Mystery Box</option><option>Necesito recomendaciones</option></select></label>
+          <label>Presupuesto aproximado por regalo (MXN)<input id="gift-budget" type="text" maxlength="40" inputmode="numeric" placeholder="Ej. $500" required></label>
+          <label>Preferencias (opcional)<textarea id="gift-preferences" maxlength="250" placeholder="Aromas favoritos, edad aproximada, ocasión..."></textarea></label>
+          <button class="btn btn-dark" type="submit">Pedir recomendación por WhatsApp ↗</button>
+        </form>
+      </article>
+      <article class="olf-gifts-formcard" id="gift-business">
+        <div class="eyebrow">OLFACTUM PARA EMPRESAS</div><h3>Reconoce con un gran detalle.</h3><p>Solicita una cotización sin compromiso. Podemos emitir factura.</p>
+        <form id="gift-company-form" class="olf-gift-form">
+          <label>Nombre de la empresa *<input id="company-name" maxlength="120" required placeholder="Empresa"></label>
+          <div class="olf-gift-pair"><label>Número de empleados *<input id="company-total" type="number" min="1" max="100000" required placeholder="Ej. 50"></label><label>Presupuesto por persona (MXN) *<input id="company-budget" maxlength="40" inputmode="numeric" required placeholder="Ej. $400"></label></div>
+          <div class="olf-gift-pair"><label>Cantidad de hombres<input id="company-men" type="number" min="0" max="100000" placeholder="Opcional"></label><label>Cantidad de mujeres<input id="company-women" type="number" min="0" max="100000" placeholder="Opcional"></label></div>
+          <label>Fecha en que necesitas los regalos *<input id="company-date" type="date" required></label>
+          <label>Detalles adicionales (opcional)<textarea id="company-notes" maxlength="280" placeholder="Evento, tipo de perfume, presentación..."></textarea></label>
+          <label class="olf-gift-check"><input type="checkbox" id="company-invoice"> Necesito factura</label>
+          <button class="btn btn-dark" type="submit">Cotizar sin compromiso por WhatsApp ↗</button>
+        </form>
+      </article>
+    </div>
+    <p class="olf-gifts-note">Opciones, precios, disponibilidad, presentación, tiempos de entrega y condiciones de facturación se confirman al cotizar. No se realiza un pago ni un pedido desde estos formularios.</p>
+  </div>
+</section>
     <section class="about" id="comprar">
       <div class="container info-grid">
         <div class="story-box">
@@ -1705,6 +1769,24 @@
       renderCart();
       showToast('Tu lista se vació correctamente.');
     });
+
+
+$('gift-personal').addEventListener('submit',event=>{
+  event.preventDefault();if(!event.currentTarget.reportValidity())return;
+  const occasion=$('gift-occasion').value,recipient=$('gift-recipient').value,format=$('gift-format').value,budget=$('gift-budget').value.trim(),notes=$('gift-preferences').value.trim();
+  if(!occasion||!recipient||!format||!budget){showToast('Completa los datos del regalo.');return}
+  sendWhatsApp(['Hola, Olfactum. Quisiera una recomendación para un regalo.','','Ocasión: '+occasion,'Para: '+recipient,'Formato: '+format,'Presupuesto por regalo: '+budget+' MXN',...(notes?['Preferencias: '+notes]:[]),'','¿Qué opciones me recomiendan?'].join('\n'));
+});
+$('gift-company-form').addEventListener('submit',event=>{
+  event.preventDefault();if(!event.currentTarget.reportValidity())return;
+  const company=$('company-name').value.trim(),total=Number($('company-total').value),budget=$('company-budget').value.trim(),date=$('company-date').value;
+  const menInput=$('company-men').value,womenInput=$('company-women').value;
+  const men=menInput===''?null:Number(menInput),women=womenInput===''?null:Number(womenInput);
+  if(!company||!Number.isInteger(total)||total<1||!budget||!date){showToast('Completa los datos de la empresa.');return}
+  if(men!==null&&women!==null&&men+women!==total){showToast('Las cantidades de hombres y mujeres deben sumar el total de empleados.');$('company-women').focus();return}
+  const notes=$('company-notes').value.trim(),invoice=$('company-invoice').checked;
+  sendWhatsApp(['Hola, Olfactum. Quisiera solicitar una cotización sin compromiso de regalos empresariales.','','Nombre de la empresa: '+company,'Número de empleados: '+total,'Hombres: '+(men===null?'Por confirmar':men),'Mujeres: '+(women===null?'Por confirmar':women),'Presupuesto por empleado: '+budget+' MXN','Fecha requerida: '+date,'Requiere factura: '+(invoice?'Sí':'No'),...(notes?['Detalles: '+notes]:[]),'','¿Podrían enviarnos opciones y condiciones de cotización?'].join('\n'));
+});
 
     $('contact-button').addEventListener('click', () => sendWhatsApp('Hola, Olfactum. Quiero información sobre sus perfumes, decants y disponibilidad.'));
     $('contact-order').addEventListener('click', () => {
