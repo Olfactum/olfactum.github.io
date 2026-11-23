@@ -1,16 +1,5 @@
 [
   {
-    "id": "producto-001",
-    "name": "Club de Nuit Intense Man",
-    "brand": "Armaf",
-    "category": "Árabes",
-    "tone": "night",
-    "status": "Consultar disponibilidad",
-    "price": "Consultar precio",
-    "desc": "Consulta características, precio y disponibilidad por WhatsApp.",
-    "image": ""
-  },
-  {
     "id": "producto-003",
     "name": "Yara",
     "brand": "Lattafa",
