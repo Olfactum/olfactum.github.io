@@ -389,7 +389,19 @@
       }
     },
     "desc": "Notas: 🍦 Vainilla · 💜 Lavanda · 🌿 Vetiver",
-    "image": "images/perfume-1795137516555-0vav5-1795137516600.png"
+    "image": "images/perfume-1795137516555-0vav5-1795137516600.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Amaderadas",
+      "Dulces"
+    ],
+    "featured": true,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795137896486-j1xjk",
