@@ -203,6 +203,34 @@
     .finder-placeholder{width:68px;height:85px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;background:#ede9de;font-family:Georgia,serif;font-size:26px;color:#4d6753}
     @media(max-width:920px){.finder-form{grid-template-columns:repeat(2,minmax(0,1fr))}.finder-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:590px){.finder-form,.finder-result-grid{grid-template-columns:1fr}.finder{padding:40px 0}}
+
+    /* Constructor de combos de decants. Los precios se leen del catálogo. */
+    .combo-section{background:#f5f1e8;padding:66px 0;scroll-margin-top:115px}
+    .combo-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(285px,.7fr);gap:24px;align-items:start}
+    .combo-card{background:#fff;border:1px solid #e4dece;border-radius:24px;padding:clamp(18px,3vw,32px);box-shadow:0 10px 26px #2034270c}
+    .combo-card h2{font-size:clamp(35px,4vw,51px);margin:8px 0 14px}
+    .combo-subtitle{font-size:14px;color:#626f63;margin:0 0 22px}
+    .combo-size{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px}
+    .combo-size button{border:1px solid #dad8ce;border-radius:25px;background:#fff;color:#284332;padding:10px 15px;font-weight:750;font-size:13px}
+    .combo-size button.active{border-color:#244332;background:#244332;color:#fff}
+    .combo-list{display:grid;gap:12px}
+    .combo-line{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:9px;align-items:center}
+    .combo-line label{font-size:12px;font-weight:700;color:#405e48}
+    .combo-line select{width:100%;min-width:0;border:1px solid #d8d6cc;border-radius:11px;background:#faf9f6;color:#29392d;font-size:13px;padding:12px 9px}
+    .combo-line-price{font-size:12px;color:#4f5b50;min-width:88px;text-align:right}
+    .combo-row-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+    .combo-row-actions button{border-radius:11px;padding:11px 14px;font-size:12px;font-weight:750}
+    .combo-add-line{background:#e9eee8;color:#244332;border:1px solid #bdcbbe}
+    .combo-remove-line{background:#fff;color:#75583b;border:1px solid #d9ccbb}
+    .combo-side h3{font-size:32px;margin-bottom:14px}
+    .combo-total{font-size:27px;font-weight:800;color:#1c3527;margin:9px 0}
+    .combo-side .combo-disclaimer{color:#68736b;font-size:12px;line-height:1.7}
+    .combo-warning{color:#9b5336;font-weight:650;font-size:12px;min-height:20px}
+    .combo-add-cart{width:100%;margin-top:15px}
+    .combo-basket-list{font-size:13px;color:#465449;padding-left:19px;margin:12px 0}
+    .combo-basket-list li{margin:6px 0}
+    @media(max-width:800px){.combo-layout{grid-template-columns:1fr}}
+    @media(max-width:520px){.combo-line{grid-template-columns:24px minmax(0,1fr)}.combo-line-price{grid-column:2;text-align:left}.combo-size button{flex:1}}
     .quantity-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
     .quantity-controls button{border:1px solid #cbd1c7;background:#fff;color:#193025;border-radius:50%;width:30px;height:30px;font-weight:700;font-size:18px}
     .quantity-controls output{min-width:24px;text-align:center;font-weight:800}
@@ -352,6 +380,7 @@
         <a href="#catalogo">Catálogo</a>
         <a href="#novedades">Novedades</a>
         <a href="#decants">Decants</a>
+        <a href="#combos">Arma tu combo</a>
         <a href="#comprar">Cómo comprar</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -567,6 +596,35 @@
       </div>
     </section>
 
+
+    <section class="combo-section" id="combos">
+      <div class="container combo-layout">
+        <div class="combo-card">
+          <div class="eyebrow" style="color:#987347">DESCUBRE MÁS AROMAS</div>
+          <h2>Arma tu combo de decants.</h2>
+          <p class="combo-subtitle">Elige de 3 a 5 fragancias diferentes y pruébalas a tu ritmo. Selecciona 5 ml o 10 ml; el importe será la suma de los precios publicados, sin descuentos automáticos.</p>
+          <div class="combo-size" role="group" aria-label="Tamaño de los decants del combo">
+            <button type="button" data-combo-format="decant5" class="active" aria-pressed="true">Decants 5 ml</button>
+            <button type="button" data-combo-format="decant10" aria-pressed="false">Decants 10 ml</button>
+          </div>
+          <div class="combo-list" id="combo-list" aria-live="polite"><p class="muted">Cargando perfumes disponibles...</p></div>
+          <div class="combo-row-actions">
+            <button type="button" class="combo-add-line" id="combo-more">+ Añadir otra fragancia</button>
+            <button type="button" class="combo-remove-line" id="combo-less">− Quitar última</button>
+          </div>
+        </div>
+        <aside class="combo-card combo-side">
+          <div class="eyebrow" style="color:#987347">TU SELECCIÓN</div>
+          <h3>Tu combo personalizado</h3>
+          <ol class="combo-basket-list" id="combo-summary"><li>Selecciona tus primeras tres fragancias.</li></ol>
+          <div class="combo-total" id="combo-total">Subtotal: $0 MXN</div>
+          <p class="combo-disclaimer">Los precios corresponden a cada decant y se confirmarán al recibir tu pedido. El combo no aplica descuentos especiales automáticamente. Envío y disponibilidad por confirmar.</p>
+          <div id="combo-warning" class="combo-warning" role="status" aria-live="polite"></div>
+          <button type="button" class="btn btn-dark combo-add-cart" id="combo-add-cart" disabled>Agregar combo al carrito ↗</button>
+        </aside>
+      </div>
+    </section>
+
     <section class="about" id="comprar">
       <div class="container info-grid">
         <div class="story-box">
@@ -687,6 +745,7 @@
         if(!Array.isArray(data)) throw new Error('Catálogo no válido');
         products = data;
         renderProducts();
+        renderComboBuilder();
       } catch(error) {
         $('products').innerHTML = '<p class="empty">Estamos actualizando el catálogo. Escríbenos por WhatsApp para conocer las opciones disponibles.</p>';
         console.error(error);
@@ -867,6 +926,93 @@
       renderCart();
       showToast(product.name+' · '+variant.label+' agregado al pedido.');
     }
+
+
+    // Combo: una presentación común y entre 3 y 5 fragancias diferentes.
+    let comboFormat='decant5';
+    let comboSelections=['','',''];
+    function comboOptions(){
+      return products.map((product,index)=>({product,index}))
+        .filter(({product})=>product.category!=='Decants'&&product.status!=='Agotado'&&getVariants(product).some(v=>v.key===comboFormat))
+        .sort((a,b)=>a.product.name.localeCompare(b.product.name,'es'));
+    }
+    function renderComboBuilder(){
+      const choices=comboOptions();
+      const available=new Set(choices.map(x=>String(x.product.id||x.index)));
+      comboSelections=comboSelections.map(id=>available.has(id)?id:'');
+      const options=choices.map(({product,index})=>{
+        const id=String(product.id||index);
+        const price=getVariants(product).find(v=>v.key===comboFormat)?.price||'Consultar precio';
+        return '<option value="'+escapeHtml(id)+'">'+escapeHtml(product.name+' · '+(product.brand||'')+' · '+price)+'</option>';
+      }).join('');
+      $('combo-list').innerHTML=comboSelections.map((id,i)=>'<div class="combo-line"><label for="combo-slot-'+i+'">'+(i+1)+'.</label><select id="combo-slot-'+i+'" data-combo-slot="'+i+'" aria-label="Fragancia '+(i+1)+'"><option value="">Elegir fragancia...</option>'+options+'</select><span class="combo-line-price" id="combo-price-'+i+'"></span></div>').join('');
+      $('combo-list').querySelectorAll('select[data-combo-slot]').forEach((select,i)=>select.value=comboSelections[i]||'');
+      $('combo-more').disabled=comboSelections.length>=5;
+      $('combo-less').disabled=comboSelections.length<=3;
+      updateComboSummary();
+    }
+    function updateComboSummary(){
+      const chosen=[];
+      let amount=0,unknown=false;
+      for(let i=0;i<comboSelections.length;i++){
+        const id=comboSelections[i];
+        const product=products.find((p,index)=>String(p.id||index)===id);
+        const variant=product?getVariants(product).find(v=>v.key===comboFormat):null;
+        const value=variant?getAmount(variant.price):null;
+        const slot=$('combo-price-'+i);
+        if(slot)slot.textContent=variant?.price||'';
+        if(product&&variant){
+          chosen.push({product,variant,id});
+          if(value===null)unknown=true;else amount+=value;
+        }
+      }
+      const complete=chosen.length===comboSelections.length;
+      const unique=new Set(chosen.map(x=>x.id)).size===chosen.length;
+      const error=!complete?'Selecciona todas las fragancias.':!unique?'Cada fragancia debe ser diferente.':'';
+      $('combo-warning').textContent=error||(unknown?'Una o más presentaciones requieren cotización.':'');
+      $('combo-add-cart').disabled=!!error||!products.length;
+      $('combo-summary').innerHTML=chosen.length?chosen.map(({product,variant})=>'<li>'+escapeHtml(product.name+' — '+variant.label)+'</li>').join(''):'<li>Selecciona tus fragancias.</li>';
+      $('combo-total').textContent='Subtotal: '+money(amount)+(unknown?' + por cotizar':'');
+      return error?null:chosen;
+    }
+    document.querySelectorAll('[data-combo-format]').forEach(button=>button.addEventListener('click',()=>{
+      comboFormat=button.dataset.comboFormat;
+      document.querySelectorAll('[data-combo-format]').forEach(b=>{const on=b===button;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+      renderComboBuilder();
+    }));
+    $('combo-list').addEventListener('change',event=>{
+      const select=event.target.closest('select[data-combo-slot]');
+      if(!select)return;
+      comboSelections[Number(select.dataset.comboSlot)]=select.value;
+      updateComboSummary();
+    });
+    $('combo-more').addEventListener('click',()=>{
+      if(comboSelections.length>=5)return;
+      comboSelections.push('');
+      renderComboBuilder();
+    });
+    $('combo-less').addEventListener('click',()=>{
+      if(comboSelections.length<=3)return;
+      comboSelections.pop();
+      renderComboBuilder();
+    });
+    $('combo-add-cart').addEventListener('click',()=>{
+      const selection=updateComboSummary();
+      if(!selection)return;
+      // Validar antes de añadir para evitar combos incompletos por límite de cantidades.
+      if(selection.some(({id})=>{
+        const existing=cart.find(item=>item.productId===id&&item.variantKey===comboFormat);
+        return existing?.qty>=99;
+      })){showToast('Ya tienes la cantidad máxima de uno de estos decants en tu carrito.');return;}
+      selection.forEach(({product,variant,id})=>{
+        const existing=cart.find(item=>item.productId===id&&item.variantKey===comboFormat);
+        if(existing){existing.qty++;existing.price=variant.price}
+        else cart.push({productId:id,name:product.name,brand:product.brand||'',variantKey:comboFormat,variantLabel:variant.label,price:variant.price,qty:1});
+      });
+      renderCart();
+      openCart(true);
+      showToast('¡Combo agregado a tu pedido!');
+    });
 
     document.querySelectorAll('.filter').forEach(button => {
       button.addEventListener('click', () => {
