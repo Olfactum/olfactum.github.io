@@ -691,7 +691,18 @@
       }
     },
     "desc": "Notas: 💜 Lavanda · 🌿 Menta · 🍦 Vainilla · 🔶 Benjuí · 🍯 Miel · 🍮 Haba tonka · 🍂 Tabaco",
-    "image": "images/perfume-1795145489760-2ebbp-1795145489796.png"
+    "image": "images/perfume-1795145489760-2ebbp-1795145489796.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Dulces"
+    ],
+    "featured": true,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795145664438-ghafn",
