@@ -1339,5 +1339,32 @@
     },
     "desc": "Notas: 💜 Lavanda · 🍑 Ciruela Mirabel · 🌸 Pimienta rosa · 🍫 Cacao · 🌰 Nuez moscada · 🌿 Davana · 🍦 Vainilla Bourbon · 🔶 Ámbar · 🍃 Vetiver",
     "image": "images/perfume-1795403926072-o5uok-1795403926099.png"
+  },
+  {
+    "id": "perfume-1795404073156-85qe5",
+    "name": "Toy Boy",
+    "brand": "Moschino",
+    "category": "Diseñador",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌸 Pimienta rosa · 🍐 Pera · 🌰 Nuez moscada de Indonesia · 🌿 Elemí · 🍋 Bergamota · 🌹 Rosa · 🌺 Clavo de olor · 🌸 Magnolia · 🧵 Lino · 🍃 Vetiver de Haití · 🪵 Cachemira · 🌳 Sándalo · 🔶 Ámbar · ✨ Sylkolide",
+    "image": "images/perfume-1795404073156-85qe5-1795404073185.png"
   }
 ]
