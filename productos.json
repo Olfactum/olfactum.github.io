@@ -2762,17 +2762,16 @@
         "price": "$200"
       },
       "bottle": {
-        "enabled": false,
-        "price": "Consultar precio"
+        "enabled": true,
+        "price": "$700"
       }
     },
-    "desc": "",
-    "image": "",
+    "desc": "Notas: 🍎 Manzana · 🍂 Canela · 💜 Lavanda silvestre · 🍋 Bergamota · 🌼 Flor de azahar · 🤍 Lirio de los valles · 🍦 Vainilla · 🍮 Haba tonka · 🔶 Ámbar · 🍃 Pachulí",
+    "image": "images/perfume-1795462387623-6l04j-1795472986419.png",
     "families": [
-      "Dulces",
-      "Frutales"
+      "Dulces"
     ],
-    "featured": false,
+    "featured": true,
     "promotion": {
       "enabled": false,
       "label": "",
