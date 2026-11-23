@@ -2176,7 +2176,16 @@
       }
     },
     "desc": "Notas: 🍒 Lichi · 🌿 Ruibarbo · 🍋 Bergamota · 🌹 Rosa turca · 🌸 Peonía · 🤍 Azucena · ☁️ Almizcle blanco · 🪵 Cachemira · 🍦 Vainilla",
-    "image": "images/perfume-1795405256605-aa5as-1795405256638.png"
+    "image": "images/perfume-1795405256605-aa5as-1795405256638.png",
+    "families": [
+      "Florales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795405393635-wa94b",
