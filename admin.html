@@ -9,6 +9,13 @@
 header .admin-logo{width:72px;height:76px;object-fit:contain;background:#fff;border-radius:12px;padding:4px}
 header .admin-brand h1{margin-bottom:4px;font-size:24px}
 @media(max-width:500px){header .admin-logo{width:60px;height:65px}header .admin-brand h1{font-size:21px}}
+
+.news-admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.news-admin-grid label{margin-top:0}
+.news-selects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.news-selects label{margin:0;font-size:12px}
+.news-admin-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+@media(max-width:690px){.news-admin-grid,.news-selects{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -64,15 +71,41 @@ header .admin-brand h1{margin-bottom:4px;font-size:24px}
 <input id="filter" type="search" placeholder="Buscar perfume..." aria-label="Buscar perfume existente" style="margin-bottom:12px">
 <div class="items" id="items"><p class="hint">Conecta GitHub para cargar los productos.</p></div>
 </section>
+
+<section class="card full" id="news-editor">
+  <h2>4. Novedades y Preventas</h2>
+  <p class="hint">Edita el título, la descripción y hasta cuatro perfumes que aparecen en el banner de novedades. Las tarjetas usan la foto, el nombre y el estado de cada perfume guardado en el catálogo; al tocarlas se abre su ficha de compra. Los cambios se guardan en <b>novedades.json</b>.</p>
+  <form id="news-form">
+    <div class="news-admin-grid">
+      <label for="news-eyebrow">Etiqueta pequeña
+        <input type="text" id="news-eyebrow" maxlength="60" value="NOVEDADES Y PREVENTAS" required>
+      </label>
+      <label for="news-title">Título principal
+        <input type="text" id="news-title" maxlength="100" value="Lo nuevo merece descubrirse." required>
+      </label>
+    </div>
+    <label for="news-description">Texto de la sección</label>
+    <textarea id="news-description" maxlength="350" required>Fragancias seleccionadas de nuestro catálogo. Consulta disponibilidad, precios y próximas llegadas por WhatsApp.</textarea>
+    <h3 style="font:700 16px system-ui;margin:15px 0 9px">Perfumes que quieres mostrar</h3>
+    <p class="hint">Puedes dejar espacios vacíos para mostrar menos de cuatro productos. No se agregan promociones ni descuentos automáticamente.</p>
+    <div class="news-selects">
+      <label>Perfume 1 <select id="news-product-1"><option value="">Ninguno</option></select></label>
+      <label>Perfume 2 <select id="news-product-2"><option value="">Ninguno</option></select></label>
+      <label>Perfume 3 <select id="news-product-3"><option value="">Ninguno</option></select></label>
+      <label>Perfume 4 <select id="news-product-4"><option value="">Ninguno</option></select></label>
+    </div>
+    <div class="actions news-admin-actions"><button id="news-save" type="submit" disabled>Guardar novedades en GitHub</button><a href="./index.html#novedades" target="_blank" rel="noopener">Ver sección en la tienda ↗</a></div>
+  </form>
+</section>
 <section class="card full"><h3>Después de guardar</h3><p class="hint">Los cambios se envían a la rama <b>main</b> del repositorio <b>olfactum/olfactum.github.io</b>. GitHub Pages puede tardar unos minutos en reflejarlos. Actualiza la tienda si no aparecen enseguida. No necesitas volver a subir <code>index.html</code>.</p></section>
 </main>
 <script>
 (()=>{'use strict';
 const OWNER='olfactum', REPO='olfactum.github.io', BRANCH='main', API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
-const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false;
+const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
-function updateButtons(){ $('save').disabled=!token||busy;$('connect').disabled=busy; }
+function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('connect').disabled=busy; }
 function setBusy(v){busy=v;updateButtons()}
 function b64Utf8(str){const bytes=new TextEncoder().encode(str);let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s)}
 function fromB64(str){const bytes=Uint8Array.from(atob(str.replace(/\s/g,'')),c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}
@@ -82,7 +115,46 @@ const response=await fetch(API+path+(method==='GET'?`?ref=${BRANCH}`:''),{method
 let data;try{data=await response.json()}catch{data={}};
 if(!response.ok)throw new Error(`GitHub (${response.status}): ${data.message||'No se pudo completar la operación'}`);return data;
 }
-async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos.`)}
+
+function populateNewsSelects(){
+  const options='<option value="">Ninguno</option>'+catalog.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+' — '+esc(p.brand||'')+'</option>').join('');
+  for(let i=1;i<=4;i++)$('news-product-'+i).innerHTML=options;
+}
+async function loadNewsConfig(){
+  populateNewsSelects();
+  newsSha='';
+  try{
+    const file=await api('novedades.json');
+    const cfg=JSON.parse(fromB64(file.content));
+    if(!cfg||!Array.isArray(cfg.productIds))throw Error('novedades.json tiene un formato inesperado');
+    newsSha=file.sha;
+    $('news-eyebrow').value=cfg.eyebrow||'NOVEDADES Y PREVENTAS';
+    $('news-title').value=cfg.title||'Lo nuevo merece descubrirse.';
+    $('news-description').value=cfg.description||'';
+    for(let i=1;i<=4;i++)$('news-product-'+i).value=cfg.productIds[i-1]||'';
+  }catch(error){
+    status('Catálogo conectado, pero no se pudo cargar Novedades: '+error.message,true);
+  }
+}
+$('news-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!token||busy)return;
+  const eyebrow=$('news-eyebrow').value.trim(),title=$('news-title').value.trim(),description=$('news-description').value.trim();
+  if(!eyebrow||!title||!description){status('Completa los textos de Novedades.',true);return}
+  const productIds=Array.from({length:4},(_,i)=>$('news-product-'+(i+1)).value).filter(Boolean);
+  if(new Set(productIds).size!==productIds.length){status('No repitas un perfume en las novedades.',true);return}
+  if(productIds.some(id=>!catalog.some(p=>p.id===id))){status('Selecciona únicamente perfumes existentes.',true);return}
+  if(!newsSha){status('No se pudo verificar novedades.json. Reconecta el panel para evitar sobrescribir cambios.',true);return}
+  const news={eyebrow,title,description,productIds};
+  setBusy(true);
+  try{
+    await api('novedades.json',{method:'PUT',body:{message:'Olfactum: actualizar banner de Novedades y Preventas',content:b64Utf8(JSON.stringify(news,null,2)+'\n'),sha:newsSha,branch:BRANCH}});
+    const updated=await api('novedades.json');newsSha=updated.sha;
+    status('¡Novedades actualizadas! Abre la tienda para comprobar los cambios.');
+  }catch(error){status('Error al guardar novedades: '+error.message,true)}finally{setBusy(false)}
+});
+
+async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();if(newsSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
 function imgUrl(p){return /^images\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp)$/.test(p||'')?`./${p}`:''}
 function render(){const q=$('filter').value.trim().toLocaleLowerCase('es');$('total').textContent=catalog.length;const shown=catalog.filter(p=>[p.name,p.brand,p.category].join(' ').toLocaleLowerCase('es').includes(q));$('items').innerHTML=shown.length?shown.map(p=>`<div class="item">${imgUrl(p.image)?`<img src="${esc(imgUrl(p.image))}" alt="">`:'<div style="width:54px;height:58px;background:#efe8da;border-radius:8px"></div>'}<div class="item-info"><strong>${esc(p.name)}</strong><span>${p.featured?'⭐ Destacado · ':''}${p.promotion?.enabled?'🏷️ '+esc(p.promotion.label)+' · ':''}${esc(p.brand)} · ${esc((p.variants ? Object.entries(p.variants).filter(([key,v])=>v?.enabled).map(([key,v])=>( {decant5:"5 ml",decant10:"10 ml",bottle:"Botella"}[key]||key)+": "+v.price).join(" · ") : p.price) || "Consultar precio")}</span></div><button class="secondary" data-edit="${esc(p.id)}" type="button">Editar</button><button class="danger" data-delete="${esc(p.id)}" type="button">×</button></div>`).join(''):'<p class="hint">No hay productos que coincidan.</p>'}
 function clearForm(){$('form').reset();$('vb-enabled').checked=true;$('edit-id').value='';$('preview').style.display='none';$('preview').removeAttribute('src');$('name').focus()}
@@ -90,7 +162,7 @@ function edit(id){const p=catalog.find(p=>p.id===id);if(!p)return; $('edit-id').
 async function saveCatalog(next,message){const body={message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha,branch:BRANCH};await api('productos.json',{method:'PUT',body});await load()}
 async function uploadPhoto(file,id){if(!file)return '';const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};if(!allowed[file.type])throw Error('Usa imagen JPG, PNG o WebP.');if(file.size>4*1024*1024)throw Error('La imagen debe pesar menos de 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let raw='';for(let i=0;i<buffer.length;i+=8192)raw+=String.fromCharCode(...buffer.subarray(i,i+8192));const path=`images/${id}-${Date.now()}.${allowed[file.type]}`;await api(path,{method:'PUT',body:{message:`Olfactum: agregar foto de ${id}`,content:btoa(raw),branch:BRANCH}});return path}
 $('connect').addEventListener('click',async()=>{const value=$('token').value.trim();if(!value){status('Introduce tu token.',true);return}token=value;$('token').value='';setBusy(true);try{await load()}catch(e){token='';catalog=[];sha='';render();status('No se pudo conectar: '+e.message,true)}finally{setBusy(false)}});
-$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
+$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
 $('filter').addEventListener('input',render);$('new').addEventListener('click',clearForm);
 $('items').addEventListener('click',async e=>{const editBtn=e.target.closest('[data-edit]'),delBtn=e.target.closest('[data-delete]');if(editBtn)return edit(editBtn.dataset.edit);if(!delBtn||busy)return;const item=catalog.find(p=>p.id===delBtn.dataset.delete);if(!item||!confirm(`¿Eliminar «${item.name}» del catálogo?`))return;setBusy(true);try{await saveCatalog(catalog.filter(p=>p.id!==item.id),`Olfactum: eliminar ${item.name}`);status(`Eliminaste «${item.name}» del catálogo. La foto, si existía, permanece en images/.`);clearForm()}catch(e){status(e.message,true)}finally{setBusy(false)}});
 $('photo').addEventListener('change',()=>{const file=$('photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('preview').src=url;$('preview').style.display='block';$('preview').onload=()=>URL.revokeObjectURL(url)});
