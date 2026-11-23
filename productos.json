@@ -915,7 +915,18 @@
       }
     },
     "desc": "Notas: 🥭 Mango · 🍋 Limón · 🫚 Jengibre · 🌿 Ruibarbo · 🌸 Pimienta rosa · 🌼 Jazmín · 💜 Violeta · 🍬 Praliné · 🍮 Haba tonka · 🌲 Cedro · ✨ Ámbar gris · 🍃 Musgo",
-    "image": "images/perfume-1795147888080-i6fzq-1795147888119.png"
+    "image": "images/perfume-1795147888080-i6fzq-1795147888119.png",
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795148021893-bi8th",
