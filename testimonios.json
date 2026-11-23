@@ -8,5 +8,15 @@
     "imageAlt": "Decants - Combo Hawas",
     "approved": true,
     "published": true
+  },
+  {
+    "id": "testimonio-1795472305391-qwnwg",
+    "name": "David",
+    "detail": "Perfume Completo",
+    "quote": "Arribo el paquete, todo excelente, gracias!",
+    "image": "images/testimonio-1795472305391-qwnwg-1795472305406.jpg",
+    "imageAlt": "",
+    "approved": true,
+    "published": true
   }
 ]
