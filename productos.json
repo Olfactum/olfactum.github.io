@@ -1609,5 +1609,32 @@
     },
     "desc": "Notas: 🍋 Cítricos · ✨ Polvo de estrellas · 🌸 Prisma floral · 🪵 Maderas aterciopeladas · 🍦 Vainilla",
     "image": "images/perfume-1795405586934-xjsji-1795405586978.png"
+  },
+  {
+    "id": "perfume-1795405882075-kns7m",
+    "name": "Veneno",
+    "brand": "French Avenue",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍎 Manzana · 💨 Humo · 🍂 Canela · 🍃 Tabaco · 🌿 Musgo · 🍦 Vainilla Bourbon · ✨ Orcanox™",
+    "image": "images/perfume-1795405882075-kns7m-1795405882104.png"
   }
 ]
