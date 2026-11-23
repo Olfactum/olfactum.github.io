@@ -951,7 +951,19 @@
       }
     },
     "desc": "Notas: 🍏 Manzana verde · 🍋 Bergamota · 🍊 Mandarina · 🌲 Cedro · 🌿 Petit grain · 🪵 Cachemira · 💜 Violeta · 🍃 Musgo de roble · ☁️ Almizcle · ✨ Amberwood",
-    "image": "images/perfume-1795148021893-bi8th-1795148021933.png"
+    "image": "images/perfume-1795148021893-bi8th-1795148021933.png",
+    "gender": "Masculino",
+    "concentration": "Extrait de Parfum",
+    "families": [
+      "Amaderadas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795148299069-xa4la",
