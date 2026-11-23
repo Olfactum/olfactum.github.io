@@ -2948,11 +2948,12 @@
         "price": "Consultar precio"
       }
     },
-    "desc": "",
-    "image": "",
+    "desc": "Notas: 🥥 Coco · 🍮 Haba tonka · 🍋 Bergamota",
+    "image": "images/perfume-1795463600260-gnr57-1795473787392.png",
     "families": [
+      "Cítricas",
       "Dulces",
-      "Frutales"
+      "Aromáticos"
     ],
     "featured": false,
     "promotion": {
