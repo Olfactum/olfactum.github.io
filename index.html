@@ -482,6 +482,30 @@
     .news-grid .muted{grid-column:1/-1}
     @media(max-width:560px){.news-grid{grid-template-columns:1fr}.news-card img{height:100px}}
 
+
+/* Comunidad y confianza: solo testimonios publicados por el administrador. */
+.trust-section{padding:70px 0;background:#f6f4ed;scroll-margin-top:110px}
+.trust-header{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.trust-header h2{font-size:clamp(38px,5vw,58px);line-height:1.04;margin:8px 0}
+.trust-header p{font-size:14px;color:#627064;max-width:460px;margin:0}
+.trust-kicker{color:#a27a47;font-size:11px;letter-spacing:.18em;font-weight:800}
+.trust-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.trust-item{border:1px solid #e3ded0;border-radius:20px;overflow:hidden;background:white;min-width:0;box-shadow:0 10px 28px #1a32200c}
+.trust-photo{height:205px;background:#f1efe9;display:grid;place-items:center;overflow:hidden}
+.trust-photo img{width:100%;height:100%;object-fit:contain}
+.trust-text{padding:22px}
+.trust-text .quote-mark{font-family:Georgia,serif;font-size:38px;line-height:20px;color:#bd9b61;display:block;margin-bottom:8px}
+.trust-text p{font-size:13px;line-height:1.75;color:#465848;white-space:pre-line;margin:0 0 15px;overflow-wrap:anywhere}
+.trust-text strong{font-size:13px;color:#24402d;display:block}
+.trust-text small{color:#8a846d;display:block;font-size:11px;margin-top:4px}
+.trust-empty{grid-column:1/-1;border:1px dashed #bfc8ba;background:#fff;padding:25px;border-radius:16px;color:#667568;text-align:center}
+.trust-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.trust-point{background:#fff;border:1px solid #e1e1d9;border-radius:13px;padding:19px}
+.trust-point strong{display:block;color:#23432f;font-size:14px;margin-bottom:6px}
+.trust-point p{font-size:12px;color:#66736b;line-height:1.7;margin:0}
+@media(max-width:830px){.trust-items{grid-template-columns:repeat(2,minmax(0,1fr))}.trust-points{grid-template-columns:1fr}}
+@media(max-width:550px){.trust-items{grid-template-columns:1fr}.trust-photo{height:245px}.trust-section{padding:48px 0}}
+
 </style>
 </head>
 <body>
@@ -503,6 +527,7 @@
         <a href="#combos">Arma tu combo</a>
         <a href="#mystery">Mystery Boxes</a>
         <a href="#comprar">Cómo comprar</a>
+        <a href="#testimonios">Testimonios</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <div class="nav-actions">
@@ -816,6 +841,22 @@
         <div class="card faq">
           <h4>¿Qué encontrarás en Olfactum?</h4>
           <p>Perfumes árabes, de diseñador y de nicho, además de decants y recomendaciones personalizadas para ayudarte a descubrir tu próxima fragancia.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="trust-section" id="testimonios">
+      <div class="container">
+        <div class="trust-header">
+          <div><div class="trust-kicker">OLFACTUM · NUESTRA COMUNIDAD</div><h2>La confianza también se comparte.</h2></div>
+          <p>Experiencias de quienes han elegido sus fragancias con Olfactum. Cada testimonio publicado ha sido seleccionado por nuestro equipo.</p>
+        </div>
+        <div id="testimonials-grid" class="trust-items" aria-live="polite"><div class="trust-empty">Estamos preparando este espacio con experiencias reales de nuestros clientes.</div></div>
+        <div class="trust-points">
+          <div class="trust-point"><strong>🧴 Fragancias originales</strong><p>Selección de perfumes árabes, de diseñador y de nicho.</p></div>
+          <div class="trust-point"><strong>💬 Atención personalizada</strong><p>Te ayudamos a elegir presentación y aroma según tus preferencias.</p></div>
+          <div class="trust-point"><strong>📦 Entregas y envíos</strong><p>Entregas acordadas en Saltillo y Ramos Arizpe, y envíos nacionales por DHL con costo por confirmar.</p></div>
         </div>
       </div>
     </section>
@@ -1149,6 +1190,26 @@
       const button=event.target.closest('[data-news-product]');
       if(button)openProductDetails(Number(button.dataset.newsProduct));
     });
+
+
+    async function loadTestimonials(){
+      const grid=$('testimonials-grid');
+      try{
+        const response=await fetch('testimonios.json',{cache:'no-store'});
+        if(!response.ok)throw new Error('No se pudieron leer los testimonios');
+        const items=await response.json();
+        if(!Array.isArray(items))throw new Error('Formato de testimonios inválido');
+        const validImage=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/;
+        const published=items.filter(item=>item&&item.published===true&&item.approved===true&&typeof item.quote==='string'&&item.quote.trim()&&typeof item.name==='string'&&item.name.trim()).slice(0,12);
+        grid.innerHTML=published.length?published.map(item=>{
+          const image=validImage.test(item.image||'')?'<div class="trust-photo"><img loading="lazy" src="'+escapeHtml(item.image)+'" alt="'+escapeHtml(item.imageAlt||'Fotografía compartida por cliente de Olfactum')+'"></div>':'';
+          return '<article class="trust-item">'+image+'<div class="trust-text"><span class="quote-mark" aria-hidden="true">“</span><p>'+escapeHtml(item.quote)+'</p><strong>'+escapeHtml(item.name)+'</strong>'+(item.detail?'<small>'+escapeHtml(item.detail)+'</small>':'')+'</div></article>';
+        }).join(''):'<div class="trust-empty">Próximamente compartiremos experiencias reales de nuestros clientes.</div>';
+      }catch(error){
+        console.warn('No fue posible cargar testimonios',error);
+        grid.innerHTML='<div class="trust-empty">Próximamente compartiremos experiencias reales de nuestros clientes.</div>';
+      }
+    }
 
     function renderProducts(){
       const term = $('search').value.trim().toLocaleLowerCase('es');
@@ -1580,6 +1641,7 @@
     renderCart();
     loadProducts();
     loadNews();
+    loadTestimonials();
   </script>
 </body>
 </html>
