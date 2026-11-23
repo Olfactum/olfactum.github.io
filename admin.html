@@ -139,15 +139,34 @@ header .admin-brand h1{margin-bottom:4px;font-size:24px}
   <h3 style="font:700 17px system-ui;margin:24px 0 10px">Testimonios guardados (<span id="testimonial-count">0</span>)</h3>
   <div id="testimonial-list" class="testimonial-list"><p class="hint">Conecta GitHub para ver los testimonios.</p></div>
 </section>
+
+<section class="card full" id="presales-editor">
+  <h2>6. Preventas y Lanzamientos</h2>
+  <p class="hint">Agrega perfumes que todavía no están en el catálogo habitual. Puedes subir una foto, publicar sus condiciones de preventa, editar o retirar el lanzamiento. Estos perfumes se guardan en <b>preventas.json</b>, separado de productos.json.</p>
+  <form id="ps-form">
+    <input type="hidden" id="ps-id">
+    <div class="two"><div><label for="ps-name">Nombre del perfume *</label><input id="ps-name" maxlength="120" required placeholder="Ej. Nuevo lanzamiento"></div><div><label for="ps-brand">Marca *</label><input id="ps-brand" maxlength="100" required placeholder="Marca"></div></div>
+    <div class="two"><div><label for="ps-status">Tipo de anuncio *</label><select id="ps-status"><option>Preventa</option><option>Próximo lanzamiento</option><option>Disponible para apartado</option></select></div><div><label for="ps-price">Precio de referencia (opcional)</label><input id="ps-price" maxlength="55" placeholder="Ej. $950 MXN / Por confirmar"></div></div>
+    <div class="two"><div><label for="ps-arrival">Llegada estimada (opcional)</label><input id="ps-arrival" maxlength="90" placeholder="Ej. Diciembre 2026"></div><div><label for="ps-deposit">Condiciones de apartado (opcional)</label><input id="ps-deposit" maxlength="130" placeholder="Ej. 50% de anticipo"></div></div>
+    <label for="ps-description">Descripción y características (opcional)</label><textarea id="ps-description" maxlength="420" placeholder="Notas, presentación, disponibilidad, características..."></textarea>
+    <label for="ps-photo">Foto de lanzamiento (JPG, PNG o WebP, hasta 4 MB)</label><input id="ps-photo" type="file" accept="image/jpeg,image/png,image/webp">
+    <img id="ps-preview" class="preview" alt="Vista previa del perfume de preventa">
+    <p class="hint">Al guardar, la fotografía se subirá a images/ en GitHub. Si editas sin subir otra foto, se conserva la anterior.</p>
+    <label class="extra-option"><input id="ps-published" type="checkbox" checked> Mostrar este lanzamiento en la tienda</label>
+    <div class="actions"><button id="ps-save" type="submit" disabled>Guardar lanzamiento en GitHub</button><button type="button" class="secondary" id="ps-reset">Nuevo / limpiar</button><a href="./index.html#preventas" target="_blank" rel="noopener">Ver preventas ↗</a></div>
+  </form>
+  <h3>Preventas guardadas (<span id="ps-total">0</span>)</h3>
+  <div class="items" id="ps-list"><p class="hint">Conecta GitHub para cargar lanzamientos.</p></div>
+</section>
 <section class="card full"><h3>Después de guardar</h3><p class="hint">Los cambios se envían a la rama <b>main</b> del repositorio <b>olfactum/olfactum.github.io</b>. GitHub Pages puede tardar unos minutos en reflejarlos. Actualiza la tienda si no aparecen enseguida. No necesitas volver a subir <code>index.html</code>.</p></section>
 </main>
 <script>
 (()=>{'use strict';
 const OWNER='olfactum', REPO='olfactum.github.io', BRANCH='main', API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
-const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='',testimonials=[],testimonialSha='';
+const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='',testimonials=[],testimonialSha='',presales=[],presaleSha='';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
-function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('testimonial-save').disabled=!token||busy;$('connect').disabled=busy; }
+function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('testimonial-save').disabled=!token||busy;$('ps-save').disabled=!token||busy;$('connect').disabled=busy; }
 function setBusy(v){busy=v;updateButtons()}
 function b64Utf8(str){const bytes=new TextEncoder().encode(str);let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s)}
 function fromB64(str){const bytes=Uint8Array.from(atob(str.replace(/\s/g,'')),c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}
@@ -301,7 +320,79 @@ $('testimonial-form').addEventListener('submit',async event=>{
   }finally{setBusy(false)}
 });
 
-async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();await loadTestimonialsAdmin();if(newsSha&&testimonialSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
+
+function renderPresales(){
+ $('ps-total').textContent=presales.length;
+ $('ps-list').innerHTML=presales.length?presales.map(p=>{
+  const photo=imgUrl(p.image)?'<img src="'+esc(imgUrl(p.image))+'" alt="">':'';
+  return '<div class="item">'+photo+'<div class="item-info"><strong>'+esc(p.name)+'</strong><span>'+esc(p.brand)+' · '+esc(p.status)+' · '+(p.published?'Publicada':'Borrador')+'</span></div><button class="secondary" data-ps-edit="'+esc(p.id)+'" type="button">Editar</button><button class="danger" data-ps-delete="'+esc(p.id)+'" type="button">×</button></div>';
+ }).join(''):'<p class="hint">Todavía no hay lanzamientos. Agrega el primero desde el formulario.</p>';
+}
+async function loadPresalesAdmin(){
+ presaleSha='';presales=[];
+ try{
+  const file=await api('preventas.json');
+  const data=JSON.parse(fromB64(file.content));
+  if(!Array.isArray(data))throw Error('preventas.json debe ser una lista');
+  presaleSha=file.sha;presales=data;
+ }catch(e){status('No se pudieron cargar las preventas: '+e.message,true)}
+ renderPresales();
+}
+function resetPresaleForm(){
+ $('ps-form').reset();$('ps-id').value='';$('ps-published').checked=true;$('ps-preview').removeAttribute('src');$('ps-preview').style.display='none';$('ps-photo').value='';
+}
+function editPresale(id){
+ const p=presales.find(item=>item.id===id);if(!p)return;
+ $('ps-id').value=p.id;
+ for(const [key,val] of [['name','name'],['brand','brand'],['status','status'],['price','price'],['arrival','arrival'],['deposit','deposit'],['description','description']])$('ps-'+key).value=p[val]||'';
+ $('ps-published').checked=p.published===true;$('ps-photo').value='';
+ const url=imgUrl(p.image);$('ps-preview').style.display=url?'block':'none';if(url)$('ps-preview').src=url;
+ $('ps-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function savePresales(next,msg){
+ if(!presaleSha)throw Error('No se pudo verificar preventas.json. Reconecta el panel.');
+ await api('preventas.json',{method:'PUT',body:{message:msg,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha:presaleSha,branch:BRANCH}});
+ const file=await api('preventas.json');presaleSha=file.sha;presales=JSON.parse(fromB64(file.content));renderPresales();
+}
+$('ps-reset').addEventListener('click',resetPresaleForm);
+$('ps-photo').addEventListener('change',()=>{
+ const file=$('ps-photo').files?.[0];if(!file)return;
+ const url=URL.createObjectURL(file);$('ps-preview').src=url;$('ps-preview').style.display='block';
+ $('ps-preview').onload=()=>URL.revokeObjectURL(url);
+});
+$('ps-list').addEventListener('click',async event=>{
+ const editBtn=event.target.closest('[data-ps-edit]');
+ if(editBtn){editPresale(editBtn.dataset.psEdit);return}
+ const delBtn=event.target.closest('[data-ps-delete]');
+ if(!delBtn||busy||!token)return;
+ const p=presales.find(x=>x.id===delBtn.dataset.psDelete);
+ if(!p||!confirm('¿Eliminar la preventa de '+p.name+'?'))return;
+ setBusy(true);
+ try{await savePresales(presales.filter(x=>x.id!==p.id),'Olfactum: eliminar preventa '+p.name);resetPresaleForm();status('Preventa eliminada. La foto subida anteriormente permanece en GitHub.')}
+ catch(e){status('Error al eliminar: '+e.message,true)}finally{setBusy(false)}
+});
+$('ps-form').addEventListener('submit',async event=>{
+ event.preventDefault();if(!token||busy)return;
+ const old=presales.find(x=>x.id===$('ps-id').value);
+ if(!old&&presales.length>=30){status('Puedes mostrar hasta 30 lanzamientos. Retira uno antes de añadir otro.',true);return}
+ const name=$('ps-name').value.trim(),brand=$('ps-brand').value.trim();
+ if(!name||!brand){status('Nombre y marca son obligatorios.',true);return}
+ const item={...old,id:old?.id||'lanzamiento-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),
+   name,brand,status:$('ps-status').value,price:$('ps-price').value.trim(),
+   arrival:$('ps-arrival').value.trim(),deposit:$('ps-deposit').value.trim(),
+   description:$('ps-description').value.trim(),image:old?.image||'',published:$('ps-published').checked};
+ setBusy(true);
+ try{
+  const photo=$('ps-photo').files?.[0];
+  if(photo){status('Subiendo fotografía...');item.image=await uploadPhoto(photo,item.id)}
+  status('Guardando lanzamiento...');
+  await savePresales(old?presales.map(x=>x.id===old.id?item:x):[...presales,item],'Olfactum: '+(old?'actualizar':'agregar')+' lanzamiento '+name);
+  resetPresaleForm();status('Lanzamiento guardado. '+(item.published?'Se mostrará en Preventas y Lanzamientos.':'Quedó como borrador.'));
+ }catch(e){status('No se pudo guardar la preventa: '+e.message+(item.image!==old?.image?' Si la foto se subió, puede haber quedado sin asociar.':''),true)}
+ finally{setBusy(false)}
+});
+
+async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();await loadTestimonialsAdmin();await loadPresalesAdmin();if(newsSha&&testimonialSha&&presaleSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
 function imgUrl(p){return /^images\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp)$/.test(p||'')?`./${p}`:''}
 function render(){const q=$('filter').value.trim().toLocaleLowerCase('es');$('total').textContent=catalog.length;const shown=catalog.filter(p=>[p.name,p.brand,p.category].join(' ').toLocaleLowerCase('es').includes(q));$('items').innerHTML=shown.length?shown.map(p=>`<div class="item">${imgUrl(p.image)?`<img src="${esc(imgUrl(p.image))}" alt="">`:'<div style="width:54px;height:58px;background:#efe8da;border-radius:8px"></div>'}<div class="item-info"><strong>${esc(p.name)}</strong><span>${p.featured?'⭐ Destacado · ':''}${p.promotion?.enabled?'🏷️ '+esc(p.promotion.label)+' · ':''}${esc(p.brand)} · ${esc((p.variants ? Object.entries(p.variants).filter(([key,v])=>v?.enabled).map(([key,v])=>( {decant5:"5 ml",decant10:"10 ml",bottle:"Botella"}[key]||key)+": "+v.price).join(" · ") : p.price) || "Consultar precio")}</span></div><button class="secondary" data-edit="${esc(p.id)}" type="button">Editar</button><button class="danger" data-delete="${esc(p.id)}" type="button">×</button></div>`).join(''):'<p class="hint">No hay productos que coincidan.</p>'}
 function clearForm(){$('form').reset();$('vb-enabled').checked=true;$('edit-id').value='';$('preview').style.display='none';$('preview').removeAttribute('src');$('name').focus()}
@@ -309,7 +400,7 @@ function edit(id){const p=catalog.find(p=>p.id===id);if(!p)return; $('edit-id').
 async function saveCatalog(next,message){const body={message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha,branch:BRANCH};await api('productos.json',{method:'PUT',body});await load()}
 async function uploadPhoto(file,id){if(!file)return '';const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};if(!allowed[file.type])throw Error('Usa imagen JPG, PNG o WebP.');if(file.size>4*1024*1024)throw Error('La imagen debe pesar menos de 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let raw='';for(let i=0;i<buffer.length;i+=8192)raw+=String.fromCharCode(...buffer.subarray(i,i+8192));const path=`images/${id}-${Date.now()}.${allowed[file.type]}`;await api(path,{method:'PUT',body:{message:`Olfactum: agregar foto de ${id}`,content:btoa(raw),branch:BRANCH}});return path}
 $('connect').addEventListener('click',async()=>{const value=$('token').value.trim();if(!value){status('Introduce tu token.',true);return}token=value;$('token').value='';setBusy(true);try{await load()}catch(e){token='';catalog=[];sha='';render();status('No se pudo conectar: '+e.message,true)}finally{setBusy(false)}});
-$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';testimonialSha='';testimonials=[];renderTestimonialsAdmin();$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
+$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';testimonialSha='';testimonials=[];renderTestimonialsAdmin();presaleSha='';presales=[];renderPresales();$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
 $('filter').addEventListener('input',render);$('new').addEventListener('click',clearForm);
 $('items').addEventListener('click',async e=>{const editBtn=e.target.closest('[data-edit]'),delBtn=e.target.closest('[data-delete]');if(editBtn)return edit(editBtn.dataset.edit);if(!delBtn||busy)return;const item=catalog.find(p=>p.id===delBtn.dataset.delete);if(!item||!confirm(`¿Eliminar «${item.name}» del catálogo?`))return;setBusy(true);try{await saveCatalog(catalog.filter(p=>p.id!==item.id),`Olfactum: eliminar ${item.name}`);status(`Eliminaste «${item.name}» del catálogo. La foto, si existía, permanece en images/.`);clearForm()}catch(e){status(e.message,true)}finally{setBusy(false)}});
 $('photo').addEventListener('change',()=>{const file=$('photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('preview').src=url;$('preview').style.display='block';$('preview').onload=()=>URL.revokeObjectURL(url)});
