@@ -181,6 +181,7 @@
     .product .notes-details{font-size:12px;color:#516052;margin:-5px 0 13px}
     .product .notes-details summary{cursor:pointer;font-weight:750;list-style:revert}
     .product .notes-details p{margin:8px 0 0;white-space:pre-line;max-height:220px;overflow:auto;display:block}
+.catalog-highlights{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px;align-items:center}.highlight-toggle{border:1px solid #c8cbbf;background:white;color:#234030;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:750}.highlight-toggle.active{background:#254333;border-color:#254333;color:white}.product-featured{position:absolute;z-index:3;left:14px;bottom:12px;background:#254333;color:#fff;font-size:10px;font-weight:750;letter-spacing:.06em;padding:6px 10px;border-radius:25px}.product-promotion{font-size:12px;font-weight:750;color:#8a602f;margin:6px 0 10px;border-left:3px solid #c89b5c;padding:6px 10px;background:#f9f2e6;border-radius:0 7px 7px 0}.product-promotion span{font-weight:500;display:block;margin-top:2px;color:#695943}
     .quantity-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
     .quantity-controls button{border:1px solid #cbd1c7;background:#fff;color:#193025;border-radius:50%;width:30px;height:30px;font-weight:700;font-size:18px}
     .quantity-controls output{min-width:24px;text-align:center;font-weight:800}
@@ -452,6 +453,7 @@
           <button type="button" class="gender-filter" data-gender="Masculino" aria-pressed="false">Masculino</button>
           <button type="button" class="gender-filter" data-gender="Femenino" aria-pressed="false">Femenino</button>
         </div>
+        <div class="catalog-highlights"><button type="button" id="featured-filter" class="highlight-toggle" aria-pressed="false">⭐ Ver solo destacados</button><span class="muted">Perfumes seleccionados especialmente en Olfactum</span></div>
         <div class="note-filters" role="group" aria-label="Filtrar por notas olfativas">
           <span class="note-filters-label">Explora por notas:</span>
           <button type="button" class="note-filter active" data-note="Todas" aria-pressed="true">Todas</button>
@@ -623,6 +625,7 @@
     let currentFilter = 'Todos';
     let currentGender = 'Todas';
     let currentNote = 'Todas';
+    let onlyFeatured = false;
     const normalized = value => String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
     const noteTerms = {
       'Cítricas':['limon','lima','bergamota','toronja','pomelo','mandarina','naranja','citricos','citron','yuzu'],
@@ -634,6 +637,7 @@
     };
     function matchesNote(product){
       if(currentNote==='Todas')return true;
+      if(Array.isArray(product.families)&&product.families.length) return product.families.includes(currentNote);
       const desc=normalized(product.desc);
       return (noteTerms[currentNote]||[]).some(term=>desc.includes(term));
     }
@@ -691,10 +695,11 @@
           const haystack = [product.name, product.brand, product.category, product.desc, product.status].join(' ').toLocaleLowerCase('es');
           const matchesSearch = haystack.includes(term);
           const matchesGender = currentGender === 'Todas' || product.gender === currentGender;
-          return matchesFilter && matchesSearch && matchesGender && matchesNote(product);
+          return matchesFilter && matchesSearch && matchesGender && matchesNote(product) && (!onlyFeatured || product.featured===true);
         });
       const sort=$('product-sort')?.value||'default';
       const numericPrice=p=>{const values=getVariants(p).map(v=>{const str=String(v.price||'');if(!/\d/.test(str))return Infinity;const match=str.replace(/,/g,'').match(/\d+(?:\.\d+)?/);return match?Number(match[0]):Infinity});return Math.min(...values)};
+      if(sort==='default')filtered.sort((a,b)=>Number(b.featured===true)-Number(a.featured===true));
       if(sort==='az')filtered.sort((a,b)=>a.name.localeCompare(b.name,'es'));
       if(sort==='price-up'||sort==='price-down')filtered.sort((a,b)=>{const x=numericPrice(a),y=numericPrice(b);if(!Number.isFinite(x)&&!Number.isFinite(y))return 0;if(!Number.isFinite(x))return 1;if(!Number.isFinite(y))return -1;return sort==='price-up'?x-y:y-x});
       if($('product-count'))$('product-count').textContent=`${filtered.length} fragancia${filtered.length===1?'':'s'} encontrada${filtered.length===1?'':'s'}`;
@@ -709,6 +714,7 @@
         <article class="product" data-tone="${escapeHtml(product.tone||'clear')}">
           <div class="product-media">
             <div class="product-tag">${escapeHtml(product.concentration||product.status||'OLFACTUM')}</div>
+            ${product.featured===true?'<div class="product-featured">⭐ DESTACADO</div>':''}
             ${product.gender?`<span class="gender-label">${escapeHtml(product.gender)}</span>`:''}
             <button class="favorite-button" type="button" aria-label="${favorites.has(favKey)?'Quitar de':'Agregar a'} favoritos: ${escapeHtml(product.name)}" aria-pressed="${favorites.has(favKey)}" data-favorite="${product.index}">${favorites.has(favKey)?'♥':'♡'}</button>
             ${product.image && /^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp|gif)$/.test(product.image) ? `
@@ -723,6 +729,7 @@
           <div class="product-body">
             <div class="meta">${escapeHtml(product.brand||'Olfactum')} · ${escapeHtml(product.category||'Fragancia')}</div>
             <h3>${escapeHtml(product.name)}</h3>
+            ${product.promotion?.enabled===true && product.promotion.label ? `<div class="product-promotion">🏷️ ${escapeHtml(product.promotion.label)}${product.promotion.details?`<span>${escapeHtml(product.promotion.details)}</span>`:""}</div>` : ""}
             <p class="description-preview">${escapeHtml(product.desc || 'Consulta sus notas y disponibilidad por WhatsApp.')}</p>
             ${(product.desc||'').length>100?`<details class="notes-details"><summary>Ver notas completas</summary><p>${escapeHtml(product.desc)}</p></details>`:''}
             <div class="variant-caption">Selecciona tu presentación</div>
@@ -807,8 +814,15 @@
       document.querySelectorAll('[data-note]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
       renderProducts();
     }));
+    $('featured-filter').addEventListener('click',()=>{
+      onlyFeatured=!onlyFeatured;
+      $('featured-filter').classList.toggle('active',onlyFeatured);
+      $('featured-filter').setAttribute('aria-pressed',String(onlyFeatured));
+      renderProducts();
+    });
     $('reset-filters').addEventListener('click',()=>{
-      currentNote='Todas';currentGender='Todas';currentFilter='Todos';$('search').value='';
+      currentNote='Todas';currentGender='Todas';currentFilter='Todos';onlyFeatured=false;$('search').value='';
+      $('featured-filter').classList.remove('active');$('featured-filter').setAttribute('aria-pressed','false');
       document.querySelectorAll('[data-note]').forEach(b=>{const yes=b.dataset.note==='Todas';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
       document.querySelectorAll('[data-gender]').forEach(b=>{const yes=b.dataset.gender==='Todas';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
       document.querySelectorAll('.filter').forEach(b=>{const yes=b.dataset.filter==='Todos';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
