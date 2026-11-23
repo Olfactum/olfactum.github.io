@@ -1990,7 +1990,17 @@
       }
     },
     "desc": "Notas: 🍋 Limón · 🍧 Sorbete · 🌿 Orégano · 🏖️ Arena · 🌸 Fresia · 🌼 Jazmín · ☁️ Almizcle · 🌲 Ciprés · 🍃 Vetiver",
-    "image": "images/perfume-1795404345476-sf9f3-1795404345511.png"
+    "image": "images/perfume-1795404345476-sf9f3-1795404345511.png",
+    "families": [
+      "Cítricas",
+      "Acuáticas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795404533267-yzlzr",
