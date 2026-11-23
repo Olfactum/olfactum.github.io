@@ -2470,7 +2470,17 @@
       }
     },
     "desc": "Notas: 🍊 Naranja amarga · 🍊 Toronja · 🍋 Bergamota · 🍵 Té · 🍹 Aperol · 🥤 Refresco de vainilla · 🌶️ Cardamomo · 🌲 Cedro · 🍃 Vetiver · ✨ Ambertonic · 🍦 Vainilla · 🪵 Cachemira",
-    "image": "images/perfume-1795406870294-vzoez-1795406870327.png"
+    "image": "images/perfume-1795406870294-vzoez-1795406870327.png",
+    "families": [
+      "Cítricas",
+      "Acuáticas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795407074272-pfoft",
