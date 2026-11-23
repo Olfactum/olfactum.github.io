@@ -2636,7 +2636,16 @@
       }
     },
     "desc": "Notas: 🥜 Pistacho · 🍨 Helado · 🍋 Bergamota · 🌰 Avellana · 🌶️ Cardamomo · 🥃 Ron · 🍐 Pera · 🌼 Jazmín · 🌸 Peonía · 🌺 Geranio · 🍓 Frambuesa · 🍑 Durazno blanco · 🍦 Crema batida · 🍡 Malvavisco · 🍭 Algodón de azúcar · 🍮 Haba tonka · 🌲 Cedro",
-    "image": "images/perfume-1795407976780-jz9bv-1795407976812.png"
+    "image": "images/perfume-1795407976780-jz9bv-1795407976812.png",
+    "families": [
+      "Gourmand"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795408226906-wz0cm",
