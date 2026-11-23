@@ -1528,5 +1528,32 @@
     },
     "desc": "Notas: 🌊 Notas marinas · 🍓 Frutas rojas · 🍋 Bergamota · 💜 Violeta · 🪵 Maderas blancas · 🌳 Sándalo · ☁️ Almizcle · ✨ Ambroxan · 🍃 Vetiver",
     "image": "images/perfume-1795405027788-xccy3-1795405027818.png"
+  },
+  {
+    "id": "perfume-1795405256605-aa5as",
+    "name": "Delilah",
+    "brand": "Maison Alhambra",
+    "category": "Árabes",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍒 Lichi · 🌿 Ruibarbo · 🍋 Bergamota · 🌹 Rosa turca · 🌸 Peonía · 🤍 Azucena · ☁️ Almizcle blanco · 🪵 Cachemira · 🍦 Vainilla",
+    "image": "images/perfume-1795405256605-aa5as-1795405256638.png"
   }
 ]
