@@ -1663,5 +1663,32 @@
     },
     "desc": "Notas: 🌿 Menta verde · 🍋 Ralladura de limón · 🍋 Bergamota de Calabria · 🍊 Toronja · ❄️ Nieve · 🧊 Hielo · 🍵 Té · 🫚 Jengibre · 🍃 Salvia · ✨ Ambermax™ · 🌸 Peonía · 🌲 Cedro",
     "image": "images/perfume-1795406105425-vmy42-1795406105465.png"
+  },
+  {
+    "id": "perfume-1795406269286-cl72u",
+    "name": "Island Dreams",
+    "brand": "Khadlaj",
+    "category": "Árabes",
+    "gender": "Unisex",
+    "concentration": "Extrait de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🫚 Jengibre · 🍋 Bergamota · 🍊 Toronja · ☁️ Almizcle · ✨ Ambroxan",
+    "image": "images/perfume-1795406269286-cl72u-1795406269325.png"
   }
 ]
