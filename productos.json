@@ -1852,5 +1852,32 @@
     },
     "desc": "Notas: 🍋 Bergamota · 🌼 Flor de azahar · ✨ Ambrofix™ · 🍃 Pachulí · ☁️ Almizcle blanco",
     "image": "images/perfume-1795407509844-82t14-1795407509875.png"
+  },
+  {
+    "id": "perfume-1795407846389-0z8xz",
+    "name": "Hawas London",
+    "brand": "Rasasi",
+    "category": "Árabes",
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌶️ Azafrán · 🌸 Pimienta rosa · 🍐 Pera · 🌹 Rosa · 🪔 Incienso · 💐 Flores blancas · 🪵 Maderas rubias · ☁️ Almizcle · 🔶 Ámbar · 🍦 Vainilla",
+    "image": "images/perfume-1795407846389-0z8xz-1795407846420.png"
   }
 ]
