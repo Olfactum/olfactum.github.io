@@ -238,7 +238,19 @@
       }
     },
     "desc": "Notas: 🍊 Mandarina · 🍊 Naranja · 🌶️ Azafrán · 🌿 Salvia · 🍬 Caramelo · 🍮 Haba tonka · 🌼 Cempasúchil · ✨ Ambroxan · 🌲 Cedro · 🍃 Vetiver",
-    "image": "images/perfume-1795129593354-i665l-1795132913703.png"
+    "image": "images/perfume-1795129593354-i665l-1795132913703.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Dulces"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795130088042-s08ci",
