@@ -28,5 +28,15 @@
     "imageAlt": "",
     "approved": true,
     "published": true
+  },
+  {
+    "id": "testimonio-1795472780981-b6fi1",
+    "name": "Ramesh O",
+    "detail": "Perfume Completo",
+    "quote": "Llego todo bien! Exito!",
+    "image": "images/testimonio-1795472780981-b6fi1-1795472781017.png",
+    "imageAlt": "Valentino edt",
+    "approved": true,
+    "published": true
   }
 ]
