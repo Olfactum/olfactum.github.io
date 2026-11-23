@@ -2853,12 +2853,12 @@
   },
   {
     "id": "perfume-1795463375556-5hdfa",
-    "name": "Sugar Me",
+    "name": "Sugar Me Marshmallow Dream",
     "brand": "Maison Alhambra",
     "category": "Árabes",
     "gender": "Femenino",
     "concentration": "Eau de Parfum",
-    "tone": "green",
+    "tone": "clear",
     "status": "Disponible",
     "price": "Consultar precio",
     "variants": {
@@ -2875,8 +2875,8 @@
         "price": "Consultar precio"
       }
     },
-    "desc": "",
-    "image": "",
+    "desc": "Notas: 🍓 Fresa · ❤️ Frambuesa · ✨ Ambroxan · 🌼 Flor de azahar · ☁️ Almizcle · 🍡 Malvavisco (bombón)",
+    "image": "images/perfume-1795463375556-5hdfa-1795473408831.png",
     "families": [
       "Gourmand"
     ],
