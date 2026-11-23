@@ -2663,7 +2663,17 @@
       }
     },
     "desc": "Notas: 🍊 Toronja · 🫚 Jengibre · 🌲 Cedro · 🌿 Cedrón · 🍃 Menta · ☁️ Almizcle · 🌸 Pimienta rosa · 🔶 Ámbar · 🌶️ Comino\n\n👨‍🔬 Perfumista: Ramon Monegal",
-    "image": "images/perfume-1795408226906-wz0cm-1795408226941.png"
+    "image": "images/perfume-1795408226906-wz0cm-1795408226941.png",
+    "families": [
+      "Cítricas",
+      "Acuáticas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795409114178-wknkp",
