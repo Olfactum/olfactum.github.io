@@ -1879,5 +1879,32 @@
     },
     "desc": "Notas: 🌶️ Azafrán · 🌸 Pimienta rosa · 🍐 Pera · 🌹 Rosa · 🪔 Incienso · 💐 Flores blancas · 🪵 Maderas rubias · ☁️ Almizcle · 🔶 Ámbar · 🍦 Vainilla",
     "image": "images/perfume-1795407846389-0z8xz-1795407846420.png"
+  },
+  {
+    "id": "perfume-1795407976780-jz9bv",
+    "name": "Khair Pistachio",
+    "brand": "Paris Corner",
+    "category": "Árabes",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🥜 Pistacho · 🍨 Helado · 🍋 Bergamota · 🌰 Avellana · 🌶️ Cardamomo · 🥃 Ron · 🍐 Pera · 🌼 Jazmín · 🌸 Peonía · 🌺 Geranio · 🍓 Frambuesa · 🍑 Durazno blanco · 🍦 Crema batida · 🍡 Malvavisco · 🍭 Algodón de azúcar · 🍮 Haba tonka · 🌲 Cedro",
+    "image": "images/perfume-1795407976780-jz9bv-1795407976812.png"
   }
 ]
