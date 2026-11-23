@@ -1690,5 +1690,32 @@
     },
     "desc": "Notas: 🫚 Jengibre · 🍋 Bergamota · 🍊 Toronja · ☁️ Almizcle · ✨ Ambroxan",
     "image": "images/perfume-1795406269286-cl72u-1795406269325.png"
+  },
+  {
+    "id": "perfume-1795406442281-indim",
+    "name": "Vanilla Dunes",
+    "brand": "Khadlaj",
+    "category": "Árabes",
+    "gender": "Unisex",
+    "concentration": "Extrait de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍦 Vainilla · 🍂 Canela · 🌶️ Cardamomo · 🍋 Bergamota · 🌼 Flor de azahar · 🪵 Madera de gaiac · 🍬 Praliné · 🔶 Ámbar · ☁️ Almizcle",
+    "image": "images/perfume-1795406442281-indim-1795406442320.png"
   }
 ]
