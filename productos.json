@@ -2286,7 +2286,17 @@
       }
     },
     "desc": "Notas: 🍎 Manzana · 💨 Humo · 🍂 Canela · 🍃 Tabaco · 🌿 Musgo · 🍦 Vainilla Bourbon · ✨ Orcanox™",
-    "image": "images/perfume-1795405882075-kns7m-1795405882104.png"
+    "image": "images/perfume-1795405882075-kns7m-1795405882104.png",
+    "families": [
+      "Dulces",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795406105425-vmy42",
