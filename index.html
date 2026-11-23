@@ -457,6 +457,17 @@
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;min-height:0}.hero-copy{padding:72px 0 20px}.brand-showcase{min-height:470px}.brand-bottles{height:460px}.brand-arch{top:4%;height:83%}}
 @media(max-width:640px){.hero h1{font-size:clamp(43px,11vw,63px)}.brand-showcase{display:flex!important;min-height:365px!important}.brand-bottles{height:355px}.brand-bottle span{font-size:8px}.hero-copy{padding:53px 0 12px}.brand-showcase-label{font-size:8px}}
 
+
+/* Portada original de Olfactum: el diseño ya incluye logotipo, título y botones dibujados. */
+.olfactum-image-hero{padding:0!important;background:#102419!important;overflow:hidden}
+.olfactum-image-hero:before,.olfactum-image-hero:after{content:none!important}
+.olfactum-banner{display:block;width:100%;height:auto;max-width:none;object-fit:contain}
+.hero-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.olfactum-hero-actions{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:13px 18px 22px;background:#102419}
+.olfactum-hero-actions .btn{min-height:44px;padding:12px 23px;border-radius:50px;font-size:13px;text-decoration:none}
+.olfactum-hero-actions .btn-outline{color:#f7e6c2;border-color:#d1ae74}
+@media(max-width:640px){.olfactum-hero-actions{gap:9px;padding:12px 12px 18px}.olfactum-hero-actions .btn{padding:11px 13px;font-size:12px;flex:1;justify-content:center;text-align:center;min-width:145px}}
+
 </style>
 </head>
 <body>
@@ -488,37 +499,12 @@
   </header>
 
   <main>
-    <section class="hero" id="inicio">
-      <div class="container hero-grid">
-
-        <div class="hero-copy">
-          <div class="eyebrow">OLFACTUM · ALWAYS AUTHENTIC</div>
-          <h1>Selección destacada <em>de Olfactum.</em></h1>
-          <p>Explora fragancias seleccionadas y encuentra tu próximo aroma. Perfumería árabe, de diseñador y de nicho en una experiencia creada para ti.</p>
-          <div class="hero-badges">
-            <span>Perfumes originales</span>
-            <span>Decants de 5 y 10 ml</span>
-            <span>Atención personalizada</span>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-light" href="#catalogo">Explorar catálogo</a>
-            <button class="btn btn-outline" id="hero-contact">Comprar por WhatsApp ↗</button>
-          </div>
-        </div>
-        <div class="brand-showcase" aria-label="Selección de perfumes reales de Olfactum">
-          <div class="brand-arch"></div>
-          <div class="brand-pedestal pedestal-left"></div>
-          <div class="brand-pedestal pedestal-right"></div>
-          <div class="brand-bottles">
-            <div class="brand-bottle bottle-1"><img src="images/producto-010-1795131799761.png" alt="Layton" loading="eager"><span>Layton</span></div>
-            <div class="brand-bottle bottle-2"><img src="images/producto-011-1795132061103.png" alt="Erba Pura" loading="lazy"><span>Erba Pura</span></div>
-            <div class="brand-bottle bottle-3"><img src="images/perfume-1795147107537-ptzqc-1795147107571.png" alt="Odyssey Aqua" loading="lazy"><span>Odyssey Aqua</span></div>
-            <div class="brand-bottle bottle-4"><img src="images/producto-006-1795136473133.png" alt="Rome Pour Homme" loading="lazy"><span>Rome Pour Homme</span></div>
-            <div class="brand-bottle bottle-5"><img src="images/perfume-1795137896486-j1xjk-1795137896533.png" alt="Valentino Coral Fantasy" loading="lazy"><span>Valentino Coral Fantasy</span></div>
-          </div>
-          <span class="brand-showcase-label">THE OLFACTUM EDIT · FRAGRANCE COLLECTION</span>
-        </div>
-
+    <section class="hero olfactum-image-hero" id="inicio" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="hero-visually-hidden">Selección destacada de Olfactum. Explora fragancias seleccionadas y encuentra tu próximo aroma.</h1>
+      <img class="olfactum-banner" src="images/olfactum-portada.png.png" alt="Portada personalizada de Olfactum: selección destacada de fragancias sobre fondo verde oscuro, mármol crema y detalles dorados. Always Authentic." fetchpriority="high" decoding="async" width="1916" height="821">
+      <div class="olfactum-hero-actions">
+        <a class="btn btn-light" href="#catalogo">Explorar catálogo</a>
+        <button class="btn btn-outline" type="button" id="hero-contact">Comprar por WhatsApp ↗</button>
       </div>
     </section>
 
