@@ -1694,7 +1694,17 @@
       }
     },
     "desc": "Notas: 🍓 Frutas rojas · 🍊 Naranja · 🍡 Malvavisco (bombón) · 🌼 Jazmín · 🌸 Lirio de los valles · 🍦 Vainilla · ☁️ Almizcle · 🍃 Musgo",
-    "image": "images/perfume-1795196286771-xlez3-1795400569386.png"
+    "image": "images/perfume-1795196286771-xlez3-1795400569386.png",
+    "families": [
+      "Dulces",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795196316580-wibuu",
