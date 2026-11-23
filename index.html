@@ -231,6 +231,27 @@
     .combo-basket-list li{margin:6px 0}
     @media(max-width:800px){.combo-layout{grid-template-columns:1fr}}
     @media(max-width:520px){.combo-line{grid-template-columns:24px minmax(0,1fr)}.combo-line-price{grid-column:2;text-align:left}.combo-size button{flex:1}}
+
+    /* Mystery Boxes */
+    .mystery{background:#1b3025;color:#f7f2e8;padding:72px 0;scroll-margin-top:110px}
+    .mystery-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,.75fr);gap:28px;align-items:center}
+    .mystery h2{font-size:clamp(43px,5vw,67px);line-height:1.04;margin:12px 0 18px}
+    .mystery-intro{color:#d4dfd3;max-width:610px;margin-bottom:24px}
+    .mystery-kicker{color:#e3be85;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+    .mystery-badges{display:flex;flex-wrap:wrap;gap:9px}
+    .mystery-badges span{border:1px solid #ffffff36;background:#ffffff0c;border-radius:30px;padding:8px 12px;font-size:12px;color:#f3eddf}
+    .mystery-panel{background:#fff;color:#253b2c;border:1px solid #e7ddc9;border-radius:25px;padding:clamp(19px,3vw,32px);box-shadow:0 22px 44px #06130a30}
+    .mystery-panel h3{font-size:32px;color:#203c2c;margin-bottom:13px}
+    .mystery-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .mystery-field{display:grid;gap:5px;color:#344738;font-size:12px;font-weight:750}
+    .mystery-field select{width:100%;min-width:0;border:1px solid #d7dbd2;background:#faf9f6;padding:12px 10px;border-radius:11px;color:#233b2c;font-size:13px}
+    .mystery-note{font-size:12px;line-height:1.65;color:#687368;margin:16px 0}
+    .mystery-preview{border:1px solid #e9e2d1;border-radius:12px;background:#f9f6ee;padding:12px 14px;margin:14px 0}
+    .mystery-preview strong{display:block;font-size:13px;color:#26422e}
+    .mystery-preview p{margin:6px 0 0;font-size:12px;color:#526554}
+    .mystery-panel .btn{width:100%}
+    @media(max-width:860px){.mystery-wrap{grid-template-columns:1fr;gap:22px}}
+    @media(max-width:470px){.mystery-fields{grid-template-columns:1fr}}
     .quantity-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
     .quantity-controls button{border:1px solid #cbd1c7;background:#fff;color:#193025;border-radius:50%;width:30px;height:30px;font-weight:700;font-size:18px}
     .quantity-controls output{min-width:24px;text-align:center;font-weight:800}
@@ -381,6 +402,7 @@
         <a href="#novedades">Novedades</a>
         <a href="#decants">Decants</a>
         <a href="#combos">Arma tu combo</a>
+        <a href="#mystery">Mystery Boxes</a>
         <a href="#comprar">Cómo comprar</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -625,6 +647,62 @@
       </div>
     </section>
 
+
+    <section class="mystery" id="mystery">
+      <div class="container mystery-wrap">
+        <div>
+          <div class="mystery-kicker">OLFACTUM · ALWAYS AUTHENTIC</div>
+          <h2>Una sorpresa en cada aroma.</h2>
+          <p class="mystery-intro">Descubre nuestras <strong>Mystery Boxes</strong>: una selección sorpresa de decants preparada según tus gustos. Tú nos dices qué notas prefieres y cuánto planeas gastar; nosotros confirmamos contigo las opciones antes de realizar la compra.</p>
+          <div class="mystery-badges"><span>🎁 Ideal para regalar</span><span>✨ Selección sorpresa</span><span>🧴 Decants 5 ml o 10 ml</span><span>💬 Atención por WhatsApp</span></div>
+        </div>
+        <div class="mystery-panel">
+          <h3>Personaliza tu Mystery Box</h3>
+          <form id="mystery-form">
+            <div class="mystery-fields">
+              <label class="mystery-field">Presupuesto aproximado
+                <select id="mystery-budget">
+                  <option value="Hasta $300 MXN">Hasta $300 MXN</option>
+                  <option value="Hasta $500 MXN">Hasta $500 MXN</option>
+                  <option value="Hasta $800 MXN">Hasta $800 MXN</option>
+                  <option value="Hasta $1,200 MXN">Hasta $1,200 MXN</option>
+                  <option value="A convenir">A convenir</option>
+                </select>
+              </label>
+              <label class="mystery-field">¿Para quién es?
+                <select id="mystery-gender">
+                  <option value="Sin preferencia">Sin preferencia</option>
+                  <option value="Masculino o unisex">Masculino o unisex</option>
+                  <option value="Femenino o unisex">Femenino o unisex</option>
+                  <option value="Unisex">Unisex</option>
+                </select>
+              </label>
+              <label class="mystery-field">Familia de aromas
+                <select id="mystery-family">
+                  <option value="Sorpréndeme">Sorpréndeme</option>
+                  <option value="Cítricas">🍋 Cítricos</option>
+                  <option value="Florales">🌸 Florales</option>
+                  <option value="Amaderadas">🌲 Amaderados</option>
+                  <option value="Dulces">🍦 Dulces</option>
+                  <option value="Especiadas">🌶️ Especiados</option>
+                  <option value="Frutales">🍑 Frutales</option>
+                </select>
+              </label>
+              <label class="mystery-field">Presentación preferida
+                <select id="mystery-format">
+                  <option value="Decants de 5 ml">Decants de 5 ml</option>
+                  <option value="Decants de 10 ml">Decants de 10 ml</option>
+                  <option value="Abierto a sugerencias">Abierto a sugerencias</option>
+                </select>
+              </label>
+            </div>
+            <div class="mystery-preview" id="mystery-preview" aria-live="polite"></div>
+            <p class="mystery-note">El presupuesto es una preferencia, no un precio cerrado. La cantidad de decants, fragancias, costo final y disponibilidad se acuerdan por WhatsApp antes de confirmar tu compra.</p>
+            <button class="btn btn-dark" type="submit">🎁 Añadir Mystery Box al carrito</button>
+          </form>
+        </div>
+      </div>
+    </section>
     <section class="about" id="comprar">
       <div class="container info-grid">
         <div class="story-box">
@@ -688,6 +766,7 @@
         </div>
         <div>
           <h4>Explora</h4>
+          <a href="#mystery">Mystery Boxes</a>
           <a href="#catalogo">Catálogo</a>
           <a href="#novedades">Novedades</a>
           <a href="#decants">Decants</a>
@@ -1095,6 +1174,38 @@
       if(card)card.scrollIntoView({behavior:'smooth',block:'center'});
     });
 
+
+    function mysteryPreferences(){
+      return {
+        budget:$('mystery-budget').value,
+        gender:$('mystery-gender').value,
+        family:$('mystery-family').value,
+        format:$('mystery-format').value
+      };
+    }
+    function updateMysteryPreview(){
+      const prefs=mysteryPreferences();
+      $('mystery-preview').innerHTML='<strong>Tu caja sorpresa, a tu estilo</strong><p>Presupuesto: '+escapeHtml(prefs.budget)+'<br>Perfil: '+escapeHtml(prefs.gender)+' · Aromas: '+escapeHtml(prefs.family)+'<br>Presentación: '+escapeHtml(prefs.format)+'</p>';
+    }
+    $('mystery-form').addEventListener('change',updateMysteryPreview);
+    $('mystery-form').addEventListener('submit',event=>{
+      event.preventDefault();
+      const prefs=mysteryPreferences();
+      const variantLabel=[prefs.budget,'Perfil: '+prefs.gender,'Aromas: '+prefs.family,prefs.format].join(' · ');
+      const productId='mystery-box:'+JSON.stringify(prefs);
+      const variantKey='mystery';
+      const existing=cart.find(item=>item.productId===productId&&item.variantKey===variantKey);
+      if(existing){
+        if(existing.qty>=99){showToast('Máximo 99 cajas por configuración.');return}
+        existing.qty++;
+      }else{
+        cart.push({productId,name:'Olfactum Mystery Box 🎁',brand:'Olfactum',variantKey,variantLabel,price:'Consultar precio',qty:1});
+      }
+      renderCart();
+      openCart(true);
+      showToast('Tu Mystery Box está en el carrito. Solicita confirmación por WhatsApp.');
+    });
+    updateMysteryPreview();
     $('search').addEventListener('input', renderProducts);
     $('product-sort').addEventListener('change',renderProducts);
     document.querySelectorAll('[data-collection]').forEach(button=>button.addEventListener('click',()=>{
