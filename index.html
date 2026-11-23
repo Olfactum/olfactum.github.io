@@ -381,6 +381,44 @@
 @media(max-width:720px){.products{grid-template-columns:1fr!important;gap:16px!important}.product-media{height:360px!important}.product-media img{max-height:345px!important;padding:43px 45px 2px!important}.product-body{padding:8px 26px 24px!important}.product h3{font-size:26px!important}.variant-grid{gap:8px}.variant-chip{min-height:78px}.catalog-tools{padding:15px!important}.gender-filters{gap:6px}.gender-filter{padding:10px 14px}.catalog{padding-top:55px}}
 @media(max-width:370px){.variant-chip strong{font-size:10px}.variant-chip span{font-size:14px}.product-body{padding:10px 18px 21px!important}.variant-grid{gap:5px}}
 
+
+    /* Fichas individuales - panel editorial de detalles */
+    .detail-overlay{position:fixed;inset:0;background:rgba(7,18,12,.68);z-index:130;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(7px)}
+    .detail-overlay.open{display:flex}
+    .detail-dialog{background:#fff;color:#23382c;border-radius:24px;width:min(1020px,100%);max-height:min(94vh,100%);overflow:auto;position:relative;box-shadow:0 22px 80px #03110755}
+    .detail-close{position:sticky;top:14px;float:right;margin:14px 16px -58px 0;width:42px;height:42px;border:1px solid #d9ded6;border-radius:50%;background:#fff;color:#244331;font-size:27px;z-index:6}
+    .detail-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+    .detail-photo{background:#f5f5f7;min-height:520px;display:flex;align-items:center;justify-content:center;padding:32px}
+    .detail-photo img{width:100%;max-width:390px;height:430px;object-fit:contain;mix-blend-mode:multiply}
+    .detail-photo .mock-bottle{flex-shrink:0}
+    .detail-content{padding:54px 40px 38px}
+    .detail-kicker{color:#8e704e;text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:.16em}
+    .detail-content h2{font:650 clamp(37px,5vw,56px) 'Cormorant Garamond',Georgia,serif;margin:12px 0 12px}
+    .detail-attributes{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 19px}
+    .detail-attributes span{background:#f1f0e8;border-radius:50px;padding:6px 11px;font-size:11px;font-weight:700;color:#45594a}
+    .detail-description{font-size:13px;line-height:1.9;color:#5b675e;white-space:pre-line;margin:0 0 20px;max-height:230px;overflow:auto}
+    .detail-subheading{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#27412e;margin:17px 0 10px}
+    .detail-families{display:flex;flex-wrap:wrap;gap:7px}
+    .detail-families span{background:#f7f2e8;border:1px solid #e5d9bd;color:#705631;border-radius:50px;padding:7px 11px;font-size:11px;font-weight:700}
+    .detail-variants{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .detail-variant{min-height:70px;padding:10px 7px;border:1px solid #dcded6;background:#fff;border-radius:13px;color:#304236;display:grid;align-content:center;gap:4px;text-align:center}
+    .detail-variant b{font-size:11px}
+    .detail-variant span{font-size:13px}
+    .detail-variant.selected{background:#f6efdf;border:2px solid #bb985a}
+    .detail-actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:20px 0 12px}
+    .detail-actions .btn{flex:1;min-width:190px}
+    .detail-actions strong{font-size:21px}
+    .detail-note{font-size:11px;color:#637168}
+    .detail-recommendations{border-top:1px solid #e4e3dc;margin-top:21px;padding-top:16px}
+    .detail-recommendations h3{font-family:'Inter',sans-serif;font-size:14px;margin-bottom:12px}
+    .detail-similar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .detail-similar button{background:#f6f6f3;border:1px solid #e1e2da;border-radius:12px;text-align:left;min-width:0;padding:9px;color:#283d2c;font-size:11px;font-weight:750}
+    .detail-similar img{height:74px;width:100%;object-fit:contain;mix-blend-mode:multiply;margin-bottom:7px}
+    .detail-similar small{display:block;color:#728074;font-weight:500}
+    .product-detail-link{border:1px solid #c6cec3;background:#fff;color:#254431;border-radius:11px;padding:10px 12px;font-size:12px;font-weight:750;width:100%;margin:-4px 0 12px}
+    .product-detail-link:hover{background:#e9f0e8}
+    @media(max-width:760px){.detail-overlay{padding:9px}.detail-dialog{max-height:96vh;border-radius:16px}.detail-grid{grid-template-columns:1fr}.detail-photo{min-height:270px;padding:14px}.detail-photo img{height:270px}.detail-content{padding:22px 20px 30px}.detail-close{top:8px;margin:8px 9px -50px 0}.detail-similar{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
@@ -795,6 +833,14 @@
     </div>
   </footer>
 
+
+  <div class="detail-overlay" id="detail-overlay">
+    <section class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="detail-close" type="button" id="detail-close" aria-label="Cerrar detalles del perfume">×</button>
+      <div id="detail-body"></div>
+    </section>
+  </div>
+
   <div class="drawer-backdrop" id="cart-backdrop" role="presentation">
     <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
       <div class="drawer-head">
@@ -905,6 +951,114 @@
       return [{key:'bottle',label:'Botella completa',price:product.price||'Consultar precio'}];
     }
     function formatVariantPrice(product,key){return getVariants(product).find(v=>v.key===key)?.price||'Consultar precio'};
+
+    // Panel de fichas individuales; no modifica el catálogo ni inventa notas.
+    let detailIndex=null;
+    let detailVariant=null;
+    let detailReturnFocus=null;
+    const validProductImage=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp|gif)$/;
+    function detailsFamilies(product){
+      if(Array.isArray(product.families)&&product.families.length)return product.families.filter(f=>typeof f==='string'&&f.trim());
+      const description=normalized(product.desc);
+      return Object.entries(noteTerms).filter(([family,terms])=>terms.some(term=>description.includes(normalized(term)))).map(([family])=>family);
+    }
+    function detailsRecommendations(product,index){
+      const families=detailsFamilies(product);
+      if(!families.length)return [];
+      return products.map((p,i)=>({product:p,index:i,score:detailsFamilies(p).filter(f=>families.includes(f)).length}))
+        .filter(r=>r.index!==index&&r.product.category!=='Decants'&&r.product.status!=='Agotado'&&r.score>0)
+        .sort((a,b)=>b.score-a.score||Number(b.product.featured===true)-Number(a.product.featured===true))
+        .slice(0,3);
+    }
+    function showProductDetails(index){
+      const product=products[index];if(!product)return;
+      detailIndex=index;
+      const variants=getVariants(product);
+      if(!variants.some(v=>v.key===detailVariant))detailVariant=variants[0]?.key||null;
+      const chosen=variants.find(v=>v.key===detailVariant);
+      const photo=validProductImage.test(product.image||'')
+        ?'<img src="'+escapeHtml(product.image)+'" alt="'+escapeHtml(product.name)+'">'
+        :'<div class="mock-bottle" style="--tone:'+getToneColor(product.tone)+'"><div class="mock-label"><strong>OLFACTUM</strong></div></div>';
+      const familyHtml=detailsFamilies(product).map(f=>'<span>'+escapeHtml(f)+'</span>').join('');
+      const variantsHtml=variants.map(v=>'<button type="button" class="detail-variant '+(v.key===detailVariant?'selected':'')+'" data-detail-option="'+escapeHtml(v.key)+'" aria-pressed="'+String(v.key===detailVariant)+'"><b>'+escapeHtml(v.label)+'</b><span>'+escapeHtml(v.price)+'</span></button>').join('');
+      const similar=detailsRecommendations(product,index).map(({product:p,index:i})=>{
+        const image=validProductImage.test(p.image||'')?'<img src="'+escapeHtml(p.image)+'" alt="">':'';
+        return '<button type="button" data-detail-related="'+i+'">'+image+escapeHtml(p.name)+'<small>'+escapeHtml(p.brand||'Olfactum')+'</small></button>';
+      }).join('');
+      const promotion=product.promotion?.enabled===true&&product.promotion.label?'<div class="product-promotion">🏷️ '+escapeHtml(product.promotion.label)+(product.promotion.details?'<span>'+escapeHtml(product.promotion.details)+'</span>':'')+'</div>':'';
+      $('detail-body').innerHTML='<div class="detail-grid"><div class="detail-photo">'+photo+'</div><div class="detail-content">'
+        +'<div class="detail-kicker">'+escapeHtml((product.brand||'Olfactum')+' · '+(product.category||'Fragancia'))+'</div>'
+        +'<h2 id="detail-title">'+escapeHtml(product.name)+'</h2>'
+        +'<div class="detail-attributes">'+[product.concentration,product.gender,product.status].filter(Boolean).map(t=>'<span>'+escapeHtml(t)+'</span>').join('')+'</div>'
+        +promotion
+        +'<div class="detail-subheading">Notas y descripción</div>'
+        +'<p class="detail-description">'+escapeHtml(product.desc||'Consulta las notas olfativas y disponibilidad por WhatsApp.')+'</p>'
+        +(familyHtml?'<div class="detail-subheading">Familias olfativas</div><div class="detail-families">'+familyHtml+'</div>':'')
+        +'<div class="detail-subheading">Elige tu presentación</div>'
+        +(variants.length?'<div class="detail-variants">'+variantsHtml+'</div>':'<p class="muted">Presentaciones pendientes de confirmar.</p>')
+        +'<div class="detail-actions"><strong id="detail-price">'+escapeHtml(chosen?.price||'Consultar precio')+'</strong><button class="btn btn-dark" type="button" id="detail-add" '+(chosen?'':'disabled')+'>+ Agregar al carrito</button></div>'
+        +'<p class="detail-note">Precio y disponibilidad sujetos a confirmación por WhatsApp.</p>'
+        +(similar?'<div class="detail-recommendations"><h3>También podrían gustarte</h3><div class="detail-similar">'+similar+'</div></div>':'')
+        +'</div></div>';
+      $('detail-overlay').classList.add('open');
+      document.body.style.overflow='hidden';
+      $('detail-close').focus();
+    }
+    function openProductDetails(index){
+      if(!$('detail-overlay').classList.contains('open'))detailReturnFocus=document.activeElement;
+      detailVariant=null;
+      showProductDetails(index);
+    }
+    function closeProductDetails(){
+      $('detail-overlay').classList.remove('open');
+      $('detail-body').replaceChildren();
+      detailIndex=null;detailVariant=null;
+      document.body.style.overflow=$('cart-backdrop').classList.contains('open')?'hidden':'';
+      if(detailReturnFocus&&document.contains(detailReturnFocus))detailReturnFocus.focus();
+      detailReturnFocus=null;
+    }
+    $('detail-close').addEventListener('click',closeProductDetails);
+    $('detail-overlay').addEventListener('click',event=>{
+      if(event.target===$('detail-overlay')){closeProductDetails();return}
+      const option=event.target.closest('[data-detail-option]');
+      if(option){
+        const product=products[detailIndex];
+        if(!product||!getVariants(product).some(v=>v.key===option.dataset.detailOption))return;
+        detailVariant=option.dataset.detailOption;
+        $('detail-body').querySelectorAll('[data-detail-option]').forEach(b=>{const active=b===option;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active))});
+        $('detail-price').textContent=getVariants(product).find(v=>v.key===detailVariant).price;
+        return;
+      }
+      const related=event.target.closest('[data-detail-related]');
+      if(related){detailVariant=null;showProductDetails(Number(related.dataset.detailRelated));return}
+      if(event.target.closest('#detail-add')){
+        const product=products[detailIndex];
+        const variant=product?getVariants(product).find(v=>v.key===detailVariant):null;
+        if(!variant)return;
+        const productId=String(product.id||product.name);
+        const existing=cart.find(item=>item.productId===productId&&item.variantKey===variant.key);
+        if(existing){
+          if(existing.qty>=99){showToast('Máximo 99 unidades por presentación.');return}
+          existing.qty++;existing.price=variant.price;
+        }else cart.push({productId,name:product.name,brand:product.brand||'',variantKey:variant.key,variantLabel:variant.label,price:variant.price,qty:1});
+        renderCart();
+        closeProductDetails();
+        openCart(true);
+        showToast(product.name+' agregado a tu pedido.');
+      }
+    });
+    document.addEventListener('keydown',event=>{
+      if(!$('detail-overlay').classList.contains('open'))return;
+      if(event.key==='Escape'){event.preventDefault();closeProductDetails();return}
+      if(event.key==='Tab'){
+        const nodes=[...$('detail-overlay').querySelectorAll('button:not(:disabled),a[href]')];
+        if(!nodes.length)return;
+        const first=nodes[0],last=nodes[nodes.length-1];
+        if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+      }
+    });
+
     function renderProducts(){
       const term = $('search').value.trim().toLocaleLowerCase('es');
       let filtered = products
@@ -951,6 +1105,7 @@
             ${product.promotion?.enabled===true && product.promotion.label ? `<div class="product-promotion">🏷️ ${escapeHtml(product.promotion.label)}${product.promotion.details?`<span>${escapeHtml(product.promotion.details)}</span>`:""}</div>` : ""}
             <p class="description-preview">${escapeHtml(product.desc || 'Consulta sus notas y disponibilidad por WhatsApp.')}</p>
             ${(product.desc||'').length>100?`<details class="notes-details"><summary>Ver notas completas</summary><p>${escapeHtml(product.desc)}</p></details>`:''}
+            <button type="button" class="product-detail-link" data-detail="${product.index}">Conoce esta fragancia ↗</button>
             <div class="variant-caption">Selecciona tu presentación</div>
             ${variants.length?`<div class="variant-grid" role="group" aria-label="Presentaciones disponibles de ${escapeHtml(product.name)}">${options}</div>`:'<div class="no-variants">Presentaciones pendientes de confirmar</div>'}
             <input type="hidden" id="variant-${product.index}" value="${escapeHtml(selected?.key||'')}">
@@ -1231,6 +1386,8 @@
       renderProducts();
     }));
     $('products').addEventListener('click', (event) => {
+      const detail=event.target.closest('[data-detail]');
+      if(detail){openProductDetails(Number(detail.dataset.detail));return}
       const option=event.target.closest('[data-choose]');
       if(option){
         const index=Number(option.dataset.choose),product=products[index];
