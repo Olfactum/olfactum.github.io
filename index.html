@@ -169,6 +169,18 @@
     .cart-item strong{display:block;font-size:13px}
     .cart-item span{display:block;font-size:12px;color:#687368}
     .cart-item button{border:0;background:transparent;color:#8d6d41;font-weight:800}
+    /* OLFACTUM: mejoras de exploración del catálogo */
+    .note-filters{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:-5px 0 23px}
+    .note-filters-label{font-size:12px;font-weight:750;color:#516052;margin-right:6px}
+    .note-filter{border:1px solid #d9dcd5;border-radius:50px;background:#fff;color:#293d30;padding:9px 14px;font-size:12px;font-weight:700}
+    .note-filter.active{background:#254333;border-color:#254333;color:#fff}
+    .reset-filters{border:0;background:transparent;color:#836333;font-weight:700;text-decoration:underline;font-size:12px;padding:9px}
+    .product-media img{object-fit:contain!important;object-position:center center!important;mix-blend-mode:normal!important;filter:none!important;width:100%;height:100%;padding:30px 34px 10px!important}
+    .product-media{background:#f7f7f5!important}
+    .product .description-preview{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-height:0!important}
+    .product .notes-details{font-size:12px;color:#516052;margin:-5px 0 13px}
+    .product .notes-details summary{cursor:pointer;font-weight:750;list-style:revert}
+    .product .notes-details p{margin:8px 0 0;white-space:pre-line;max-height:220px;overflow:auto;display:block}
     .quantity-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
     .quantity-controls button{border:1px solid #cbd1c7;background:#fff;color:#193025;border-radius:50%;width:30px;height:30px;font-weight:700;font-size:18px}
     .quantity-controls output{min-width:24px;text-align:center;font-weight:800}
@@ -440,6 +452,17 @@
           <button type="button" class="gender-filter" data-gender="Masculino" aria-pressed="false">Masculino</button>
           <button type="button" class="gender-filter" data-gender="Femenino" aria-pressed="false">Femenino</button>
         </div>
+        <div class="note-filters" role="group" aria-label="Filtrar por notas olfativas">
+          <span class="note-filters-label">Explora por notas:</span>
+          <button type="button" class="note-filter active" data-note="Todas" aria-pressed="true">Todas</button>
+          <button type="button" class="note-filter" data-note="Cítricas" aria-pressed="false">🍋 Cítricas</button>
+          <button type="button" class="note-filter" data-note="Florales" aria-pressed="false">🌸 Florales</button>
+          <button type="button" class="note-filter" data-note="Amaderadas" aria-pressed="false">🌲 Amaderadas</button>
+          <button type="button" class="note-filter" data-note="Dulces" aria-pressed="false">🍦 Dulces</button>
+          <button type="button" class="note-filter" data-note="Especiadas" aria-pressed="false">🌶️ Especiadas</button>
+          <button type="button" class="note-filter" data-note="Frutales" aria-pressed="false">🍑 Frutales</button>
+          <button type="button" class="reset-filters" id="reset-filters">Limpiar filtros</button>
+        </div>
         <div class="catalog-meta"><span id="product-count" aria-live="polite">Cargando catálogo...</span><label class="sort-wrap">Ordenar <select class="sort-select" id="product-sort" aria-label="Ordenar productos"><option value="default">Destacados</option><option value="az">Nombre A–Z</option><option value="price-up">Precio: menor a mayor</option><option value="price-down">Precio: mayor a menor</option></select></label></div>
         <div class="products" id="products" aria-live="polite"></div>
       </div>
@@ -599,6 +622,21 @@
 
     let currentFilter = 'Todos';
     let currentGender = 'Todas';
+    let currentNote = 'Todas';
+    const normalized = value => String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
+    const noteTerms = {
+      'Cítricas':['limon','lima','bergamota','toronja','pomelo','mandarina','naranja','citricos','citron','yuzu'],
+      'Florales':['rosa','jazmin','lavanda','violeta','iris','peonia','azahar','flor de','geranio','magnolia','neroli','tuberosa','gardenia'],
+      'Amaderadas':['cedro','sandalo','vetiver','pachuli','patchouli','madera','oud','agar','guayaco','gaiac','cipres'],
+      'Dulces':['vainilla','caramelo','chocolate','miel','tonka','praline','malvavisco','bombon','algodon de azucar','azucar','crema batida'],
+      'Especiadas':['canela','cardamomo','pimienta','azafran','jengibre','clavo','nuez moscada','comino'],
+      'Frutales':['manzana','pera','durazno','melocoton','frambuesa','fresa','cereza','pina','mango','grosella','ciruela','frutas']
+    };
+    function matchesNote(product){
+      if(currentNote==='Todas')return true;
+      const desc=normalized(product.desc);
+      return (noteTerms[currentNote]||[]).some(term=>desc.includes(term));
+    }
     let favorites = new Set();
     try { favorites = new Set(JSON.parse(localStorage.getItem('olfactum-favorites')||'[]')); } catch {}
     let cart = [];
@@ -653,7 +691,7 @@
           const haystack = [product.name, product.brand, product.category, product.desc, product.status].join(' ').toLocaleLowerCase('es');
           const matchesSearch = haystack.includes(term);
           const matchesGender = currentGender === 'Todas' || product.gender === currentGender;
-          return matchesFilter && matchesSearch && matchesGender;
+          return matchesFilter && matchesSearch && matchesGender && matchesNote(product);
         });
       const sort=$('product-sort')?.value||'default';
       const numericPrice=p=>{const values=getVariants(p).map(v=>{const str=String(v.price||'');if(!/\d/.test(str))return Infinity;const match=str.replace(/,/g,'').match(/\d+(?:\.\d+)?/);return match?Number(match[0]):Infinity});return Math.min(...values)};
@@ -685,7 +723,8 @@
           <div class="product-body">
             <div class="meta">${escapeHtml(product.brand||'Olfactum')} · ${escapeHtml(product.category||'Fragancia')}</div>
             <h3>${escapeHtml(product.name)}</h3>
-            <p>${escapeHtml(product.desc || 'Consulta sus notas y disponibilidad por WhatsApp.')}</p>
+            <p class="description-preview">${escapeHtml(product.desc || 'Consulta sus notas y disponibilidad por WhatsApp.')}</p>
+            ${(product.desc||'').length>100?`<details class="notes-details"><summary>Ver notas completas</summary><p>${escapeHtml(product.desc)}</p></details>`:''}
             <div class="variant-caption">Selecciona tu presentación</div>
             ${variants.length?`<div class="variant-grid" role="group" aria-label="Presentaciones disponibles de ${escapeHtml(product.name)}">${options}</div>`:'<div class="no-variants">Presentaciones pendientes de confirmar</div>'}
             <input type="hidden" id="variant-${product.index}" value="${escapeHtml(selected?.key||'')}">
@@ -763,6 +802,18 @@
       });
     });
 
+    document.querySelectorAll('[data-note]').forEach(button=>button.addEventListener('click',()=>{
+      currentNote=button.dataset.note;
+      document.querySelectorAll('[data-note]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+      renderProducts();
+    }));
+    $('reset-filters').addEventListener('click',()=>{
+      currentNote='Todas';currentGender='Todas';currentFilter='Todos';$('search').value='';
+      document.querySelectorAll('[data-note]').forEach(b=>{const yes=b.dataset.note==='Todas';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
+      document.querySelectorAll('[data-gender]').forEach(b=>{const yes=b.dataset.gender==='Todas';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
+      document.querySelectorAll('.filter').forEach(b=>{const yes=b.dataset.filter==='Todos';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
+      renderProducts();
+    });
     $('search').addEventListener('input', renderProducts);
     $('product-sort').addEventListener('change',renderProducts);
     document.querySelectorAll('[data-collection]').forEach(button=>button.addEventListener('click',()=>{
