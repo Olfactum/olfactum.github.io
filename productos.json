@@ -353,7 +353,18 @@
       }
     },
     "desc": "Notas: 🍋 Limón · 🌿 Romero · 🍃 Pachulí\n\n👨‍🔬 Perfumista: Alberto Morillas",
-    "image": "images/perfume-1795137372369-oh8oa-1795137372402.png"
+    "image": "images/perfume-1795137372369-oh8oa-1795137372402.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Toilette",
+    "families": [
+      "Cítricas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795137516555-0vav5",
