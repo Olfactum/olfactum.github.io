@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "lanzamiento-1795475826021-9czp5",
+    "name": "One Million Black",
+    "brand": "Rabanne",
+    "status": "Preventa",
+    "price": "$2450",
+    "arrival": "Diciembre 2026",
+    "deposit": "50% de anticipo",
+    "description": "Notas: 🍍 Piña · 🌶️ Cardamomo · 🍊 Naranja sanguina · 🔥 Piña asada · 🍦 Vainilla · 🍦 Vainilla de Madagascar · 🍦 Vainilla Bourbon · 🥥 Coco · 🌿 Esclarea · 🍮 Haba tonka · 🪵 Madera de ébano · 🍃 Pachulí",
+    "image": "images/lanzamiento-1795475826021-9czp5-1795475826050.png",
+    "published": true
+  }
+]
