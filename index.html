@@ -182,6 +182,27 @@
     .product .notes-details summary{cursor:pointer;font-weight:750;list-style:revert}
     .product .notes-details p{margin:8px 0 0;white-space:pre-line;max-height:220px;overflow:auto;display:block}
 .catalog-highlights{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px;align-items:center}.highlight-toggle{border:1px solid #c8cbbf;background:white;color:#234030;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:750}.highlight-toggle.active{background:#254333;border-color:#254333;color:white}.product-featured{position:absolute;z-index:3;left:14px;bottom:12px;background:#254333;color:#fff;font-size:10px;font-weight:750;letter-spacing:.06em;padding:6px 10px;border-radius:25px}.product-promotion{font-size:12px;font-weight:750;color:#8a602f;margin:6px 0 10px;border-left:3px solid #c89b5c;padding:6px 10px;background:#f9f2e6;border-radius:0 7px 7px 0}.product-promotion span{font-weight:500;display:block;margin-top:2px;color:#695943}
+
+    /* Asesor de fragancias: recomendaciones basadas solo en productos.json */
+    .finder{background:#f0eee7;padding:60px 0}
+    .finder-shell{background:#fff;border:1px solid #e0d9cb;border-radius:24px;padding:clamp(20px,4vw,42px);box-shadow:0 12px 30px #26382b0d}
+    .finder h2{font-size:clamp(36px,5vw,55px);margin:9px 0 14px}
+    .finder-intro{color:#626c63;font-size:14px;max-width:720px}
+    .finder-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:25px;align-items:end}
+    .finder-field{display:grid;gap:7px;font-size:12px;font-weight:750;color:#2c4432}
+    .finder-field select{width:100%;min-width:0;border:1px solid #d7d6ce;border-radius:12px;background:#faf9f6;color:#293b2e;padding:13px 11px;font-size:13px}
+    .finder-submit{min-height:46px;width:100%}
+    .finder-results{margin-top:22px}
+    .finder-result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .finder-result{display:flex;align-items:center;gap:12px;border:1px solid #e1dfd5;border-radius:15px;padding:12px;background:#faf9f5;min-width:0}
+    .finder-result img{width:68px;height:85px;object-fit:contain;background:#f2f0e9;border-radius:9px;flex-shrink:0}
+    .finder-result-body{min-width:0;flex:1}
+    .finder-result strong{font-size:13px;display:block;line-height:1.3}
+    .finder-result small{font-size:11px;color:#667468;display:block}
+    .finder-result button{border:1px solid #284332;border-radius:18px;background:#fff;padding:6px 10px;font-size:11px;font-weight:700;color:#264231;margin-top:7px}
+    .finder-placeholder{width:68px;height:85px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;background:#ede9de;font-family:Georgia,serif;font-size:26px;color:#4d6753}
+    @media(max-width:920px){.finder-form{grid-template-columns:repeat(2,minmax(0,1fr))}.finder-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:590px){.finder-form,.finder-result-grid{grid-template-columns:1fr}.finder{padding:40px 0}}
     .quantity-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
     .quantity-controls button{border:1px solid #cbd1c7;background:#fff;color:#193025;border-radius:50%;width:30px;height:30px;font-weight:700;font-size:18px}
     .quantity-controls output{min-width:24px;text-align:center;font-weight:800}
@@ -428,6 +449,56 @@
       </div>
     </section>
 
+
+    <section class="finder" id="asesor">
+      <div class="container">
+        <div class="finder-shell">
+          <div class="eyebrow" style="color:#957144">TU ASESOR DE FRAGANCIAS</div>
+          <h2>Encuentra un aroma para ti.</h2>
+          <p class="finder-intro">Dinos qué notas te gustan y cuánto quieres gastar. Te mostraremos hasta seis opciones del catálogo de Olfactum, según la información de cada perfume. No se realizan compras ni reservas en este formulario.</p>
+          <form class="finder-form" id="finder-form">
+            <label class="finder-field">Notas favoritas
+              <select id="finder-family" required>
+                <option value="Cítricas">🍋 Cítricas</option>
+                <option value="Florales">🌸 Florales</option>
+                <option value="Amaderadas">🌲 Amaderadas</option>
+                <option value="Dulces">🍦 Dulces</option>
+                <option value="Especiadas">🌶️ Especiadas</option>
+                <option value="Frutales">🍑 Frutales</option>
+              </select>
+            </label>
+            <label class="finder-field">¿Para quién?
+              <select id="finder-gender">
+                <option value="Todas">Cualquiera</option>
+                <option value="Masculino">Masculino o unisex</option>
+                <option value="Femenino">Femenino o unisex</option>
+                <option value="Unisex">Unisex</option>
+              </select>
+            </label>
+            <label class="finder-field">Presentación
+              <select id="finder-format">
+                <option value="decant5">Decant de 5 ml</option>
+                <option value="decant10">Decant de 10 ml</option>
+                <option value="bottle">Botella completa</option>
+              </select>
+            </label>
+            <label class="finder-field">Presupuesto
+              <select id="finder-budget">
+                <option value="all">Sin límite</option>
+                <option value="200">Hasta $200 MXN</option>
+                <option value="500">Hasta $500 MXN</option>
+                <option value="1000">Hasta $1,000 MXN</option>
+                <option value="1500">Hasta $1,500 MXN</option>
+                <option value="2500">Hasta $2,500 MXN</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-dark finder-submit" style="grid-column:1/-1">Ver mis recomendaciones ✨</button>
+          </form>
+          <div class="finder-results" id="finder-results" aria-live="polite"></div>
+          <p class="hint" style="font-size:11px;color:#6b756b;margin-top:12px">Sugerencias orientativas basadas en notas y datos del catálogo. Los precios y la disponibilidad se confirman por WhatsApp.</p>
+        </div>
+      </div>
+    </section>
     <section class="catalog" id="catalogo">
       <div class="container">
         <div class="section-head">
@@ -711,7 +782,7 @@
         const safeKey=escapeHtml(favKey);
         const options=variants.map(v=>`<button type="button" class="variant-chip ${v.key===selected?.key?'selected':''}" data-choose="${product.index}" data-option="${escapeHtml(v.key)}" aria-pressed="${v.key===selected?.key}"><strong>${escapeHtml(v.label.replace('Decant de ','').replace('Botella completa','Botella'))}</strong><span>${escapeHtml(v.price)}</span></button>`).join('');
         return `
-        <article class="product" data-tone="${escapeHtml(product.tone||'clear')}">
+        <article class="product" id="perfume-${product.index}" data-tone="${escapeHtml(product.tone||'clear')}">
           <div class="product-media">
             <div class="product-tag">${escapeHtml(product.concentration||product.status||'OLFACTUM')}</div>
             ${product.featured===true?'<div class="product-featured">⭐ DESTACADO</div>':''}
@@ -828,6 +899,56 @@
       document.querySelectorAll('.filter').forEach(b=>{const yes=b.dataset.filter==='Todos';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))});
       renderProducts();
     });
+
+    function matchFamilyForFinder(product,family){
+      if(Array.isArray(product.families)&&product.families.length) return product.families.includes(family);
+      const description=normalized(product.desc);
+      return (noteTerms[family]||[]).some(term=>description.includes(term));
+    }
+    function renderFinder(event){
+      if(event)event.preventDefault();
+      const target=$('finder-results');
+      if(!products.length){target.textContent='El catálogo todavía no está listo. Intenta nuevamente cuando terminen de cargar los productos.';return}
+      const family=$('finder-family').value;
+      const gender=$('finder-gender').value;
+      const format=$('finder-format').value;
+      const budget=$('finder-budget').value;
+      const candidates=products.map((product,index)=>({product,index}))
+        .filter(({product})=>{
+          if(product.category==='Decants'||product.status==='Agotado')return false;
+          if(!matchFamilyForFinder(product,family))return false;
+          if(gender!=='Todas' && product.gender!==gender && !(gender!=='Unisex'&&product.gender==='Unisex'))return false;
+          const selected=getVariants(product).find(v=>v.key===format);
+          if(!selected)return false;
+          const amount=getAmount(selected.price);
+          return budget==='all'||(amount!==null&&amount<=Number(budget));
+        })
+        .sort((a,b)=>Number(b.product.featured===true)-Number(a.product.featured===true)||a.product.name.localeCompare(b.product.name,'es'))
+        .slice(0,6);
+      if(!candidates.length){
+        target.innerHTML='<p class="muted">No encontramos coincidencias con esos criterios y precios. Prueba otro presupuesto o presentación, o solicita una recomendación por WhatsApp.</p>';
+        return;
+      }
+      const validImage=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp|gif)$/;
+      target.innerHTML='<strong>Opciones que coinciden con tus gustos:</strong><div class="finder-result-grid">'+candidates.map(({product,index})=>{
+        const selection=getVariants(product).find(v=>v.key===format);
+        const photo=validImage.test(product.image||'')?'<img loading="lazy" src="'+escapeHtml(product.image)+'" alt="'+escapeHtml(product.name)+'">':'<div class="finder-placeholder" aria-hidden="true">O</div>';
+        return '<div class="finder-result">'+photo+'<div class="finder-result-body"><strong>'+escapeHtml(product.name)+'</strong><small>'+escapeHtml(product.brand||'Olfactum')+'</small><small>'+escapeHtml(selection.price)+'</small><button type="button" data-finder-view="'+index+'">Ver perfume →</button></div></div>';
+      }).join('')+'</div>';
+    }
+    $('finder-form').addEventListener('submit',renderFinder);
+    $('finder-results').addEventListener('click',event=>{
+      const button=event.target.closest('[data-finder-view]');
+      if(!button)return;
+      const product=products[Number(button.dataset.finderView)];
+      if(!product)return;
+      $('reset-filters').click();
+      $('search').value=product.name;
+      renderProducts();
+      const card=$('perfume-'+button.dataset.finderView);
+      if(card)card.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
     $('search').addEventListener('input', renderProducts);
     $('product-sort').addEventListener('change',renderProducts);
     document.querySelectorAll('[data-collection]').forEach(button=>button.addEventListener('click',()=>{
