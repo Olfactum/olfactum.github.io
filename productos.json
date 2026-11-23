@@ -1393,5 +1393,32 @@
     },
     "desc": "Notas: 🍬 Frutas confitadas · 🍊 Naranja amarga · 🍋 Limón · 🫧 Goma de mascar · 🌹 Rosa de Bulgaria · 🍑 Durazno · 🫐 Moras azules · 🌸 Flor de duraznero · 🍂 Canela · 🫚 Jengibre · ☁️ Almizcle · ✨ Ambroxan · 🌲 Cedro",
     "image": "images/perfume-1795404191171-1tsht-1795404191200.png"
+  },
+  {
+    "id": "perfume-1795404345476-sf9f3",
+    "name": "Toy 2 Pearl",
+    "brand": "Moschino",
+    "category": "Diseñador",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$150"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$300"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍋 Limón · 🍧 Sorbete · 🌿 Orégano · 🏖️ Arena · 🌸 Fresia · 🌼 Jazmín · ☁️ Almizcle · 🌲 Ciprés · 🍃 Vetiver",
+    "image": "images/perfume-1795404345476-sf9f3-1795404345511.png"
   }
 ]
