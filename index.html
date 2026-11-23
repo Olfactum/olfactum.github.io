@@ -468,6 +468,20 @@
 .olfactum-hero-actions .btn-outline{color:#f7e6c2;border-color:#d1ae74}
 @media(max-width:640px){.olfactum-hero-actions{gap:9px;padding:12px 12px 18px}.olfactum-hero-actions .btn{padding:11px 13px;font-size:12px;flex:1;justify-content:center;text-align:center;min-width:145px}}
 
+
+    /* Novedades administradas desde novedades.json */
+    .news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .news-card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#f7f5ee;border:1px solid #e6ddc9;border-radius:15px;padding:12px;cursor:pointer;color:#26392d;min-width:0;transition:transform .2s,box-shadow .2s}
+    .news-card:hover,.news-card:focus-visible{transform:translateY(-2px);box-shadow:0 6px 16px #12271b20}
+    .news-card img{width:90px;height:114px;object-fit:contain;mix-blend-mode:multiply;flex-shrink:0}
+    .news-card-body{min-width:0}
+    .news-card-body strong{display:block;font-size:17px;line-height:1.18;margin-bottom:5px}
+    .news-card-body small{display:block;font-size:11px;color:#777c70;margin-bottom:5px}
+    .news-card-body .news-badge{color:#8b6534;font-size:11px;font-weight:800}
+    .news-card-body em{font-style:normal;font-size:11px;color:#4a6a51;display:block;margin-top:8px}
+    .news-grid .muted{grid-column:1/-1}
+    @media(max-width:560px){.news-grid{grid-template-columns:1fr}.news-card img{height:100px}}
+
 </style>
 </head>
 <body>
@@ -534,21 +548,16 @@
     <section id="novedades">
       <div class="container highlights">
         <article class="promo-card">
-          <div class="eyebrow">Novedades y preventas</div>
-          <h2>Selección destacada de Olfactum.</h2>
-          <p>Explora fragancias seleccionadas y encuentra tu próximo aroma. Una colección curada para descubrir algo diferente.</p>
-          <div class="promo-grid">
-            <div class="promo-item"><strong>Club de Nuit Elite</strong><p>Wild Vetiver · Preventa especial.</p></div>
-            <div class="promo-item"><strong>Jean Lowe Summer Vibes</strong><p>Fresco, moderno y perfecto para clima cálido.</p></div>
-            <div class="promo-item"><strong>Valentino Born in Roma</strong><p>Purple Melancholia · versiones para él y para ella.</p></div>
-            <div class="promo-item"><strong>Freeze Riiffs</strong><p>Una novedad ideal para quienes buscan frescura.</p></div>
-          </div>
+          <div class="eyebrow" id="news-eyebrow">NOVEDADES Y PREVENTAS</div>
+          <h2 id="news-title">Lo nuevo merece descubrirse.</h2>
+          <p id="news-description">Fragancias seleccionadas de nuestro catálogo. Consulta disponibilidad, precios y próximas llegadas por WhatsApp.</p>
+          <div class="promo-grid news-grid" id="news-grid" aria-live="polite"><p class="muted">Cargando novedades...</p></div>
         </article>
         <aside class="service-card">
           <div class="eyebrow">Servicio Olfactum</div>
           <h2>Compra fácil y rápida.</h2>
           <ul>
-            <li>Consulta disponibilidad en tiempo real por WhatsApp.</li>
+            <li>Consulta disponibilidad por WhatsApp.</li>
             <li>Aparta con 50% o con $200, según el producto.</li>
             <li>Pagos a meses con comisión disponible en compras aplicables.</li>
             <li>Envíos por DHL con costo por confirmar según destino.</li>
@@ -924,6 +933,7 @@
         products = data;
         renderProducts();
         renderComboBuilder();
+        renderNews();
       } catch(error) {
         $('products').innerHTML = '<p class="empty">Estamos actualizando el catálogo. Escríbenos por WhatsApp para conocer las opciones disponibles.</p>';
         console.error(error);
@@ -1103,6 +1113,41 @@
         if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
         else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
       }
+    });
+
+
+    const defaultNews={eyebrow:'NOVEDADES Y PREVENTAS',title:'Lo nuevo merece descubrirse.',description:'Fragancias seleccionadas de nuestro catálogo. Consulta disponibilidad, precios y próximas llegadas por WhatsApp.',productIds:[]};
+    let newsConfig={...defaultNews};
+    async function loadNews(){
+      try{
+        const response=await fetch('novedades.json',{cache:'no-store'});
+        if(!response.ok)throw new Error('Configuración de novedades no disponible');
+        const data=await response.json();
+        if(!data||typeof data!=='object'||!Array.isArray(data.productIds))throw new Error('Configuración de novedades inválida');
+        newsConfig={
+          eyebrow:typeof data.eyebrow==='string'?data.eyebrow:defaultNews.eyebrow,
+          title:typeof data.title==='string'?data.title:defaultNews.title,
+          description:typeof data.description==='string'?data.description:defaultNews.description,
+          productIds:data.productIds.filter(id=>typeof id==='string').slice(0,4)
+        };
+      }catch(error){console.warn('No se pudo cargar novedades.json',error)}
+      renderNews();
+    }
+    function renderNews(){
+      $('news-eyebrow').textContent=newsConfig.eyebrow||defaultNews.eyebrow;
+      $('news-title').textContent=newsConfig.title||defaultNews.title;
+      $('news-description').textContent=newsConfig.description||defaultNews.description;
+      const selected=[...new Set(newsConfig.productIds)].map(id=>({index:products.findIndex(p=>String(p.id)===id)})).filter(x=>x.index>=0).map(x=>({...x,product:products[x.index]}));
+      const valid=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp|gif)$/;
+      $('news-grid').innerHTML=selected.length?selected.map(({index,product})=>{
+        const photo=valid.test(product.image||'')?'<img loading="lazy" src="'+escapeHtml(product.image)+'" alt="'+escapeHtml(product.name)+'">':'';
+        const tag=product.status==='Preventa'?'Preventa':product.status==='Agotado'?'Agotado':product.promotion?.enabled&&product.promotion.label?product.promotion.label:'Selección Olfactum';
+        return '<button class="news-card" type="button" data-news-product="'+index+'" aria-label="Ver '+escapeHtml(product.name)+'">'+photo+'<span class="news-card-body"><strong>'+escapeHtml(product.name)+'</strong><small>'+escapeHtml(product.brand||'Olfactum')+'</small><span class="news-badge">'+escapeHtml(tag)+'</span><em>Conocer fragancia ↗</em></span></button>';
+      }).join(''):'<p class="muted">Pronto tendremos nuevas fragancias destacadas. Explora nuestro catálogo mientras tanto.</p>';
+    }
+    $('news-grid').addEventListener('click',event=>{
+      const button=event.target.closest('[data-news-product]');
+      if(button)openProductDetails(Number(button.dataset.newsProduct));
     });
 
     function renderProducts(){
@@ -1534,6 +1579,7 @@
     $('year').textContent = new Date().getFullYear();
     renderCart();
     loadProducts();
+    loadNews();
   </script>
 </body>
 </html>
