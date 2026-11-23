@@ -1953,7 +1953,17 @@
       }
     },
     "desc": "Notas: 🍬 Frutas confitadas · 🍊 Naranja amarga · 🍋 Limón · 🫧 Goma de mascar · 🌹 Rosa de Bulgaria · 🍑 Durazno · 🫐 Moras azules · 🌸 Flor de duraznero · 🍂 Canela · 🫚 Jengibre · ☁️ Almizcle · ✨ Ambroxan · 🌲 Cedro",
-    "image": "images/perfume-1795404191171-1tsht-1795404191200.png"
+    "image": "images/perfume-1795404191171-1tsht-1795404191200.png",
+    "families": [
+      "Frutales",
+      "Gourmand"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795404345476-sf9f3",
