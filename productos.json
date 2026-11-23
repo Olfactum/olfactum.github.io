@@ -988,7 +988,18 @@
       }
     },
     "desc": "Notas: 🍋 Limón · 🍈 Lima · 🍊 Toronja · 🍊 Naranja sanguina · 🍋 Bergamota de Sicilia · 🍊 Mandarina · 🌸 Pimienta rosa · 🤍 Ámbar blanco · 🫐 Grosellas negras · ☁️ Almizcle · 🌿 Musgo de roble · 🍃 Pachulí",
-    "image": "images/perfume-1795148299069-xa4la-1795148299108.png"
+    "image": "images/perfume-1795148299069-xa4la-1795148299108.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795149811681-8c5ft",
