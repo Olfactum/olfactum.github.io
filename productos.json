@@ -2561,7 +2561,18 @@
       }
     },
     "desc": "Notas: 🍋 Bergamota · 🌼 Flor de azahar · ✨ Ambrofix™ · 🍃 Pachulí · ☁️ Almizcle blanco",
-    "image": "images/perfume-1795407509844-82t14-1795407509875.png"
+    "image": "images/perfume-1795407509844-82t14-1795407509875.png",
+    "families": [
+      "Cítricas",
+      "Florales",
+      "Amaderadas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795407846389-0z8xz",
