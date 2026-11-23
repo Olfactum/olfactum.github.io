@@ -2433,7 +2433,17 @@
       }
     },
     "desc": "Notas: 🍊 Naranja sanguina · 🍊 Mandarina roja · 🍈 Lima · 🍋 Limón · 🍋 Bergamota · 🌺 Flor de tiaré · 🪵 Sándalo · ☁️ Notas atalcadas · 🤍 Almizcle",
-    "image": "images/perfume-1795406630949-61un8-1795406630987.png"
+    "image": "images/perfume-1795406630949-61un8-1795406630987.png",
+    "families": [
+      "Cítricas",
+      "Florales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795406870294-vzoez",
