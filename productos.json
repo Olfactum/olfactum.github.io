@@ -1258,5 +1258,32 @@
     },
     "desc": "Notas: 🍋 Limón siciliano · 🍏 Manzana · 🌲 Cedro · 🔔 Campanilla · 🎋 Bambú · 🌼 Jazmín · 🤍 Rosa blanca · ☁️ Almizcle · 🔶 Ámbar",
     "image": "images/perfume-1795196369379-61mgm-1795400766783.png"
+  },
+  {
+    "id": "perfume-1795400931481-te3y2",
+    "name": "Mawj Moscow Mule",
+    "brand": "Paris Corner",
+    "category": "Árabes",
+    "gender": "",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🫚 Jengibre · 🍋 Limón · 🍋 Bergamota · 🌿 Menta · 🌲 Ciprés · 🍃 Musgo",
+    "image": "images/perfume-1795400931481-te3y2-1795400931523.png"
   }
 ]
