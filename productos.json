@@ -1392,7 +1392,19 @@
       }
     },
     "desc": "Notas: 🍊 Mandarina · 🌶️ Pimienta de Madagascar · 🍋 Limón · 🍊 Chinotto · 🌿 Romero · 🌺 Geranio · 🌹 Rosa · 🪵 Pepperwood™ · 🍦 Vainilla · 🍮 Haba tonka · 🪵 Sándalo · 🌲 Cedro de Texas · 🍃 Pachulí · 🌿 Musgo de roble",
-    "image": "images/perfume-1795151711940-6pn5c-1795151711979.png"
+    "image": "images/perfume-1795151711940-6pn5c-1795151711979.png",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Especiadas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795151890086-qgvk4",
