@@ -586,6 +586,7 @@
 @media(max-width:930px){.olf-gifts-options{grid-template-columns:1fr 1fr}.olf-gifts-forms{grid-template-columns:1fr}}
 @media(max-width:600px){.olf-gifts{padding:52px 0}.olf-gifts-options{grid-template-columns:1fr;gap:12px}.olf-gifts-options article{padding:23px}.olf-gifts-formcard{padding:22px 17px;border-radius:17px}.olf-gift-pair{grid-template-columns:1fr}.olf-gift-form input,.olf-gift-form textarea,.olf-gift-form select{font-size:16px}}
 
+.ps-section{padding:75px 0;background:#192f24;color:#f8f4e9;scroll-margin-top:85px}.ps-heading{max-width:760px;margin-bottom:28px}.ps-heading .eyebrow{color:#d4ad70}.ps-heading h2{font-size:clamp(40px,6vw,69px);color:#f8f4e9;line-height:1.05;margin:12px 0}.ps-heading p{color:#d0d8cb;font-size:14px}.ps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.ps-card{border-radius:20px;overflow:hidden;background:#faf8f2;color:#22392b;display:flex;flex-direction:column}.ps-image{height:240px;background:#ede8dd;display:grid;place-items:center;padding:18px}.ps-image img{width:100%;height:100%;object-fit:contain}.ps-image span{font-size:64px;color:#bd9b6d}.ps-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}.ps-body h3{font-size:27px;margin:0;line-height:1.1}.ps-body p{font-size:12px;color:#5c6d60;margin:0;line-height:1.65;overflow-wrap:anywhere}.ps-status{font-size:10px;color:#9d7644;font-weight:800;letter-spacing:.12em}.ps-body button{margin-top:auto;background:#1b382a;color:white;border:0;border-radius:12px;padding:13px;min-height:45px;font-size:12px;font-weight:800}.ps-disclaimer{color:#ccd5ca;font-size:11px;margin-top:20px}.ps-empty{grid-column:1/-1;border:1px dashed #819283;border-radius:15px;padding:25px;text-align:center;color:#e8e8de}@media(max-width:900px){.ps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.ps-section{padding:52px 0}.ps-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -604,6 +605,7 @@
       <nav class="nav-links" id="main-navigation" aria-label="Navegación principal">
         <a href="#catalogo">Catálogo</a>
         <a href="#novedades">Novedades</a>
+        <a href="#preventas">Preventas y Lanzamientos</a>
         <a href="#decants">Decants</a>
         <a href="#combos">Arma tu combo</a>
         <a href="#mystery">Mystery Boxes</a>
@@ -675,6 +677,7 @@
     </section>
 
 
+<section class="ps-section" id="preventas"><div class="container"><div class="ps-heading"><div class="eyebrow">OLFACTUM · PRÓXIMAS FRAGANCIAS</div><h2>Preventas &amp; Lanzamientos</h2><p>Descubre las fragancias que están por llegar, y pregunta por las opciones de apartado sin esperar a que aparezcan en el catálogo habitual.</p></div><div class="ps-grid" id="presale-grid" aria-live="polite"><p>Próximamente publicaremos nuestros lanzamientos.</p></div><p class="ps-disclaimer">Precio, fecha, disponibilidad y condiciones de apartado sujetos a confirmación por WhatsApp. Enviar una consulta no representa un pago ni una reserva confirmada.</p></div></section>
     <section class="finder" id="asesor">
       <div class="container">
         <div class="finder-shell">
@@ -1333,6 +1336,30 @@
       }
     }
 
+
+let presaleItems=[];
+async function loadPresales(){
+  const grid=$('presale-grid');
+  try{
+    const response=await fetch('preventas.json',{cache:'no-store'});
+    if(!response.ok)throw Error('No se pudo leer preventas.json');
+    const items=await response.json();
+    if(!Array.isArray(items))throw Error('Formato inválido');
+    presaleItems=items.filter(p=>p&&p.published===true&&p.name&&p.brand).slice(0,30);
+    const validImage=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/;
+    grid.innerHTML=presaleItems.length?presaleItems.map(p=>{
+      const image=validImage.test(p.image||'')?'<img loading="lazy" src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name)+'">':'<span aria-hidden="true">✧</span>';
+      const state=['Preventa','Próximo lanzamiento','Disponible para apartado'].includes(p.status)?p.status:'Preventa';
+      return '<article class="ps-card"><div class="ps-image">'+image+'</div><div class="ps-body"><span class="ps-status">'+escapeHtml(state.toUpperCase())+'</span><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.brand)+'</p>'+(p.description?'<p>'+escapeHtml(p.description)+'</p>':'')+(p.price?'<p>Precio de referencia: '+escapeHtml(p.price)+'</p>':'')+(p.arrival?'<p>Llegada estimada: '+escapeHtml(p.arrival)+'</p>':'')+(p.deposit?'<p>Apartado: '+escapeHtml(p.deposit)+'</p>':'')+'<button type="button" data-presale="'+escapeHtml(p.id)+'">Consultar y apartar por WhatsApp ↗</button></div></article>';
+    }).join(''):'<p class="ps-empty">Muy pronto publicaremos nuevos lanzamientos y preventas.</p>';
+  }catch(e){presaleItems=[];grid.innerHTML='<p class="ps-empty">Próximamente compartiremos lanzamientos.</p>';console.warn(e)}
+}
+$('presale-grid').addEventListener('click',event=>{
+  const btn=event.target.closest('[data-presale]');
+  const p=btn&&presaleItems.find(item=>item.id===btn.dataset.presale);
+  if(!p)return;
+  sendWhatsApp(['Hola, Olfactum. Me interesa esta preventa o apartado.','','Perfume: '+p.name,'Marca: '+p.brand,'Estado: '+p.status,...(p.price?['Precio publicado: '+p.price]:[]),...(p.arrival?['Llegada estimada: '+p.arrival]:[]),...(p.deposit?['Apartado anunciado: '+p.deposit]:[]),'','¿Podrían confirmarme disponibilidad, precio y condiciones para apartarlo?'].join('\n'));
+});
     function renderProducts(){
       const term = $('search').value.trim().toLocaleLowerCase('es');
       let filtered = products
@@ -1806,6 +1833,7 @@ $('gift-company-form').addEventListener('submit',event=>{
     renderCart();
     loadProducts();
     loadNews();
+    loadPresales();
     loadTestimonials();
   </script>
 </body>
