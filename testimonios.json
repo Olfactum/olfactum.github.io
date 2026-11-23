@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "testimonio-1795471156036-5ttp8",
+    "name": "Martin R",
+    "detail": "",
+    "quote": "Todo llego bien y en el tiempo acordado!",
+    "image": "images/testimonio-1795471156036-5ttp8-1795471156063.jpg",
+    "imageAlt": "Decants - Combo Hawas",
+    "approved": true,
+    "published": true
+  }
+]
