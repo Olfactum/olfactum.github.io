@@ -1842,7 +1842,18 @@
       }
     },
     "desc": "Notas: 🍋 Ralladura de limón · 🍋 Bergamota · 🌿 Menta · 🍃 Abrótano · 💜 Lavanda · 🌺 Geranio · 🍍 Piña · 🪵 Sándalo",
-    "image": "images/perfume-1795403807769-jm2jr-1795403807794.png"
+    "image": "images/perfume-1795403807769-jm2jr-1795403807794.png",
+    "families": [
+      "Cítricas",
+      "Amaderadas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795403926072-o5uok",
