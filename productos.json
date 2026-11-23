@@ -2741,5 +2741,42 @@
       "label": "",
       "details": ""
     }
+  },
+  {
+    "id": "perfume-1795462387623-6l04j",
+    "name": "9 PM",
+    "brand": "Afnan",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "",
+    "image": "",
+    "families": [
+      "Dulces",
+      "Frutales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   }
 ]
