@@ -2507,7 +2507,16 @@
       }
     },
     "desc": "Notas: 🍊 Toronja rosada · 🍋 Bergamota de Sicilia · 🍃 Hojas de grosellero rojo · 🌵 Cactus · 🌺 Orquídea · 🍦 Vainilla · 🌲 Cedro rojo · 🔶 Ámbar",
-    "image": "images/perfume-1795407074272-pfoft-1795407074299.png"
+    "image": "images/perfume-1795407074272-pfoft-1795407074299.png",
+    "families": [
+      "Cítricas"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   },
   {
     "id": "perfume-1795407246258-or3e1",
