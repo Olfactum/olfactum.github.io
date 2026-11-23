@@ -719,7 +719,7 @@
           <span>${escapeHtml(item.brand)} · ${escapeHtml(item.variantLabel)} · ${escapeHtml(item.price)} c/u</span>
           <div class="quantity-controls"><button type="button" data-qty="${index}" data-delta="-1" aria-label="Disminuir cantidad">−</button><output>${item.qty}</output><button type="button" data-qty="${index}" data-delta="1" aria-label="Aumentar cantidad">+</button></div></div>
           <button type="button" data-remove="${index}">Quitar</button>
-        </div>`.replace(/\\`/g,'`').replace(/\\$/g,'$')).join(''):'<p class="muted">Tu lista está vacía. Agrega perfumes o decants para consultar por WhatsApp.</p>';
+        </div>`).join(''):'<p class="muted">Tu lista está vacía. Agrega perfumes o decants para consultar por WhatsApp.</p>';
       const known=cart.reduce((sum,item)=>sum+(getAmount(item.price)??0)*item.qty,0);
       const unknown=cart.some(item=>getAmount(item.price)===null);
       $('cart-subtotal').textContent='Subtotal: '+money(known)+(unknown?' + precios por confirmar':'');
