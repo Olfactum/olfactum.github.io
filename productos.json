@@ -106,6 +106,18 @@
         "enabled": false,
         "price": "Consultar precio"
       }
+    },
+    "gender": "Unisex",
+    "concentration": "Eau de Parfum",
+    "families": [
+      "Cítricas",
+      "Frutales"
+    ],
+    "featured": true,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
     }
   },
   {
