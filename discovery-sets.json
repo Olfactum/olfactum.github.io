@@ -27,6 +27,22 @@
       ],
       "published": true,
       "image": ""
+    },
+    {
+      "id": "set-1795540914190-pucao",
+      "name": "Discovery Set JPG",
+      "description": "",
+      "format": "decant5",
+      "price": 650,
+      "productIds": [
+        "perfume-1795145194493-md096",
+        "perfume-1795145489760-2ebbp",
+        "perfume-1795145375301-5qx6x",
+        "perfume-1795145664438-ghafn",
+        "perfume-1795150584753-qb1s8"
+      ],
+      "published": true,
+      "image": ""
     }
   ]
 }
