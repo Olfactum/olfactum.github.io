@@ -491,8 +491,10 @@
 .trust-kicker{color:#a27a47;font-size:11px;letter-spacing:.18em;font-weight:800}
 .trust-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
 .trust-item{border:1px solid #e3ded0;border-radius:20px;overflow:hidden;background:white;min-width:0;box-shadow:0 10px 28px #1a32200c}
-.trust-photo{height:205px;background:#f1efe9;display:grid;place-items:center;overflow:hidden}
-.trust-photo img{width:100%;height:100%;object-fit:contain}
+.trust-photo{height:auto;min-height:0;background:#f1efe9;display:block;overflow:visible;padding:12px;text-align:center}
+.trust-photo img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;border-radius:9px}
+.trust-photo:focus-visible{outline:3px solid #ad9065;outline-offset:-3px}
+.trust-photo-hint{display:block;margin-top:8px;font-size:11px;font-weight:700;color:#617568}
 .trust-text{padding:22px}
 .trust-text .quote-mark{font-family:Georgia,serif;font-size:38px;line-height:20px;color:#bd9b61;display:block;margin-bottom:8px}
 .trust-text p{font-size:13px;line-height:1.75;color:#465848;white-space:pre-line;margin:0 0 15px;overflow-wrap:anywhere}
@@ -504,7 +506,7 @@
 .trust-point strong{display:block;color:#23432f;font-size:14px;margin-bottom:6px}
 .trust-point p{font-size:12px;color:#66736b;line-height:1.7;margin:0}
 @media(max-width:830px){.trust-items{grid-template-columns:repeat(2,minmax(0,1fr))}.trust-points{grid-template-columns:1fr}}
-@media(max-width:550px){.trust-items{grid-template-columns:1fr}.trust-photo{height:245px}.trust-section{padding:48px 0}}
+@media(max-width:550px){.trust-items{grid-template-columns:1fr}.trust-photo{height:auto;min-height:0}.trust-section{padding:48px 0}}
 
 
 /* OLFACTUM · Experiencia de compra móvil: navegación compacta y pedido siempre accesible */
@@ -1362,7 +1364,7 @@
         const validImage=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/;
         const published=items.filter(item=>item&&item.published===true&&item.approved===true&&typeof item.quote==='string'&&item.quote.trim()&&typeof item.name==='string'&&item.name.trim()).slice(0,12);
         grid.innerHTML=published.length?published.map(item=>{
-          const image=validImage.test(item.image||'')?'<div class="trust-photo"><img loading="lazy" src="'+escapeHtml(item.image)+'" alt="'+escapeHtml(item.imageAlt||'Fotografía compartida por cliente de Olfactum')+'"></div>':'';
+          const image=validImage.test(item.image||'')?'<a class="trust-photo" href="'+escapeHtml(item.image)+'" target="_blank" rel="noopener noreferrer" aria-label="Ver fotografía completa del testimonio de '+escapeHtml(item.name)+'"><img loading="lazy" src="'+escapeHtml(item.image)+'" alt="'+escapeHtml(item.imageAlt||'Fotografía compartida por cliente de Olfactum')+'"><span class="trust-photo-hint">Ver fotografía completa ↗</span></a>':'';
           return '<article class="trust-item">'+image+'<div class="trust-text"><span class="quote-mark" aria-hidden="true">“</span><p>'+escapeHtml(item.quote)+'</p><strong>'+escapeHtml(item.name)+'</strong>'+(item.detail?'<small>'+escapeHtml(item.detail)+'</small>':'')+'</div></article>';
         }).join(''):'<div class="trust-empty">Próximamente compartiremos experiencias reales de nuestros clientes.</div>';
       }catch(error){
