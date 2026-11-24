@@ -11,5 +11,22 @@
       "5": 10
     }
   },
-  "fixedSets": []
+  "fixedSets": [
+    {
+      "id": "set-1795538343065-k0t4x",
+      "name": "Discovery Set Odyssey",
+      "description": "",
+      "format": "decant5",
+      "price": 400,
+      "productIds": [
+        "perfume-1795147107537-ptzqc",
+        "perfume-1795147255538-ors93",
+        "perfume-1795129593354-i665l",
+        "perfume-1795138075899-ggorh",
+        "perfume-1795481077668-zimqe"
+      ],
+      "published": true,
+      "image": ""
+    }
+  ]
 }
