@@ -1599,28 +1599,23 @@ $('presale-grid').addEventListener('click',event=>{
       updateComboSummary();
     }
     function updateComboSummary(){
-      const chosen=[];
-      let amount=0,unknown=false;
+      const chosen=[];let amount=0,unknown=false;
       for(let i=0;i<comboSelections.length;i++){
-        const id=comboSelections[i];
-        const product=products.find((p,index)=>String(p.id||index)===id);
-        const variant=product?getVariants(product).find(v=>v.key===comboFormat):null;
+        const id=comboSelections[i],product=products.find((p,index)=>String(p.id||index)===id),variant=product?getVariants(product).find(v=>v.key===comboFormat):null;
         const value=variant?getAmount(variant.price):null;
-        const slot=$('combo-price-'+i);
-        if(slot)slot.textContent=variant?.price||'';
-        if(product&&variant){
-          chosen.push({product,variant,id});
-          if(value===null)unknown=true;else amount+=value;
-        }
+        const slot=$('combo-price-'+i);if(slot)slot.textContent=variant?.price||'';
+        if(product&&variant){chosen.push({product,variant,id});if(value===null)unknown=true;else amount+=value}
       }
-      const complete=chosen.length===comboSelections.length;
-      const unique=new Set(chosen.map(x=>x.id)).size===chosen.length;
+      const complete=chosen.length===comboSelections.length,unique=new Set(chosen.map(x=>x.id)).size===chosen.length;
       const error=!complete?'Selecciona todas las fragancias.':!unique?'Cada fragancia debe ser diferente.':'';
-      $('combo-warning').textContent=error||(unknown?'Una o más presentaciones requieren cotización.':'');
+      const percent=discoveryDiscount(comboFormat,comboSelections.length);
+      const discount=!unknown&&!error?Math.round(amount*percent)/100:0;
+      const final=amount-discount;
+      $('combo-warning').textContent=error||(unknown?'Hay precios pendientes de cotizar: no se aplican descuentos hasta tener el total.':'');
       $('combo-add-cart').disabled=!!error||!products.length;
       $('combo-summary').innerHTML=chosen.length?chosen.map(({product,variant})=>'<li>'+escapeHtml(product.name+' — '+variant.label)+'</li>').join(''):'<li>Selecciona tus fragancias.</li>';
-      $('combo-total').textContent='Subtotal: '+money(amount)+(unknown?' + por cotizar':'');
-      return error?null:chosen;
+      $('combo-total').innerHTML='Subtotal: '+money(amount)+(unknown?' + por cotizar':'')+(!unknown&&percent>0&&!error?'<span class="combo-savings">Descuento '+percent+'%: −'+money(discount)+' · Total: '+money(final)+'</span>':'');
+      return error?null:{chosen,unknown,percent,amount,discount,final};
     }
     document.querySelectorAll('[data-combo-format]').forEach(button=>button.addEventListener('click',()=>{
       comboFormat=button.dataset.comboFormat;
@@ -1644,21 +1639,16 @@ $('presale-grid').addEventListener('click',event=>{
       renderComboBuilder();
     });
     $('combo-add-cart').addEventListener('click',()=>{
-      const selection=updateComboSummary();
-      if(!selection)return;
-      // Validar antes de añadir para evitar combos incompletos por límite de cantidades.
-      if(selection.some(({id})=>{
-        const existing=cart.find(item=>item.productId===id&&item.variantKey===comboFormat);
-        return existing?.qty>=99;
-      })){showToast('Ya tienes la cantidad máxima de uno de estos decants en tu carrito.');return;}
-      selection.forEach(({product,variant,id})=>{
-        const existing=cart.find(item=>item.productId===id&&item.variantKey===comboFormat);
-        if(existing){existing.qty++;existing.price=variant.price}
-        else cart.push({productId:id,name:product.name,brand:product.brand||'',variantKey:comboFormat,variantLabel:variant.label,price:variant.price,qty:1});
-      });
-      renderCart();
-      openCart(true);
-      showToast('¡Combo agregado a tu pedido!');
+      const data=updateComboSummary();if(!data)return;
+      const {chosen,unknown,percent,amount,discount,final}=data;
+      const names=chosen.map(x=>x.product.name).join(', ');
+      const label=chosen.length+' decants de '+(comboFormat==='decant5'?'5':'10')+' ml: '+names+(unknown?' · Total por cotizar':percent?' · Descuento '+percent+'% ('+money(amount)+' − '+money(discount)+')':'');
+      const id='custom:'+comboFormat+':'+chosen.map(x=>x.id).sort().join('|')+':'+percent;
+      const price=unknown?'Consultar precio':discoveryPrice(final);
+      const existing=cart.find(x=>x.productId===id&&x.variantKey===comboFormat&&x.price===price);
+      if(existing){if(existing.qty>=99){showToast('Máximo 99 sets iguales.');return}existing.qty++}
+      else cart.push({productId:id,name:'Discovery Set personalizado',brand:'OLFACTUM',variantKey:comboFormat,variantLabel:label,price,qty:1});
+      renderCart();openCart(true);showToast('Discovery Set agregado al pedido.');
     });
 
     document.querySelectorAll('.filter').forEach(button => {
