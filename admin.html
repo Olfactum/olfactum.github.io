@@ -158,15 +158,37 @@ header .admin-brand h1{margin-bottom:4px;font-size:24px}
   <h3>Preventas guardadas (<span id="ps-total">0</span>)</h3>
   <div class="items" id="ps-list"><p class="hint">Conecta GitHub para cargar lanzamientos.</p></div>
 </section>
+<section class="card full" id="discovery-admin">
+<h2>7. Discovery Sets y descuentos</h2>
+<p class="hint">Configura descuentos automáticos para combos personalizados de 3, 4 o 5 decants. Por seguridad, empiezan en 0% y el descuento máximo configurable es 50%. Los sets fijos tienen precio propio y fragancias elegidas por ti.</p>
+<h3>Descuentos automáticos (%)</h3>
+<div class="two"><div><h4>Decants de 5 ml</h4><label>3 fragancias (%)<input type="number" id="ds-5-3" min="0" max="50" step="0.5" value="0"></label><label>4 fragancias (%)<input type="number" id="ds-5-4" min="0" max="50" step="0.5" value="0"></label><label>5 fragancias (%)<input type="number" id="ds-5-5" min="0" max="50" step="0.5" value="0"></label></div>
+<div><h4>Decants de 10 ml</h4><label>3 fragancias (%)<input type="number" id="ds-10-3" min="0" max="50" step="0.5" value="0"></label><label>4 fragancias (%)<input type="number" id="ds-10-4" min="0" max="50" step="0.5" value="0"></label><label>5 fragancias (%)<input type="number" id="ds-10-5" min="0" max="50" step="0.5" value="0"></label></div></div>
+<div class="actions"><button type="button" id="ds-discounts-save" disabled>Guardar descuentos en GitHub</button></div>
+<hr>
+<h3>Discovery Sets con precio fijo</h3>
+<form id="ds-form">
+<input type="hidden" id="ds-id">
+<div class="two"><div><label>Nombre del set *<input id="ds-name" maxlength="110" required placeholder="Ej. Discovery Set Fresh"></label></div><div><label>Precio fijo en MXN *<input id="ds-price" type="number" min="1" step="0.01" required placeholder="Ej. 399"></label></div></div>
+<div class="two"><div><label>Presentación *<select id="ds-format"><option value="decant5">5 ml</option><option value="decant10">10 ml</option></select></label></div><div><label>Fotografía opcional (JPG, PNG o WebP)<input type="file" id="ds-photo" accept="image/jpeg,image/png,image/webp"></label></div></div>
+<img id="ds-preview" class="preview" alt="Foto del set">
+<label>Descripción breve<textarea id="ds-description" maxlength="300" placeholder="Una colección de aromas seleccionados..."></textarea></label>
+<p class="hint">Selecciona de 3 a 5 fragancias diferentes del catálogo. Cambia de presentación para mostrar solo los perfumes que ofrecen ese tamaño.</p>
+<div id="ds-products" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:7px;max-height:270px;overflow:auto;padding:12px;border:1px solid #ddd;border-radius:12px"></div>
+<label class="extra-option"><input type="checkbox" id="ds-published"> Publicar este set en la tienda (si sus productos están disponibles)</label>
+<div class="actions"><button type="submit" id="ds-save" disabled>Guardar set en GitHub</button><button type="button" class="secondary" id="ds-reset">Nuevo / limpiar</button><a href="./index.html#combos" target="_blank" rel="noopener">Ver Discovery Sets ↗</a></div>
+</form>
+<h3>Sets guardados (<span id="ds-count">0</span>)</h3><div id="ds-list" class="items"><p class="hint">Conecta GitHub para administrar Discovery Sets.</p></div>
+</section>
 <section class="card full"><h3>Después de guardar</h3><p class="hint">Los cambios se envían a la rama <b>main</b> del repositorio <b>olfactum/olfactum.github.io</b>. GitHub Pages puede tardar unos minutos en reflejarlos. Actualiza la tienda si no aparecen enseguida. No necesitas volver a subir <code>index.html</code>.</p></section>
 </main>
 <script>
 (()=>{'use strict';
 const OWNER='olfactum', REPO='olfactum.github.io', BRANCH='main', API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
-const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='',testimonials=[],testimonialSha='',presales=[],presaleSha='';
+const $=id=>document.getElementById(id); let token='',catalog=[],sha='',busy=false,newsSha='',testimonials=[],testimonialSha='',presales=[],presaleSha='',discoveryData=null,discoverySha='';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
-function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('testimonial-save').disabled=!token||busy;$('ps-save').disabled=!token||busy;$('connect').disabled=busy; }
+function updateButtons(){ $('save').disabled=!token||busy;$('news-save').disabled=!token||busy;$('testimonial-save').disabled=!token||busy;$('ps-save').disabled=!token||busy;$('ds-discounts-save').disabled=!token||busy||!discoverySha;$('ds-save').disabled=!token||busy||!discoverySha;$('connect').disabled=busy; }
 function setBusy(v){busy=v;updateButtons()}
 function b64Utf8(str){const bytes=new TextEncoder().encode(str);let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s)}
 function fromB64(str){const bytes=Uint8Array.from(atob(str.replace(/\s/g,'')),c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}
@@ -392,7 +414,85 @@ $('ps-form').addEventListener('submit',async event=>{
  finally{setBusy(false)}
 });
 
-async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();await loadTestimonialsAdmin();await loadPresalesAdmin();if(newsSha&&testimonialSha&&presaleSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
+
+const emptyDiscovery=()=>({discounts:{decant5:{"3":0,"4":0,"5":0},decant10:{"3":0,"4":0,"5":0}},fixedSets:[]});
+async function loadDiscoveryAdmin(){
+ try{const f=await api('discovery-sets.json');const d=JSON.parse(fromB64(f.content));if(!d||!d.discounts||!Array.isArray(d.fixedSets))throw Error('Formato inválido');discoveryData=d;discoverySha=f.sha}
+ catch(e){discoveryData=null;discoverySha='';status('No se pudo cargar Discovery Sets: '+e.message,true)}
+ renderDiscoveryAdmin();updateButtons();
+}
+function discoveryEligible(format){
+ return catalog.filter(p=>p&&p.status!=='Agotado'&&p.category!=='Decants'&&p.variants?.[format]?.enabled&&p.id).sort((a,b)=>a.name.localeCompare(b.name,'es'));
+}
+function renderDiscoveryChoices(selected=[]){
+ const chosen=new Set(selected.map(String));
+ $('ds-products').innerHTML=discoveryEligible($('ds-format').value).map(p=>'<label style="display:flex;align-items:center;gap:8px;font-size:12px"><input type="checkbox" name="ds-product" value="'+esc(p.id)+'" '+(chosen.has(String(p.id))?'checked':'')+'> '+esc(p.name)+' · '+esc(p.variants[$('ds-format').value].price)+'</label>').join('')||'<p class="hint">No hay decants disponibles para esta presentación.</p>';
+}
+function renderDiscoveryAdmin(){
+ const d=discoveryData||emptyDiscovery();
+ for(const [format,prefix] of [['decant5','5'],['decant10','10']])for(const n of [3,4,5])$('ds-'+prefix+'-'+n).value=d.discounts?.[format]?.[n]??0;
+ $('ds-count').textContent=d.fixedSets.length;
+ $('ds-list').innerHTML=d.fixedSets.length?d.fixedSets.map(x=>'<div class="item"><div class="item-info"><strong>'+esc(x.name)+'</strong><span>'+(x.published?'Publicado':'Borrador')+' · '+(x.format==='decant5'?'5':'10')+' ml · $'+esc(x.price)+' MXN · '+x.productIds.length+' fragancias</span></div><button class="secondary" data-ds-edit="'+esc(x.id)+'" type="button">Editar</button><button class="danger" data-ds-delete="'+esc(x.id)+'" type="button">×</button></div>').join(''):'<p class="hint">Aún no hay sets fijos. Puedes crear el primero aquí.</p>';
+ renderDiscoveryChoices();
+}
+async function saveDiscovery(next,message){
+ if(!discoverySha)throw Error('Reconecta el panel para cargar la configuración');
+ await api('discovery-sets.json',{method:'PUT',body:{message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha:discoverySha,branch:BRANCH}});
+ const file=await api('discovery-sets.json');discoverySha=file.sha;discoveryData=JSON.parse(fromB64(file.content));renderDiscoveryAdmin();
+}
+function resetDiscovery(){
+ $('ds-form').reset();$('ds-id').value='';$('ds-preview').style.display='none';$('ds-preview').removeAttribute('src');renderDiscoveryChoices();
+}
+$('ds-format').addEventListener('change',()=>renderDiscoveryChoices());
+$('ds-reset').addEventListener('click',resetDiscovery);
+$('ds-photo').addEventListener('change',()=>{
+ const file=$('ds-photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('ds-preview').src=url;$('ds-preview').style.display='block';$('ds-preview').onload=()=>URL.revokeObjectURL(url);
+});
+$('ds-discounts-save').addEventListener('click',async()=>{
+ if(busy||!token||!discoverySha)return;
+ const d=discoveryData||emptyDiscovery(),discounts={decant5:{},decant10:{}};
+ for(const [format,prefix] of [['decant5','5'],['decant10','10']])for(const n of [3,4,5]){
+  const el=$('ds-'+prefix+'-'+n),value=Number(el.value);
+  if(el.value.trim()===''||!Number.isFinite(value)||value<0||value>50){status('Los descuentos deben estar entre 0% y 50%.',true);el.focus();return}
+  discounts[format][n]=value;
+ }
+ setBusy(true);try{await saveDiscovery({...d,discounts},'Olfactum: actualizar descuentos de Discovery Sets');status('Descuentos guardados. Se aplicarán a los combos personalizados en la tienda.')}
+ catch(e){status('Error al guardar descuentos: '+e.message,true)}finally{setBusy(false)}
+});
+$('ds-list').addEventListener('click',async event=>{
+ const edit=event.target.closest('[data-ds-edit]');
+ if(edit){
+  const set=discoveryData?.fixedSets.find(s=>s.id===edit.dataset.dsEdit);if(!set)return;
+  $('ds-id').value=set.id;$('ds-name').value=set.name;$('ds-price').value=set.price;$('ds-format').value=set.format;$('ds-description').value=set.description||'';$('ds-published').checked=!!set.published;
+  $('ds-photo').value='';const url=imgUrl(set.image);$('ds-preview').style.display=url?'block':'none';if(url)$('ds-preview').src=url;
+  renderDiscoveryChoices(set.productIds);$('ds-form').scrollIntoView({behavior:'smooth',block:'start'});return;
+ }
+ const del=event.target.closest('[data-ds-delete]');if(!del||busy||!token)return;
+ const set=discoveryData?.fixedSets.find(s=>s.id===del.dataset.dsDelete);
+ if(!set||!confirm('¿Eliminar Discovery Set '+set.name+'?'))return;
+ setBusy(true);try{await saveDiscovery({...discoveryData,fixedSets:discoveryData.fixedSets.filter(s=>s.id!==set.id)},'Olfactum: eliminar Discovery Set '+set.name);resetDiscovery();status('Set eliminado.')}
+ catch(e){status('Error al eliminar set: '+e.message,true)}finally{setBusy(false)}
+});
+$('ds-form').addEventListener('submit',async event=>{
+ event.preventDefault();if(busy||!token||!discoverySha)return;
+ const selected=Array.from(document.querySelectorAll('input[name="ds-product"]:checked'),el=>el.value);
+ if(selected.length<3||selected.length>5||new Set(selected).size!==selected.length){status('Elige de 3 a 5 fragancias diferentes.',true);return}
+ const price=Number($('ds-price').value);
+ if(!Number.isFinite(price)||price<=0){status('Ingresa un precio fijo válido.',true);return}
+ const old=discoveryData.fixedSets.find(s=>s.id===$('ds-id').value);
+ if(!old&&discoveryData.fixedSets.length>=30){status('Límite de 30 sets.',true);return}
+ const set={...old,id:old?.id||'set-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),
+ name:$('ds-name').value.trim(),description:$('ds-description').value.trim(),format:$('ds-format').value,
+ price,productIds:selected,published:$('ds-published').checked,image:old?.image||''};
+ if(!set.name){status('Escribe el nombre del set.',true);return}
+ setBusy(true);
+ try{const photo=$('ds-photo').files?.[0];if(photo){status('Subiendo fotografía...');set.image=await uploadPhoto(photo,set.id)}
+  await saveDiscovery({...discoveryData,fixedSets:old?discoveryData.fixedSets.map(s=>s.id===set.id?set:s):[...discoveryData.fixedSets,set]},'Olfactum: '+(old?'actualizar':'agregar')+' Discovery Set '+set.name);
+  resetDiscovery();status('Discovery Set guardado. '+(set.published?'Publicado si sus fragancias están disponibles.':'Guardado como borrador.'))
+ }catch(e){status('No se pudo guardar: '+e.message+(set.image!==old?.image?' La foto puede haber quedado sin asociar.':''),true)}finally{setBusy(false)}
+});
+
+async function load(){const item=await api('productos.json');const arr=JSON.parse(fromB64(item.content));if(!Array.isArray(arr))throw Error('productos.json debe contener una lista');catalog=arr;sha=item.sha;render();await loadNewsConfig();await loadTestimonialsAdmin();await loadPresalesAdmin();await loadDiscoveryAdmin();if(newsSha&&testimonialSha&&presaleSha)status(`Conectado a ${OWNER}/${REPO}. Se cargaron ${catalog.length} productos y las novedades.`)}
 function imgUrl(p){return /^images\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp)$/.test(p||'')?`./${p}`:''}
 function render(){const q=$('filter').value.trim().toLocaleLowerCase('es');$('total').textContent=catalog.length;const shown=catalog.filter(p=>[p.name,p.brand,p.category].join(' ').toLocaleLowerCase('es').includes(q));$('items').innerHTML=shown.length?shown.map(p=>`<div class="item">${imgUrl(p.image)?`<img src="${esc(imgUrl(p.image))}" alt="">`:'<div style="width:54px;height:58px;background:#efe8da;border-radius:8px"></div>'}<div class="item-info"><strong>${esc(p.name)}</strong><span>${p.featured?'⭐ Destacado · ':''}${p.promotion?.enabled?'🏷️ '+esc(p.promotion.label)+' · ':''}${esc(p.brand)} · ${esc((p.variants ? Object.entries(p.variants).filter(([key,v])=>v?.enabled).map(([key,v])=>( {decant5:"5 ml",decant10:"10 ml",bottle:"Botella"}[key]||key)+": "+v.price).join(" · ") : p.price) || "Consultar precio")}</span></div><button class="secondary" data-edit="${esc(p.id)}" type="button">Editar</button><button class="danger" data-delete="${esc(p.id)}" type="button">×</button></div>`).join(''):'<p class="hint">No hay productos que coincidan.</p>'}
 function clearForm(){$('form').reset();$('vb-enabled').checked=true;$('edit-id').value='';$('preview').style.display='none';$('preview').removeAttribute('src');$('name').focus()}
@@ -400,7 +500,7 @@ function edit(id){const p=catalog.find(p=>p.id===id);if(!p)return; $('edit-id').
 async function saveCatalog(next,message){const body={message,content:b64Utf8(JSON.stringify(next,null,2)+'\n'),sha,branch:BRANCH};await api('productos.json',{method:'PUT',body});await load()}
 async function uploadPhoto(file,id){if(!file)return '';const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};if(!allowed[file.type])throw Error('Usa imagen JPG, PNG o WebP.');if(file.size>4*1024*1024)throw Error('La imagen debe pesar menos de 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let raw='';for(let i=0;i<buffer.length;i+=8192)raw+=String.fromCharCode(...buffer.subarray(i,i+8192));const path=`images/${id}-${Date.now()}.${allowed[file.type]}`;await api(path,{method:'PUT',body:{message:`Olfactum: agregar foto de ${id}`,content:btoa(raw),branch:BRANCH}});return path}
 $('connect').addEventListener('click',async()=>{const value=$('token').value.trim();if(!value){status('Introduce tu token.',true);return}token=value;$('token').value='';setBusy(true);try{await load()}catch(e){token='';catalog=[];sha='';render();status('No se pudo conectar: '+e.message,true)}finally{setBusy(false)}});
-$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';testimonialSha='';testimonials=[];renderTestimonialsAdmin();presaleSha='';presales=[];renderPresales();$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
+$('disconnect').addEventListener('click',()=>{token='';catalog=[];sha='';newsSha='';testimonialSha='';testimonials=[];renderTestimonialsAdmin();presaleSha='';presales=[];renderPresales();discoveryData=null;discoverySha='';renderDiscoveryAdmin();$('token').value='';clearForm();render();updateButtons();status('Desconectado. El token ya no está en la memoria del panel.')});
 $('filter').addEventListener('input',render);$('new').addEventListener('click',clearForm);
 $('items').addEventListener('click',async e=>{const editBtn=e.target.closest('[data-edit]'),delBtn=e.target.closest('[data-delete]');if(editBtn)return edit(editBtn.dataset.edit);if(!delBtn||busy)return;const item=catalog.find(p=>p.id===delBtn.dataset.delete);if(!item||!confirm(`¿Eliminar «${item.name}» del catálogo?`))return;setBusy(true);try{await saveCatalog(catalog.filter(p=>p.id!==item.id),`Olfactum: eliminar ${item.name}`);status(`Eliminaste «${item.name}» del catálogo. La foto, si existía, permanece en images/.`);clearForm()}catch(e){status(e.message,true)}finally{setBusy(false)}});
 $('photo').addEventListener('change',()=>{const file=$('photo').files?.[0];if(!file)return;const url=URL.createObjectURL(file);$('preview').src=url;$('preview').style.display='block';$('preview').onload=()=>URL.revokeObjectURL(url)});
