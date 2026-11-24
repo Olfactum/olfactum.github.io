@@ -1153,6 +1153,7 @@
         products = data;
         renderProducts();
         renderComboBuilder();
+        renderFixedDiscovery();
         renderNews();
       } catch(error) {
         $('products').innerHTML = '<p class="empty">Estamos actualizando el catálogo. Escríbenos por WhatsApp para conocer las opciones disponibles.</p>';
@@ -1540,6 +1541,40 @@ $('presale-grid').addEventListener('click',event=>{
     }
 
 
+
+    let discoveryConfig={discounts:{decant5:{"3":0,"4":0,"5":0},decant10:{"3":0,"4":0,"5":0}},fixedSets:[]};
+    const discoveryPrice=n=>'$'+n.toFixed(2)+' MXN';
+    function discoveryDiscount(format,count){const x=Number(discoveryConfig.discounts?.[format]?.[String(count)]??0);return Number.isFinite(x)?Math.min(50,Math.max(0,x)):0}
+    async function loadDiscovery(){
+      try{const r=await fetch('discovery-sets.json',{cache:'no-store'});if(!r.ok)throw Error('Not available');const x=await r.json();if(!x?.discounts||!Array.isArray(x.fixedSets))throw Error('Invalid');discoveryConfig=x}catch(e){console.warn(e)}
+      renderComboBuilder();renderFixedDiscovery();
+    }
+    function fixedDetails(set){
+      if(!set||!set.published||!['decant5','decant10'].includes(set.format)||!Array.isArray(set.productIds)||set.productIds.length<3||set.productIds.length>5||new Set(set.productIds).size!==set.productIds.length)return null;
+      const price=Number(set.price);if(!Number.isFinite(price)||price<=0)return null;
+      const chosen=set.productIds.map(id=>products.find(p=>String(p.id)===String(id)));
+      if(chosen.some(p=>!p||p.status==='Agotado'||!getVariants(p).some(v=>v.key===set.format)))return null;
+      let regular=0;for(const p of chosen){const v=getAmount(getVariants(p).find(v=>v.key===set.format)?.price);if(v===null){regular=null;break}regular+=v}
+      return {price,chosen,regular};
+    }
+    function renderFixedDiscovery(){
+      $('discovery-fixed-grid').innerHTML=(discoveryConfig.fixedSets||[]).map(set=>{
+        const d=fixedDetails(set);if(!d)return '';
+        const safe=/^images\/[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/;
+        const image=safe.test(set.image||'')?'<img loading="lazy" src="'+escapeHtml(set.image)+'" alt="'+escapeHtml(set.name)+'">':'<span aria-hidden="true">✧</span>';
+        const savings=d.regular!==null&&d.regular>d.price?'<span class="discovery-set-savings">Ahorras '+money(d.regular-d.price)+' frente a los decants individuales</span>':'';
+        return '<article class="discovery-set"><div class="discovery-set-image">'+image+'</div><div class="discovery-set-body"><div class="eyebrow">OLFACTUM · '+(set.format==='decant5'?'5':'10')+' ML</div><h3>'+escapeHtml(set.name)+'</h3>'+(set.description?'<p>'+escapeHtml(set.description)+'</p>':'')+'<ul>'+d.chosen.map(p=>'<li>'+escapeHtml(p.name)+'</li>').join('')+'</ul><strong class="discovery-set-price">'+money(d.price)+'</strong>'+savings+'<button type="button" data-discovery-set="'+escapeHtml(set.id)+'">Agregar set al pedido ↗</button></div></article>';
+      }).join('')||'<p class="discovery-empty">Próximamente publicaremos Discovery Sets de precio fijo. Mientras tanto, arma tu propio combo arriba.</p>';
+    }
+    $('discovery-fixed-grid').addEventListener('click',event=>{
+      const btn=event.target.closest('[data-discovery-set]');if(!btn)return;
+      const set=(discoveryConfig.fixedSets||[]).find(s=>s.id===btn.dataset.discoverySet),d=fixedDetails(set);if(!d)return;
+      const id='fixed:'+set.id,price=discoveryPrice(d.price),existing=cart.find(p=>p.productId===id&&p.variantKey===set.format&&p.price===price);
+      if(existing){if(existing.qty>=99){showToast('Máximo 99 sets iguales');return}existing.qty++}
+      else cart.push({productId:id,name:set.name,brand:'OLFACTUM',variantKey:set.format,variantLabel:d.chosen.map(p=>p.name).join(', ')+' · '+(set.format==='decant5'?'5':'10')+' ml',price,qty:1});
+      renderCart();openCart(true);showToast('Discovery Set agregado');
+    });
+
     // Combo: una presentación común y entre 3 y 5 fragancias diferentes.
     let comboFormat='decant5';
     let comboSelections=['','',''];
@@ -1887,6 +1922,7 @@ $('gift-company-form').addEventListener('submit',event=>{
     $('floating-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     $('year').textContent = new Date().getFullYear();
     renderCart();
+    loadDiscovery();
     loadProducts();
     loadNews();
     loadPresales();
