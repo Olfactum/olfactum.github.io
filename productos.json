@@ -3037,5 +3037,41 @@
       "label": "",
       "details": ""
     }
+  },
+  {
+    "id": "perfume-1795497401868-slndb",
+    "name": "Donna Intense",
+    "brand": "Emper",
+    "category": "Árabes",
+    "gender": "Femenino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🍦 Vainilla Bourbon · 🔶 Ámbar · 🌼 Jazmín · ✨ Benjuí",
+    "image": "images/perfume-1795497401868-slndb-1795497401896.png",
+    "families": [
+      "Florales"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   }
 ]
