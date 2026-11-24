@@ -2999,5 +2999,43 @@
       "label": "",
       "details": ""
     }
+  },
+  {
+    "id": "perfume-1795481077668-zimqe",
+    "name": "Odyssey Nexus",
+    "brand": "Armaf",
+    "category": "Árabes",
+    "gender": "Masculino",
+    "concentration": "Eau de Parfum",
+    "tone": "clear",
+    "status": "Disponible",
+    "price": "Consultar precio",
+    "variants": {
+      "decant5": {
+        "enabled": true,
+        "price": "$100"
+      },
+      "decant10": {
+        "enabled": true,
+        "price": "$200"
+      },
+      "bottle": {
+        "enabled": false,
+        "price": "Consultar precio"
+      }
+    },
+    "desc": "Notas: 🌊 Notas marinas · 🍋 Bergamota · 🍊 Mandarina · 🌿 Romero · 🫚 Jengibre · 🍃 Salvia · 🌺 Geranio · 🍂 Pachulí · 🪔 Incienso · 🪵 Notas amaderadas · 🔶 Notas balsámicas",
+    "image": "images/perfume-1795481077668-zimqe-1795481077717.png",
+    "families": [
+      "Cítricas",
+      "Acuáticas",
+      "Aromáticos"
+    ],
+    "featured": false,
+    "promotion": {
+      "enabled": false,
+      "label": "",
+      "details": ""
+    }
   }
 ]
