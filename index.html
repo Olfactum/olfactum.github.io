@@ -624,6 +624,19 @@
  body.ps-card-visible #floating-contact,body.ps-card-visible #floating-top{opacity:0;pointer-events:none;visibility:hidden}
 }
 
+
+.discovery-fixed{margin-top:36px}.discovery-heading{margin-bottom:20px}.discovery-heading h2{font-size:clamp(36px,4.5vw,53px);margin:8px 0}.discovery-heading p{font-size:13px;color:#667365}
+.discovery-fixed-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.discovery-set{background:white;border:1px solid #e5ddcf;border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.discovery-set-image{height:170px;background:#f1eee6;display:grid;place-items:center}
+.discovery-set-image img{width:100%;height:100%;object-fit:contain;padding:10px}.discovery-set-image span{font-size:65px;color:#b79668}
+.discovery-set-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.discovery-set-body h3{font-size:30px;margin:0}.discovery-set-body p,.discovery-set-body li{font-size:12px;color:#5e6e60;line-height:1.55}
+.discovery-set-body ul{padding-left:18px;margin:2px 0}.discovery-set-price{font-size:25px;color:#23452f;font-weight:800;margin-top:auto}
+.discovery-set-savings,.combo-savings{display:block;font-size:12px;color:#337349;font-weight:750}
+.discovery-set-body button{border:0;background:#1d3c2b;color:white;border-radius:12px;padding:13px;min-height:47px;font-size:12px;font-weight:800}
+.discovery-empty{grid-column:1/-1;background:#fff;border:1px dashed #bac1b7;padding:24px;text-align:center;border-radius:14px;color:#657364}
+@media(max-width:900px){.discovery-fixed-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.discovery-fixed-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -844,7 +857,7 @@
         <div class="combo-card">
           <div class="eyebrow" style="color:#987347">DESCUBRE MÁS AROMAS</div>
           <h2>Arma tu combo de decants.</h2>
-          <p class="combo-subtitle">Elige de 3 a 5 fragancias diferentes y pruébalas a tu ritmo. Selecciona 5 ml o 10 ml; el importe será la suma de los precios publicados, sin descuentos automáticos.</p>
+          <p class="combo-subtitle">Elige de 3 a 5 fragancias en 5 o 10 ml. Si existe una promoción vigente, el descuento se calcula automáticamente sobre los precios publicados.</p>
           <div class="combo-size" role="group" aria-label="Tamaño de los decants del combo">
             <button type="button" data-combo-format="decant5" class="active" aria-pressed="true">Decants 5 ml</button>
             <button type="button" data-combo-format="decant10" aria-pressed="false">Decants 10 ml</button>
@@ -860,10 +873,14 @@
           <h3>Tu combo personalizado</h3>
           <ol class="combo-basket-list" id="combo-summary"><li>Selecciona tus primeras tres fragancias.</li></ol>
           <div class="combo-total" id="combo-total">Subtotal: $0 MXN</div>
-          <p class="combo-disclaimer">Los precios corresponden a cada decant y se confirmarán al recibir tu pedido. El combo no aplica descuentos especiales automáticamente. Envío y disponibilidad por confirmar.</p>
+          <p class="combo-disclaimer">Los precios corresponden a cada decant y se confirmarán al recibir tu pedido. Las promociones solo se aplican cuando todos los precios están disponibles. Envío y disponibilidad por confirmar.</p>
           <div id="combo-warning" class="combo-warning" role="status" aria-live="polite"></div>
           <button type="button" class="btn btn-dark combo-add-cart" id="combo-add-cart" disabled>Agregar combo al carrito ↗</button>
         </aside>
+      </div>
+      <div class="container discovery-fixed">
+        <div class="discovery-heading"><div class="eyebrow">OLFACTUM · DISCOVERY SETS</div><h2>Colecciones seleccionadas.</h2><p>Sets de fragancias con precio fijo, preparados por OLFACTUM.</p></div>
+        <div id="discovery-fixed-grid" class="discovery-fixed-grid" aria-live="polite"><p class="discovery-empty">Próximamente tendremos nuevos sets.</p></div>
       </div>
     </section>
 
